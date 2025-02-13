@@ -1,6 +1,6 @@
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 
@@ -33,6 +33,7 @@ import { JwtInterceptor } from './interceptors/jwt.interceptor';
 
 
 
+
 @NgModule({
   imports: [  NgbModule,
     BrowserAnimationsModule,
@@ -45,7 +46,8 @@ import { JwtInterceptor } from './interceptors/jwt.interceptor';
     BrowserAnimationsModule,
     BrowserModule,
     BrowserAnimationsModule,
-
+   // Déclarez le composant ici
+    ReactiveFormsModule
   ],
   declarations: [ AppComponent, 
     AdminLayoutComponent,
@@ -61,7 +63,8 @@ import { JwtInterceptor } from './interceptors/jwt.interceptor';
     DachbordMComponent,
     ProfileComponent,
     ManagerLayoutComponent,
-    
+
+    RegisterComponent
 
 
  

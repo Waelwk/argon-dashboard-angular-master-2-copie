@@ -1,0 +1,263 @@
+/* Styles CSS personnalisés */
+.background-legal {
+    background-color: #0a2647; /* Bleu foncé professionnel */
+
+    background-size: cover;
+    background-position: center;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+     /* Styles CSS personnalisés */
+     .background-legal {
+        background-color: #0a2647; /* Bleu foncé professionnel */
+  background-image: url('https://www.efe.fr/sites/default/files/training_products/juridique.jpg'); /* Motif juridique subtil */
+  background-size: cover;
+  background-position: center;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+      }
+      body::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(10, 38, 71, 0.9); /* Bleu nuit avec 70% de transparence */
+}
+    /* Ajouter un fond bleu nuit transparent devant l'image */
+.background-legal {
+    background-color: #0a2647; /* Bleu foncé professionnel */
+    background-image: url('https://www.efe.fr/sites/default/files/training_products/juridique.jpg'); /* Motif juridique subtil */
+    background-size: cover;
+    background-position: center;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.background-legal::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(10, 38, 71, 0.7); /* Bleu nuit avec 70% de transparence */
+    z-index: 1; /* S'assure que l'overlay est au-dessus de l'image */
+}
+
+.card {
+    position: relative; /* S'assure que le contenu de la carte est au-dessus du fond bleu */
+    z-index: 2; /* Met la carte au-dessus de l'overlay */
+}
+
+
+     
+
+      .bg-glass {
+          background-color: hsla(0, 0%, 100%, 0.9) !important;
+          backdrop-filter: saturate(200%) blur(25px);
+          border-radius: 15px;
+          box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      }
+
+      .btn-primary {
+          background-color: #144272; /* Bleu foncé */
+          border: none;
+          transition: background-color 0.3s ease;
+      }
+
+      .btn-primary:hover {
+          background-color: #0a2647; /* Bleu plus foncé au survol */
+      }
+
+      .form-control {
+          border-radius: 8px;
+          padding: 10px;
+          border: 1px solid #ddd;
+          transition: border-color 0.3s ease;
+      }
+
+      .form-control:focus {
+          border-color: #144272;
+          box-shadow: none;
+      }
+
+      .text-muted {
+          color: #6c757d !important;
+      }
+
+      .card-title {
+          font-size: 2rem;
+          font-weight: bold;
+          color: #ffffff; /* Blanc */
+      }
+
+      .card-text {
+          color: #d1d1d1; /* Gris clair */
+      }
+
+      .legal-header {
+          color: #ffffff; /* Blanc */
+      }
+
+      .legal-subheader {
+          color: #a8c0d6; /* Bleu clair */
+      }
+
+      /* Ajustements pour déplacer le formulaire */
+      .container {
+          margin-bottom: 0rem; /* Ajustez cette valeur pour déplacer le formulaire vers le haut ou le bas */
+      }
+
+      .card {
+          margin-bottom: -120px; /* Déplace la carte (formulaire) vers le haut */
+      }
+.bg-glass {
+    background-color: hsla(0, 0%, 100%, 0.9) !important;
+    backdrop-filter: saturate(200%) blur(25px);
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    padding: 0rem;
+}
+
+.btn-primary {
+    background-color: #144272; /* Bleu foncé */
+    border: none;
+    transition: background-color 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: #0a2647; /* Bleu plus foncé au survol */
+}
+
+.form-control {
+    border-radius: 8px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    transition: border-color 0.3s ease;
+}
+
+.form-control:focus {
+    border-color: #144272;
+    box-shadow: none;
+}
+
+.text-muted {
+    color: #6c757d !important;
+}
+
+.card-title {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #ffffff; /* Blanc */
+}
+
+.card-text {
+    color: #d1d1d1; /* Gris clair */
+}
+
+.legal-header {
+    color: #ffffff; /* Blanc */
+}
+
+.legal-subheader {
+    color: #a8c0d6; /* Bleu clair */
+}
+
+.hidden {
+    display: none;
+}
+
+.registration-type-buttons {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.registration-type-buttons .btn {
+    flex: 1;
+}
+
+.error-message {
+    color: #dc3545; /* Rouge pour les erreurs */
+    font-size: 0.875rem;
+    margin-top: 0.25rem;
+}
+
+.success-message {
+    color: #28a745; /* Vert pour les succès */
+    font-size: 0.875rem;
+    margin-top: 0.25rem;
+}
+
+.loading-spinner {
+    display: none;
+    width: 20px;
+    height: 20px;
+    border: 3px solid #f3f3f3;
+    border-top: 3px solid #144272;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.progress-bar {
+    height: 10px;
+    background-color: #144272;
+    border-radius: 5px;
+    transition: width 0.3s ease;
+}
+
+.step {
+    display: none;
+    animation: fadeIn 0.5s ease;
+}
+
+.step.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.btn-secondary {
+    background-color: #6c757d;
+    border: none;
+    transition: background-color 0.3s ease;
+}
+
+.btn-secondary:hover {
+    background-color: #5a6268;
+}.card {
+    height: auto; /* Ajuste automatiquement la hauteur */
+    min-height: 200px; /* Définir une hauteur minimale si nécessaire */
+}
+.card {
+    max-width: 450px; /* Limite la largeur pour éviter un trop grand formulaire */
+    margin: auto; /* Centre le formulaire */
+    padding: 10px; /* Ajoute un peu d'espace interne */
+}
+.card-body {
+    max-height: 80vh; /* Empêche le formulaire d'être trop grand */
+    overflow-y: auto; /* Permet le défilement si besoin */
+}
+.form-control {
+    padding: 10px; /* Réduit l'espace dans les champs */
+    font-size: 17px; /* Ajuste la taille du texte */
+}

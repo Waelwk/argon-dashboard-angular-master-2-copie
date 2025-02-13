@@ -20,6 +20,7 @@ import { ProfileComponent } from './pages/manager/profile/profile.component';
 
 import { AuthGuard } from './guards/auth.guard';
 
+
 const routes: Routes = [
   {
     path: '',
@@ -49,13 +50,14 @@ const routes: Routes = [
     ]
   },
   { path: 'index', component: IndexComponent },
-  { path: 'login', component: LoginComponent },
+ 
   {
     path: 'auth',
     component: AuthLayoutComponent,
     children: [
       { path: 'login', component: LoginComponent },
       { path: 'register', component: RegisterComponent },
+
     ]
   },
   {
