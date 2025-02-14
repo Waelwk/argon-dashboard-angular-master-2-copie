@@ -43,5 +43,12 @@ export class AuthService {
     isAuthenticated(): boolean {
       return !!localStorage.getItem('token')
     }
+    registerClient(clientData: any): Observable<any> {
+      return this.http.post(`${this.apiUrl}/register`, clientData);
+    }
+  
+    registerCabinet(cabinetData: any): Observable<any> {
+      return this.http.post(`${this.apiUrl}/register-manager`, cabinetData);
+    }
   }
   

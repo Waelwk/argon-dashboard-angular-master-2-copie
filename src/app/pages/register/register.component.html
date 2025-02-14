@@ -77,17 +77,17 @@
                           <h4>Informations du Cabinet</h4>
                             <div class="mb-4">
                                 <label class="form-label" for="cabinetNom">Nom du Cabinet</label>
-                                <input type="text" id="cabinetNom" class="form-control" formControlName="cabinetNom" placeholder="Nom du cabinet">
+                                <input type="text" id="nomCabinet" class="form-control" formControlName="nomCabinet" placeholder="Nom du cabinet">
                             </div>
                     
                             <div class="mb-4">
                                 <label class="form-label" for="cabinetAdresse">Adresse du Cabinet</label>
-                                <input type="text" id="cabinetAdresse" class="form-control" formControlName="cabinetAdresse" placeholder="Adresse du cabinet">
+                                <input type="text" id="adresse" class="form-control" formControlName="adresse" placeholder="Adresse du cabinet">
                             </div>
                     
                             <div class="mb-4">
                                 <label class="form-label" for="cabinetTelephone">Téléphone du Cabinet</label>
-                                <input type="text" id="cabinetTelephone" class="form-control" formControlName="cabinetTelephone" placeholder="Téléphone du cabinet">
+                                <input type="text" id="numTel" class="form-control" formControlName="numTel" placeholder="Téléphone du cabinet">
                             </div>
                         </div>
                     
@@ -95,6 +95,12 @@
                         <button type="submit" class="btn btn-primary btn-block mb-4 w-100">
                             S'inscrire
                         </button>
+                         <div *ngIf="errorMessage" class="alert alert-danger mt-3">
+                                  {{ errorMessage }}
+                              </div>
+                              <div *ngIf="successMessage" class="alert alert-success mt-3">
+                                  {{ successMessage }}
+                              </div>
                     </form>
                     
                         </div>
