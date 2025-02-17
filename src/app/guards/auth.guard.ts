@@ -9,18 +9,24 @@ import { AuthService } from '../service/auth/auth.service';
 export class AuthGuard implements CanActivate {
   constructor(private authService: AuthService, private router: Router) {}
 
-  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
+  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | UrlTree {
     const isAuthenticated = this.authService.isAuthenticated();
     const userRole = this.authService.getRole();
 
-    if (!isAuthenticated) {
-      this.router.navigate(['/auth/login']); // Redirection si non connecté
-      return false;
+    // Si l'utilisateur est déjà connecté et essaie d'accéder aux pages login ou register
+    if (isAuthenticated && (state.url.includes('/auth/login') || state.url.includes('/auth/register'))) {
+      // Rediriger vers le dashboard ou la page d'accueil
+      return this.router.createUrlTree(['/dashboard']);
     }
 
+    // Si l'utilisateur n'est pas authentifié, il ne peut pas accéder à d'autres pages sauf login ou register
+    if (!isAuthenticated && !state.url.includes('/auth/login') && !state.url.includes('/auth/register')) {
+      return this.router.createUrlTree(['/auth/login'], { queryParams: { returnUrl: state.url } }); // Rediriger vers la page login
+    }
+
+    // Si l'utilisateur a le rôle approprié pour accéder à la route
     if (route.data['roles'] && !route.data['roles'].includes(userRole)) {
-      this.router.navigate(['/']); // Redirection si rôle non autorisé
-      return false;
+      return this.router.createUrlTree(['/']); // Rediriger si rôle non autorisé
     }
 
     return true;
