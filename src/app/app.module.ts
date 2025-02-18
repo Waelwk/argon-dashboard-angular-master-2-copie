@@ -30,6 +30,9 @@ import { DachbordMComponent } from './pages/manager/dachbord-m/dachbord-m.compon
 import { ProfileComponent } from './pages/manager/profile/profile.component';
 import { ManagerLayoutComponent } from './layouts/manager-layout/manager-layout.component';
 import { JwtInterceptor } from './interceptors/jwt.interceptor';
+import { ManagerCrudComponent } from './pages/admin/manager-crud/manager-crud.component';
+
+
 
 
 
@@ -47,7 +50,8 @@ import { JwtInterceptor } from './interceptors/jwt.interceptor';
     BrowserModule,
     BrowserAnimationsModule,
    // Déclarez le composant ici
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule,
   ],
   declarations: [ AppComponent, 
     AdminLayoutComponent,
@@ -63,8 +67,9 @@ import { JwtInterceptor } from './interceptors/jwt.interceptor';
     DachbordMComponent,
     ProfileComponent,
     ManagerLayoutComponent,
-
-    RegisterComponent
+    ManagerCrudComponent ,
+    RegisterComponent,
+     
 
 
  

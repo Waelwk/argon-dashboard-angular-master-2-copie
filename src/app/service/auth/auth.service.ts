@@ -52,8 +52,7 @@ export class AuthService {
     localStorage.removeItem('role');
     this.token = null;
     this.userSubject.next(null); // Réinitialiser l'état d'authentification
-    this.router.navigate(['/auth/login']); // Rediriger vers la page de login
-    
+  
   }
 
   // Tester le décodage du token

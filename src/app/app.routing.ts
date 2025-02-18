@@ -19,6 +19,7 @@ import { DachbordMComponent } from './pages/manager/dachbord-m/dachbord-m.compon
 import { ProfileComponent } from './pages/manager/profile/profile.component';
 
 import { AuthGuard } from './guards/auth.guard';
+import { ManagerCrudComponent } from './pages/admin/manager-crud/manager-crud.component';
 
 
 const routes: Routes = [
@@ -46,7 +47,7 @@ const routes: Routes = [
       { path: '', component: DashboardComponent },
       { path: 'user-profile', component: UserProfileComponent },
       { path: 'tables', component: TablesComponent },
-      { path: 'maps', component: MapsComponent },
+      { path: 'maps', component: ManagerCrudComponent },
     ]
   },
   { path: 'index', component: IndexComponent },
