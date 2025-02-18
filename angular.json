@@ -30,6 +30,7 @@
               "src/assets"
             ],
             "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.scss",
               "src/assets/scss/argon.scss"
             ],
@@ -108,13 +109,15 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "src/tsconfig.spec.json",
             "karmaConfig": "src/karma.conf.js",
-            "styles": ["src/styles.css",
-  "src/index/assets/vendor/bootstrap/css/bootstrap.min.css",
-  "src/index/assets/vendor/bootstrap-icons/bootstrap-icons.css",
-  "src/index/assets/vendor/aos/aos.css",
-  "src/index/assets/vendor/glightbox/css/glightbox.min.css",
-  "src/index/assets/vendor/swiper/swiper-bundle.min.css",
-  "src/index/assets/css/main.css",
+            "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
+              "src/styles.css",
+              "src/index/assets/vendor/bootstrap/css/bootstrap.min.css",
+              "src/index/assets/vendor/bootstrap-icons/bootstrap-icons.css",
+              "src/index/assets/vendor/aos/aos.css",
+              "src/index/assets/vendor/glightbox/css/glightbox.min.css",
+              "src/index/assets/vendor/swiper/swiper-bundle.min.css",
+              "src/index/assets/css/main.css",
               "src/styles.css"
             ],
             "scripts": ["src/index/assets/vendor/bootstrap/js/bootstrap.bundle.min.js",

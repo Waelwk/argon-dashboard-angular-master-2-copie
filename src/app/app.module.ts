@@ -33,6 +33,13 @@ import { JwtInterceptor } from './interceptors/jwt.interceptor';
 import { ManagerCrudComponent } from './pages/admin/manager-crud/manager-crud.component';
 
 
+import { MatTableModule } from '@angular/material/table';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatButtonModule } from '@angular/material/button';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatIconModule } from '@angular/material/icon';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 
 
@@ -52,6 +59,13 @@ import { ManagerCrudComponent } from './pages/admin/manager-crud/manager-crud.co
    // Déclarez le composant ici
     ReactiveFormsModule,
     FormsModule,
+    MatTableModule,
+    MatDialogModule,
+    MatButtonModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatIconModule,
+    MatSnackBarModule,
   ],
   declarations: [ AppComponent, 
     AdminLayoutComponent,

@@ -8,6 +8,9 @@ import { Manager } from 'src/app/Models/manager';
   providedIn: 'root',
 })
 export class ManagerService {
+  deleteUser(managerId: number) {
+    throw new Error('Method not implemented.');
+  }
   private apiUrl = 'http://localhost:8080/api/v1/auth';
 
   constructor(private http: HttpClient) {}
