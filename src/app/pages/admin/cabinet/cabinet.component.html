@@ -1,0 +1,160 @@
+<div class="container mt-5">
+  <h2 class="text-center mb-4">Gestion des Cabinets</h2>
+
+  <!-- Bouton pour ouvrir la modale d'ajout -->
+  <button class="btn btn-primary mb-4" (click)="openAddModal()">
+    <i class="fas fa-plus"></i> Ajouter un Cabinet
+  </button>
+
+  <!-- Tableau des cabinets -->
+  <table class="table table-striped table-hover">
+    <thead class="thead-dark">
+      <tr>
+        <th>ID</th>
+        <th>Nom</th>
+        <th>Adresse</th>
+        <th>Téléphone</th>
+        <th>email</th>
+        <th>manager</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let cabinet of cabinets">
+        <td>{{ cabinet.id }}</td>
+        <td>{{ cabinet.nom }}</td>
+        <td>{{ cabinet.adresse }}</td>
+        <td>{{ cabinet.numTel }}</td>
+        <td>{{ cabinet.emailC }}</td>
+        <td>{{ cabinet.manager.firstname }}<br>{{ cabinet.manager.lastname}}<br>{{ cabinet.manager.email}}</td>
+        <td>
+          <button class="btn btn-warning btn-sm mr-2" (click)="openUpdateModal(cabinet)">
+            <i class="fas fa-edit"></i> Modifier
+          </button>
+          <button class="btn btn-secondary btn-sm" (click)="openArchiveModal(cabinet.id)">
+            <i class="fas fa-archive"></i> Archiver
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<!-- Modale pour Ajouter un Cabinet -->
+<div *ngIf="isAddModalOpen" class="modal fade show" [ngClass]="{'d-block': isAddModalOpen}">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Ajouter un Cabinet</h5>
+        <button type="button" class="close" (click)="closeModal()">
+          <span>&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form (ngSubmit)="addCabinet()">
+          <div class="form-group">
+            <label>Nom du Manager :</label>
+            <input type="text" class="form-control" [(ngModel)]="newCabinet.manager.firstname" name="firstname" required />
+          </div>
+          <div class="form-group">
+            <label>Prénom du Manager :</label>
+            <input type="text" class="form-control" [(ngModel)]="newCabinet.manager.lastname" name="lastname" required />
+          </div>
+          <div class="form-group">
+            <label>Email du Manager :</label>
+            <input type="email" class="form-control" [(ngModel)]="newCabinet.manager.email" name="email" required />
+          </div>
+          <div class="form-group">
+            <label>Mot de passe du Manager :</label>
+            <input type="password" class="form-control" [(ngModel)]="newCabinet.manager.password" name="password" required />
+          </div>
+          <div class="form-group">
+            <label>Nom du Cabinet :</label>
+            <input type="text" class="form-control" [(ngModel)]="newCabinet.nom" name="nom" required />
+          </div>
+          <div class="form-group">
+            <label>Adresse :</label>
+            <input type="text" class="form-control" [(ngModel)]="newCabinet.adresse" name="adresse" required />
+          </div>
+          <div class="form-group">
+            <label>Email de cabinet :</label>
+            <input type="email" class="form-control" [(ngModel)]="newCabinet.emailC" name="emailC" required />
+          </div>
+          <div class="form-group">
+            <label>Téléphone :</label>
+            <input type="text" class="form-control" [(ngModel)]="newCabinet.numTel" name="numTel" required />
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" (click)="closeModal()">Fermer</button>
+            <button type="submit" class="btn btn-primary">Ajouter</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Modale pour Modifier un Cabinet -->
+<div *ngIf="isUpdateModalOpen" class="modal fade show" [ngClass]="{'d-block': isUpdateModalOpen}">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Modifier un Cabinet</h5>
+        <button type="button" class="close" (click)="closeModal()">
+          <span>&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form (ngSubmit)="onUpdateCabinet()">
+          <div class="form-group">
+            <label>Nom :</label>
+            <input type="text" class="form-control" [(ngModel)]="selectedCabinet.nom" name="nom" required />
+          </div>
+          <div class="form-group">
+            <label>Adresse :</label>
+            <input type="text" class="form-control" [(ngModel)]="selectedCabinet.adresse" name="adresse" required />
+          </div>
+          <div class="form-group">
+            <label>Téléphone :</label>
+            <input type="tel" class="form-control" [(ngModel)]="selectedCabinet.numTel" name="numTel" required />
+          </div>
+          <div class="form-group">
+            <label>email :</label>
+            <input type="email" class="form-control" [(ngModel)]="selectedCabinet.emailC" name="email" required />
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" (click)="closeModal()">Fermer</button>
+            <button type="submit" class="btn btn-warning">Mettre à jour</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modale pour Archiver un Cabinet -->
+<div *ngIf="isArchiveModalOpen" class="modal fade show" [ngClass]="{'d-block': isArchiveModalOpen}">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header bg-secondary text-white">
+        <h5 class="modal-title">
+          <i class="fas fa-archive mr-2"></i> Archiver un Cabinet
+        </h5>
+        <button type="button" class="close text-white" (click)="closeModal()">
+          <span>&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Êtes-vous sûr de vouloir archiver ce cabinet ?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="closeModal()">
+          <i class="fas fa-times mr-2"></i> Annuler
+        </button>
+        <button type="button" class="btn btn-warning" (click)="confirmArchive()">
+          <i class="fas fa-archive mr-2"></i> Archiver
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

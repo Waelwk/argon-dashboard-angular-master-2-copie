@@ -27,7 +27,9 @@ export class ManagerCrudComponent implements OnInit {
   isAddModalOpen: boolean = false;
   isUpdateModalOpen: boolean = false;
   isDeleteModalOpen: boolean = false;
+  isArchiveModalOpen: boolean = false; // Nouvelle variable pour la modale d'archivage
   managerToDeleteId: number | null = null;
+  managerToArchiveId: number | null = null; // Nouvelle variable pour stocker l'ID du manager à archiver
 
   constructor(private managerService: ManagerService) {}
 
@@ -47,12 +49,44 @@ export class ManagerCrudComponent implements OnInit {
     );
   }
 
-  // Ouvrir la modale d'ajout
+  // Ouvrir la modale d'archivage
+  openArchiveModal(managerId: number): void {
+    this.managerToArchiveId = managerId;
+    this.isArchiveModalOpen = true;
+  }
+
+  // Confirmer l'archivage
+  confirmArchive(): void {
+    if (this.managerToArchiveId) {
+      this.managerService.archiveUser(this.managerToArchiveId).subscribe(
+        (response) => {
+          console.log('Manager archivé avec succès:', response);
+          this.loadManagers(); // Recharger la liste des managers
+          this.closeModal();
+        },
+        (error) => {
+          console.error('Erreur lors de l\'archivage du manager:', error);
+        }
+      );
+    }
+  }
+
+  // Fermer toutes les modales
+  closeModal(): void {
+    this.isAddModalOpen = false;
+    this.isUpdateModalOpen = false;
+    this.isDeleteModalOpen = false;
+    this.isArchiveModalOpen = false; // Fermer la modale d'archivage
+    this.selectedManager = null;
+    this.managerToDeleteId = null;
+    this.managerToArchiveId = null;
+  }
+
+  // Autres méthodes existantes
   openAddModal(): void {
     this.isAddModalOpen = true;
   }
 
-  // Ajouter un manager
   addManager(): void {
     this.managerService.registerManager(this.newManager).subscribe(
       (response) => {
@@ -67,13 +101,11 @@ export class ManagerCrudComponent implements OnInit {
     );
   }
 
-  // Ouvrir la modale de mise à jour
   openUpdateModal(manager: Manager): void {
     this.selectedManager = { ...manager };
     this.isUpdateModalOpen = true;
   }
 
-  // Mettre à jour un manager
   updateManager(): void {
     if (this.selectedManager) {
       this.managerService.updateUser(this.selectedManager.id, this.selectedManager).subscribe(
@@ -89,27 +121,15 @@ export class ManagerCrudComponent implements OnInit {
     }
   }
 
-  // Ouvrir la modale de suppression
   openDeleteModal(managerId: number): void {
     this.managerToDeleteId = managerId;
     this.isDeleteModalOpen = true;
   }
 
-  // Supprimer un manager
   deleteManager(): void {
-   
+  
   }
 
-  // Fermer toutes les modales
-  closeModal(): void {
-    this.isAddModalOpen = false;
-    this.isUpdateModalOpen = false;
-    this.isDeleteModalOpen = false;
-    this.selectedManager = null;
-    this.managerToDeleteId = null;
-  }
-
-  // Réinitialiser le formulaire d'ajout
   resetForm(): void {
     this.newManager = {
       firstname: '',

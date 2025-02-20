@@ -20,6 +20,7 @@ import { ProfileComponent } from './pages/manager/profile/profile.component';
 
 import { AuthGuard } from './guards/auth.guard';
 import { ManagerCrudComponent } from './pages/admin/manager-crud/manager-crud.component';
+import { CabinetComponent } from './pages/admin/cabinet/cabinet.component';
 
 
 const routes: Routes = [
@@ -46,7 +47,7 @@ const routes: Routes = [
     children: [
       { path: '', component: DashboardComponent },
       { path: 'user-profile', component: UserProfileComponent },
-      { path: 'tables', component: TablesComponent },
+      { path: 'tables', component: CabinetComponent },
       { path: 'maps', component: ManagerCrudComponent },
     ]
   },

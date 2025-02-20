@@ -10,6 +10,7 @@ import { NavbarindexComponent } from './navbarindex/navbarindex.component';
 import { sidebarm } from './sidebarM/sidebarm.component';
 
 
+
 @NgModule({
   imports: [
     CommonModule,
@@ -21,7 +22,8 @@ import { sidebarm } from './sidebarM/sidebarm.component';
     NavbardachComponent,
     SidebarComponent,
 NavbarindexComponent,
-sidebarm
+sidebarm,
+
   ],
   exports: [
     FooterComponent,

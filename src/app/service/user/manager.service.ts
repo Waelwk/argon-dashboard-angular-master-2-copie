@@ -24,7 +24,10 @@ export class ManagerService {
   registerManager(request: any): Observable<any> {
     return this.http.post(`${this.apiUrl}/register-manager`, request);
   }
-
+  archiveUser(userId: number): Observable<any> {
+    const url = `${this.apiUrl}/${userId}/Archivee`;
+    return this.http.put(url, {}, { responseType: 'text' }); // Retourne une réponse textuelle
+  }
   // Mettre à jour un utilisateur
   updateUser(userId: number, request: any): Observable<any> {
     return this.http.put(`${this.apiUrl}/${userId}`, request);

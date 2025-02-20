@@ -40,6 +40,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { CabinetComponent } from './pages/admin/cabinet/cabinet.component';
 
 
 
@@ -83,7 +84,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     ManagerLayoutComponent,
     ManagerCrudComponent ,
     RegisterComponent,
-     
+     CabinetComponent
 
 
  
