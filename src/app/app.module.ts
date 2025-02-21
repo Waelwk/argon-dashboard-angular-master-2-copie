@@ -42,7 +42,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { CabinetComponent } from './pages/admin/cabinet/cabinet.component';
 import { ListeAvocatCabinetComponent } from './pages/admin/liste-avocat-cabinet/liste-avocat-cabinet.component';
-
+import { ListeAssistantComponent } from './pages/admin/liste-assistant/liste-assistant.component';
 
 
 
@@ -87,9 +87,10 @@ import { ListeAvocatCabinetComponent } from './pages/admin/liste-avocat-cabinet/
     ManagerCrudComponent ,
     RegisterComponent,
      CabinetComponent,
-   
+     ListeAssistantComponent,
 
-   ListeAvocatCabinetComponent
+   ListeAvocatCabinetComponent,
+      
  
 
 

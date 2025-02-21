@@ -22,6 +22,7 @@ import { AuthGuard } from './guards/auth.guard';
 import { ManagerCrudComponent } from './pages/admin/manager-crud/manager-crud.component';
 import { CabinetComponent } from './pages/admin/cabinet/cabinet.component';
 import { ListeAvocatCabinetComponent } from './pages/admin/liste-avocat-cabinet/liste-avocat-cabinet.component';
+import { ListeAssistantComponent } from './pages/admin/liste-assistant/liste-assistant.component';
 
 
 const routes: Routes = [
@@ -50,6 +51,7 @@ const routes: Routes = [
       { path: 'user-profile', component: ListeAvocatCabinetComponent },
       { path: 'tables', component: CabinetComponent },
       { path: 'maps', component: ManagerCrudComponent },
+      { path: 'icons', component: ListeAssistantComponent},
     ]
   },
   { path: 'index', component: IndexComponent },
