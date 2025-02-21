@@ -1,9 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>Gestion des Managers</title>
+  <title>Gestion des Avocats</title>
   <link href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round" rel="stylesheet">
   <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -13,19 +12,19 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 </head>
 
-<body>
+
   <div class="container-xl">
     <div class="table-responsive">
       <div class="table-wrapper">
         <div class="table-title">
           <div class="row">
             <div class="col-sm-5">
-              <h2>Liste Manager</h2>
+              <h2>Liste des Avocats</h2>
             </div>
             <div class="col-sm-7">
-              <!-- <button class="btn btn-primary" (click)="openAddModal()"> -->
-                <!-- <i class="material-icons">&#xE147;</i> Ajouter un Manager -->
-              <!-- </button> -->
+     
+                    <a class="btn btn-success " data-toggle="modal" (click)="openAddModal() "> <i class="material-icons">&#xE147;</i> <span>ajouter un cabinet</span></a>
+      
             </div>
           </div>
         </div>
@@ -36,36 +35,38 @@
               <th>ID</th>
               <th>Nom complet</th>
               <th>Email</th>
-              <th>status</th>
+              <th>Diplôme</th>
+              <th>Spécialité</th>
+              <th>Statut</th>
               <th>Cabinet</th>
-
               <th>Actions</th>
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let manager of managers">
-              <td>{{ manager.id }}</td>
-              <td>{{ manager.firstname }} {{ manager.lastname }}</td>
-              <td>{{ manager.email }}</td>
+            <tr *ngFor="let avocat of avocats">
+              <td>{{ avocat.id }}</td>
+              <td>{{ avocat.firstname }} {{ avocat.lastname }}</td>
+              <td>{{ avocat.email }}</td>
+              <td>{{ avocat.diplome }}</td>
+              <td>{{ avocat.specialitee }}</td>
               <td>
-                <span *ngIf="manager?.enabled; else notActive" class="status text-success">
+                <span *ngIf="avocat?.enabled; else notActive" class="status text-success">
                   &bull; 
                 </span>
                 <ng-template #notActive>
                   <span class="status text-danger">
-                    &bull;
+                    &bull; 
                   </span>
                 </ng-template>
-                
               </td>
               <td>
-                <strong>Nom :</strong> {{ manager.cabinet?.nom }}<br />
-                <strong>Adresse :</strong> {{ manager.cabinet?.adresse }}<br />
-                <strong>Téléphone :</strong> {{ manager.cabinet?.numTel }}
+                <strong>Nom :</strong> {{ avocat.cabinet?.nom }}<br />
+                <strong>Adresse :</strong> {{ avocat.cabinet?.adresse }}<br />
+                <strong>Téléphone :</strong> {{ avocat.cabinet?.numTel }}
               </td>
               <td>
-                <a class="btn btn-secondary" (click)="openUpdateModal(manager)"  class="settings" title="Settings" data-toggle="tooltip"><i class="material-icons">&#xE8B8;</i></a>
-                <a class="btn btn-secondary" (click)="openArchiveModal(manager.id)"   class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE5C9;</i></a>
+                <a class="btn btn-secondary" (click)="openUpdateModal(avocat)"  class="settings" title="Settings" data-toggle="tooltip"><i class="material-icons">&#xE8B8;</i></a>
+                <a class="btn btn-secondary" (click)="openArchiveModal(avocat.id)"   class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE5C9;</i></a>
               </td>
             </tr>
           </tbody>
@@ -74,45 +75,46 @@
     </div>
   </div>
   <div *ngIf="isAddModalOpen || isUpdateModalOpen || isArchiveModalOpen" class="overlay" (click)="closeModal()"></div>
-  <!-- Modale pour Ajouter un Manager -->
+ 
+  <!-- Modal pour ajouter un avocat -->
   <div *ngIf="isAddModalOpen" class="modal fade show" [ngClass]="{'d-block': isAddModalOpen}">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title">Ajouter un Manager</h5>
+          <h5 class="modal-title">Ajouter un Avocat</h5>
           <button type="button" class="close" (click)="closeModal()">
             <span>&times;</span>
           </button>
         </div>
         <div class="modal-body">
-          <form (ngSubmit)="addManager()">
+          <form (ngSubmit)="addAvocat()">
             <div class="form-group">
               <label>Prénom :</label>
-              <input type="text" class="form-control" [(ngModel)]="newManager.firstname" name="firstname" required />
+              <input type="text" class="form-control" [(ngModel)]="newAvocat.firstname" name="firstname" required />
             </div>
             <div class="form-group">
               <label>Nom :</label>
-              <input type="text" class="form-control" [(ngModel)]="newManager.lastname" name="lastname" required />
+              <input type="text" class="form-control" [(ngModel)]="newAvocat.lastname" name="lastname" required />
             </div>
             <div class="form-group">
               <label>Email :</label>
-              <input type="email" class="form-control" [(ngModel)]="newManager.email" name="email" required />
+              <input type="email" class="form-control" [(ngModel)]="newAvocat.email" name="email" required />
             </div>
             <div class="form-group">
               <label>Mot de passe :</label>
-              <input type="password" class="form-control" [(ngModel)]="newManager.password" name="password" required />
+              <input type="password" class="form-control" [(ngModel)]="newAvocat.password" name="password" required />
             </div>
             <div class="form-group">
-              <label>Nom du Cabinet :</label>
-              <input type="text" class="form-control" [(ngModel)]="newManager.cabinet.nom" name="cabinetNom" required />
+              <label>Spécialité :</label>
+              <input type="text" class="form-control" [(ngModel)]="newAvocat.specialitee" name="specialitee" required />
             </div>
             <div class="form-group">
-              <label>Adresse :</label>
-              <input type="text" class="form-control" [(ngModel)]="newManager.cabinet.adresse" name="cabinetAdresse" required />
+              <label>Diplôme :</label>
+              <input type="text" class="form-control" [(ngModel)]="newAvocat.diplome" name="diplome" required />
             </div>
             <div class="form-group">
-              <label>Téléphone :</label>
-              <input type="text" class="form-control" [(ngModel)]="newManager.cabinet.numTel" name="cabinetNumTel" required />
+              <label>ID du Cabinet :</label>
+              <input type="number" class="form-control" [(ngModel)]="newAvocat.cabinetId" name="cabinetId" required />
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" (click)="closeModal()">Fermer</button>
@@ -124,33 +126,45 @@
     </div>
   </div>
 
-  <!-- Modale pour Modifier un Manager -->
+  <!-- Modal pour Modifier un Avocat -->
   <div *ngIf="isUpdateModalOpen" class="modal fade show" [ngClass]="{'d-block': isUpdateModalOpen}">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title">Modifier un Manager</h5>
+          <h5 class="modal-title">Modifier un Avocat</h5>
           <button type="button" class="close" (click)="closeModal()">
             <span>&times;</span>
           </button>
         </div>
         <div class="modal-body">
-          <form (ngSubmit)="updateManager()">
+          <form (ngSubmit)="updateAvocat()">
             <div class="form-group">
               <label>Prénom :</label>
-              <input type="text" class="form-control" [(ngModel)]="selectedManager.firstname" name="firstname" required />
+              <input type="text" class="form-control" [(ngModel)]="selectedAvocat.firstname" name="firstname" required />
             </div>
             <div class="form-group">
               <label>Nom :</label>
-              <input type="text" class="form-control" [(ngModel)]="selectedManager.lastname" name="lastname" required />
+              <input type="text" class="form-control" [(ngModel)]="selectedAvocat.lastname" name="lastname" required />
             </div>
             <div class="form-group">
               <label>Email :</label>
-              <input type="email" class="form-control" [(ngModel)]="selectedManager.email" name="email" required />
+              <input type="email" class="form-control" [(ngModel)]="selectedAvocat.email" name="email" required />
+            </div>
+            <div class="form-group">
+              <label>Mot de passe :</label>
+              <input type="password" class="form-control" [(ngModel)]="selectedAvocat.password" name="password" required />
+            </div>
+            <div class="form-group">
+              <label>Diplôme :</label>
+              <input type="text" class="form-control" [(ngModel)]="selectedAvocat.diplome" name="diplome" required />
+            </div>
+            <div class="form-group">
+              <label>Spécialité :</label>
+              <input type="text" class="form-control" [(ngModel)]="selectedAvocat.specialitee" name="specialitee" required />
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" (click)="closeModal()">Fermer</button>
-              <button type="submit" class="btn btn-warning">Mettre à jour</button>
+            <button type="submit" class="btn btn-primary">Mettre à jour</button>
+            <button type="button" class="btn btn-secondary" (click)="closeModal()">Annuler</button>
             </div>
           </form>
         </div>
@@ -158,20 +172,20 @@
     </div>
   </div>
 
-  <!-- Modale pour Archiver un Manager -->
+  <!-- Modal pour archiver un avocat -->
   <div *ngIf="isArchiveModalOpen" class="modal fade show" [ngClass]="{'d-block': isArchiveModalOpen}">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header ">
           <h5 class="modal-title">
-            <i class="material-icons">archive</i> Archiver un Manager
+            <i class="material-icons">archive</i> Archiver un Avocat
           </h5>
           <button type="button" class="close text-white" (click)="closeModal()">
             <span>&times;</span>
           </button>
         </div>
         <div class="modal-body">
-          <p>Êtes-vous sûr de vouloir archiver ce manager ?</p>
+          <p>Êtes-vous sûr de vouloir archiver cet avocat ?</p>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" (click)="closeModal()">
@@ -184,5 +198,3 @@
       </div>
     </div>
   </div>
-</body>
-</html>

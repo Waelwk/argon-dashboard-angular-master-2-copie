@@ -41,6 +41,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { CabinetComponent } from './pages/admin/cabinet/cabinet.component';
+import { ListeAvocatCabinetComponent } from './pages/admin/liste-avocat-cabinet/liste-avocat-cabinet.component';
+
 
 
 
@@ -84,9 +86,10 @@ import { CabinetComponent } from './pages/admin/cabinet/cabinet.component';
     ManagerLayoutComponent,
     ManagerCrudComponent ,
     RegisterComponent,
-     CabinetComponent
+     CabinetComponent,
+   
 
-
+   ListeAvocatCabinetComponent
  
 
 
