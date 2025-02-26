@@ -43,6 +43,11 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { CabinetComponent } from './pages/admin/cabinet/cabinet.component';
 import { ListeAvocatCabinetComponent } from './pages/admin/liste-avocat-cabinet/liste-avocat-cabinet.component';
 import { ListeAssistantComponent } from './pages/admin/liste-assistant/liste-assistant.component';
+import { CabinetInfoComponent } from './pages/admin/cabinet-info/cabinet-info.component';
+import { ListeAssistantArchiveeComponent } from './pages/admin/liste-assistant-archivee/liste-assistant-archivee.component';
+import { ListeAvocatArchiveeComponent } from './pages/admin/liste-avocat-archivee/liste-avocat-archivee.component';
+import { ManagerArchiveeComponent } from './pages/admin/manager-archivee/manager-archivee.component';
+
 
 
 
@@ -90,6 +95,10 @@ import { ListeAssistantComponent } from './pages/admin/liste-assistant/liste-ass
      ListeAssistantComponent,
 
    ListeAvocatCabinetComponent,
+  CabinetInfoComponent,
+  ListeAssistantArchiveeComponent,
+  ListeAvocatArchiveeComponent,
+  ManagerArchiveeComponent,
       
  
 

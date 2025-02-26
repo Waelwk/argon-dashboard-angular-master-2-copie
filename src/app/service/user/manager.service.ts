@@ -24,6 +24,10 @@ export class ManagerService {
   registerManager(request: any): Observable<any> {
     return this.http.post(`${this.apiUrl}/register-manager`, request);
   }
+  desarchiveUser(userId: number): Observable<any> {
+    const url = `${this.apiUrl}/${userId}/desArchivee`;
+    return this.http.put(url, {}, { responseType: 'text' }); // Retourne une réponse textuelle
+  }
   archiveUser(userId: number): Observable<any> {
     const url = `${this.apiUrl}/${userId}/Archivee`;
     return this.http.put(url, {}, { responseType: 'text' }); // Retourne une réponse textuelle

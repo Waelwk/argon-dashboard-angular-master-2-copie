@@ -1,5 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -12,8 +11,43 @@
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 </head>
+<div class="container-xl px-5 mt-5">
+    
+  <hr class="mt-0 mb-4">
+    <div>
+        <div class="row">
+            <div class="col-lg-4 mb-4">
+                <div class="card h-100 border-start-lg border-start-secondary">
+                  <div class="card-body">
+                    <div class="small text-muted"><i class="fas fa-user-tie"></i> Nombre des managers</div>
+                    <div class="h3">{{managers.length}}</div>
+                    
+                    
+                  </div>
+                </div>
+              </div>
+            <!-- Carte 1 : Nombre d'avocats -->
+            <div class="col-lg-4 mb-4">
+                <div class="card h-100 border-start-lg border-start-secondary">
+                  <div class="card-body">
+                    <div class="small text-muted"><i class="fas fa-user-tie"></i> Nombre des managers archivee</div>
+                    <div class="h3">{{managersA.length}}</div>
+                    <a class="text-arrow-icon small" [routerLink]="['/dashboard/ManagerArchivee']">
+                        Voir la liste des manager archivee
+                        <i class="fas fa-arrow-right"></i>
+                      </a>
+                  </div>
+                </div>
+              </div>
+            
+          
+            <!-- Carte 2 : Nombre d'assistants -->
+          
+          
+            <!-- Carte 3 : Nombre de dossiers -->
+          
+          </div>
 
-<body>
   <div class="container-xl">
     <div class="table-responsive">
       <div class="table-wrapper">
@@ -184,5 +218,6 @@
       </div>
     </div>
   </div>
-</body>
-</html>
+
+
+</div>

@@ -55,8 +55,12 @@
                         <td>{{ cabinet.adresse }}</td>
                         <td>{{ cabinet.numTel }}</td>
                         <td>{{ cabinet.emailC }}</td>
-                        <td>{{ cabinet.manager.firstname }}<br>{{ cabinet.manager.lastname}}<br>{{ cabinet.manager.email}}</td>
-                        <td>
+                        <td>{{ cabinet.manager.firstname }}{{ cabinet.manager.lastname}}<br>{{ cabinet.manager.email}}</td>
+                        <td><!-- cabinet.component.html -->
+                          <button class="btn btn-" (click)="voirInformationsCabinet(cabinet.id)">
+                            <i class="material-icons">search</i>
+                          </button>
+                       
                             <a class="btn btn-secondary" (click)="openUpdateModal(cabinet)"  class="settings" title="Settings" data-toggle="tooltip"><i class="material-icons">&#xE8B8;</i></a>
                             <a class="btn btn-secondary" (click)="openArchiveModal(cabinet.id)"   class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE5C9;</i></a>
                         </td>

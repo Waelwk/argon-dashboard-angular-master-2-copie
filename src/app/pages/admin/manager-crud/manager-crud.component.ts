@@ -30,24 +30,38 @@ export class ManagerCrudComponent implements OnInit {
   isArchiveModalOpen: boolean = false; // Nouvelle variable pour la modale d'archivage
   managerToDeleteId: number | null = null;
   managerToArchiveId: number | null = null; // Nouvelle variable pour stocker l'ID du manager à archiver
+  managersA: Manager[];
 
   constructor(private managerService: ManagerService) {}
 
   ngOnInit(): void {
-    this.loadManagers();
+    this.loadManagers();  this.loadManagersA();
   }
 
   // Charger tous les managers
-  loadManagers(): void {
+  loadManagersA(): void {
     this.managerService.getAllUsers().subscribe(
       (data) => {
-        this.managers = data;
+        // Filtrer uniquement les managers archivés
+        this.managers = data.filter(manager => manager.archivee === false);
       },
       (error) => {
-        console.error('Erreur lors du chargement des managers:', error);
+        console.error('Erreur lors du chargement des managers archivés:', error);
+      }
+    );
+  } loadManagers(): void {
+    this.managerService.getAllUsers().subscribe(
+      (data) => {
+        // Filtrer uniquement les managers archivés
+        this.managersA = data.filter(manager => manager.archivee ===true);
+      },
+      (error) => {
+        console.error('Erreur lors du chargement des managers archivés:', error);
       }
     );
   }
+  
+  
 
   // Ouvrir la modale d'archivage
   openArchiveModal(managerId: number): void {
@@ -61,7 +75,8 @@ export class ManagerCrudComponent implements OnInit {
       this.managerService.archiveUser(this.managerToArchiveId).subscribe(
         (response) => {
           console.log('Manager archivé avec succès:', response);
-          this.loadManagers(); // Recharger la liste des managers
+          this.loadManagers();
+          this.loadManagersA(); // Recharger la liste des managers
           this.closeModal();
         },
         (error) => {

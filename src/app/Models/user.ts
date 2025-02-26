@@ -7,7 +7,7 @@ export interface User {
   
   role: Role;
   enabled: boolean;
-
+  archivee:boolean;
 }
 
 export enum Role {

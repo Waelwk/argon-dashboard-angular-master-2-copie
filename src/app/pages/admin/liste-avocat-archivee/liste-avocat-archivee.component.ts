@@ -4,12 +4,12 @@ import { Avocat } from 'src/app/Models/avocat';
 import { AvocatService } from 'src/app/service/Avocat/avocat.service';
 
 @Component({
-  selector: 'app-liste-avocat-cabinet',
-  templateUrl: './liste-avocat-cabinet.component.html',
-  styleUrls: ['./liste-avocat-cabinet.component.css']
+  selector: 'app-liste-avocat-archivee',
+  templateUrl: './liste-avocat-archivee.component.html',
+  styleUrls: ['./liste-avocat-archivee.component.css']
 })
-export class ListeAvocatCabinetComponent implements OnInit {
-  avocats: Avocat[] = [];
+export class ListeAvocatArchiveeComponent implements OnInit {
+avocats: Avocat[] = [];
   avocatsA:Avocat[] = [];
   newAvocat: any = {
     firstname: '',
@@ -114,11 +114,10 @@ export class ListeAvocatCabinetComponent implements OnInit {
   // Confirm archiving
   confirmArchive(): void {
     if (this.avocatToArchiveId) {
-      this.avocatService.archiveAvocat(this.avocatToArchiveId).subscribe(
+      this.avocatService.desarchiveAvocat(this.avocatToArchiveId).subscribe(
         (response) => {
-          console.log('Avocat archived successfully:', response);
-          this.loadAvocatsByCabinetId(this.cabinetId);
-          this.loadAvocatsByCabinetIdA(this.cabinetId); // Reload avocats list
+          console.log('Avocat desarchived successfully:', response);
+          this.loadAvocatsByCabinetId(this.cabinetId); // Reload avocats list
           this.closeModal();
         },
         (error) => {

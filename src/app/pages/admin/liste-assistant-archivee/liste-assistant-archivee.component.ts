@@ -1,15 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Domain } from 'domain';
 import { Assistant } from 'src/app/Models/assistant';
 import { AssistantService } from 'src/app/service/Assistant/assistant.service';
 @Component({
-  selector: 'app-liste-assistant',
-  templateUrl: './liste-assistant.component.html',
-  styleUrls: ['./liste-assistant.component.css']
+  selector: 'app-liste-assistant-archivee',
+  templateUrl: './liste-assistant-archivee.component.html',
+  styleUrls: ['./liste-assistant-archivee.component.css']
 })
-export class ListeAssistantComponent implements OnInit {
-  Assistant: Assistant[] = [];
+export class ListeAssistantArchiveeComponent implements OnInit {
+Assistant: Assistant[] = [];
   newAssistant: any = {
     firstname: '',
     lastname: '',
@@ -67,7 +66,6 @@ export class ListeAssistantComponent implements OnInit {
     );
 }
 loadAssistantsByCabinetIdA(cabinetId: number): void {
-
   this.AssistantService.getAllAssistant().subscribe(
     (data) => {
       console.log('Données reçues:', data); // Vérifie les données complètes
@@ -109,7 +107,7 @@ loadAssistantsByCabinetIdA(cabinetId: number): void {
   // Confirm archiving
   confirmArchive(): void {
     if (this.AssistantToArchiveId) {
-      this.AssistantService.archiveAssistant(this.AssistantToArchiveId).subscribe(
+      this.AssistantService.desarchiveAssistant(this.AssistantToArchiveId).subscribe(
         (response) => {
           console.log('Assistant archived successfully:', response);
           this.loadAssistantsByCabinetId(this.cabinetId);
@@ -167,7 +165,6 @@ loadAssistantsByCabinetIdA(cabinetId: number): void {
         (response) => {
           console.log('Assistant updated successfully:', response);
           this.loadAssistantsByCabinetId(this.cabinetId);
-          this.loadAssistantsByCabinetIdA(this.cabinetId);
           this.closeModal();
         },
         (error) => {

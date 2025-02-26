@@ -23,6 +23,10 @@ import { ManagerCrudComponent } from './pages/admin/manager-crud/manager-crud.co
 import { CabinetComponent } from './pages/admin/cabinet/cabinet.component';
 import { ListeAvocatCabinetComponent } from './pages/admin/liste-avocat-cabinet/liste-avocat-cabinet.component';
 import { ListeAssistantComponent } from './pages/admin/liste-assistant/liste-assistant.component';
+import { CabinetInfoComponent } from './pages/admin/cabinet-info/cabinet-info.component';
+import { ListeAssistantArchiveeComponent } from './pages/admin/liste-assistant-archivee/liste-assistant-archivee.component';
+import { ListeAvocatArchiveeComponent } from './pages/admin/liste-avocat-archivee/liste-avocat-archivee.component';
+import { ManagerArchiveeComponent } from './pages/admin/manager-archivee/manager-archivee.component';
 
 
 const routes: Routes = [
@@ -34,8 +38,8 @@ const routes: Routes = [
   {
     path: 'dashboardm',
     component: ManagerLayoutComponent,
-    canActivate: [AuthGuard],
-    data: { roles: ['MANAGER'] },
+    // canActivate: [AuthGuard],
+    // data: { roles: ['MANAGER'] },
     children: [
       { path: '', component: DachbordMComponent },
       { path: 'profile', component: ProfileComponent },
@@ -48,10 +52,14 @@ const routes: Routes = [
     data: { roles: ['ADMIN'] },
     children: [
       { path: '', component: DashboardComponent },
-      { path: 'user-profile', component: ListeAvocatCabinetComponent },
+      { path: 'listeAvocat/:id', component: ListeAvocatCabinetComponent },
       { path: 'tables', component: CabinetComponent },
       { path: 'maps', component: ManagerCrudComponent },
-      { path: 'icons', component: ListeAssistantComponent},
+      { path: 'listeAssistant/:id', component: ListeAssistantComponent},
+      { path: 'cabinetinfo/:id', component:  CabinetInfoComponent},
+      { path: 'AssistantArchivee/:id', component:  ListeAssistantArchiveeComponent},
+      { path: 'AvocatArchivee/:id', component: ListeAvocatArchiveeComponent},
+      { path: 'ManagerArchivee', component: ManagerArchiveeComponent},
     ]
   },
   { path: 'index', component: IndexComponent },

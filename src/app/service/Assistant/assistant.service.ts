@@ -49,11 +49,12 @@ export class AssistantService {
   }
   
   // Désarchiver un avocat
-  desarchiveAssistant(assistantId: number): Observable<void> {
+  desarchiveAssistant(assistantId: number): Observable<string> {
     const token = this.getAuthToken();
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-    return this.http.post<void>(`${this.apiUrl}/${assistantId}/desarchive`, {}, { headers });
+    return this.http.post<string>(`${this.apiUrl}/${assistantId}/desarchive`, {}, { headers, responseType: 'text' as 'json' });
   }
+  
 
   // Obtenir tous les avocats
   getAllAssistant(): Observable<Assistant[]> {

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Cabinet } from 'src/app/Models/cabinet';
 import { Role } from 'src/app/Models/user';
 import { AuthService } from 'src/app/service/auth/auth.service';
@@ -30,12 +31,18 @@ export class CabinetComponent implements OnInit {
       password: '',
       cabinet: undefined,
       role: Role.MANAGER,
-      enabled: false
+      enabled: false,
+      archivee: false
     }
   };
 
-  constructor(private cabinetService: CabinetService, private authService:AuthService) {}
+  constructor(private router: Router,private cabinetService: CabinetService, private authService:AuthService) {}
 
+
+  voirInformationsCabinet(cabinetId: number) {
+    this.router.navigate(['/dashboard/cabinetinfo', cabinetId]);
+    console.log(cabinetId);
+  }
   ngOnInit(): void {
     this.loadCabinets();
   }

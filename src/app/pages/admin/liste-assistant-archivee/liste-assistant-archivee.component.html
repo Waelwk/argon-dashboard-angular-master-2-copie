@@ -21,8 +21,10 @@
                   <div class="card-body">
                     <div class="small text-muted"><i class="fas fa-user-tie"></i> Nombre d'assistants</div>
                     <div class="h3">{{ Assistant.length }}</div>
-                    
-                    
+                    <a class="text-arrow-icon small" [routerLink]="['/dashboard/listeAssistant', cabinetId]">
+                        Voir la liste des assistants
+                        <i class="fas fa-arrow-right"></i>
+                      </a>
                   </div>
                 </div>
               </div>
@@ -32,10 +34,10 @@
                   <div class="card-body">
                     <div class="small text-muted"><i class="fas fa-user-tie"></i> Nombre d'assistants archivee</div>
                     <div class="h3">{{ Assistantt.length }}</div>
-                    <a class="text-arrow-icon small" [routerLink]="['/dashboard/AssistantArchivee', cabinetId]">
-                        Voir la liste des assistants archivee
-                        <i class="fas fa-arrow-right"></i>
-                      </a>
+                    <!-- <a class="text-arrow-icon small" [routerLink]="['/dashboard/listeAssistant', cabinetId]"> -->
+                        <!-- Voir la liste des assistants -->
+                        <!-- <i class="fas fa-arrow-right"></i> -->
+                      <!-- </a> -->
                   </div>
                 </div>
               </div>
@@ -53,11 +55,11 @@
           <div class="table-title">
             <div class="row">
               <div class="col-sm-5">
-                <h2>Liste des Assistants</h2>
+                <h2>Liste des Assistants Archevee</h2>
               </div>
               <div class="col-sm-7">
        
-                      <a class="btn btn-success " data-toggle="modal" (click)="openAddModal() "> <i class="material-icons">&#xE147;</i> <span>ajouter un cabinet</span></a>
+                      <!-- <a class="btn btn-success " data-toggle="modal" (click)="openAddModal() "> <i class="material-icons">&#xE147;</i> <span>ajouter un cabinet</span></a> -->
         
               </div>
             </div>
@@ -76,58 +78,40 @@
                 <th>Actions</th>
               </tr>
             </thead>
-            <tbody *ngIf="Assistant.length > 0; else noData">
-                <tr *ngFor="let Assistant of Assistant">
-                  <td>{{ Assistant.id }}</td>
-                  <td>{{ Assistant.firstname }} {{ Assistant.lastname }}</td>
-                  <td>{{ Assistant.email }}</td>
-                  <td>{{ Assistant.domaine }}</td>
-                  <td>
-                    <span *ngIf="Assistant?.enabled; else notActive" class="status text-success">
-                      &bull;
+            <tbody>
+              <tr *ngFor="let Assistant of Assistantt">
+                <td>{{ Assistant.id }}</td>
+                <td>{{ Assistant.firstname }}{{ Assistant.lastname }}</td>
+                <td>{{ Assistant.email }}</td>
+                <!-- <td>{{ Assistant.diplome }}</td> -->
+                <td>{{ Assistant.domaine }}</td>
+                <td>
+                  <span *ngIf="Assistant?.enabled; else notActive" class="status text-success">
+                    &bull; 
+                  </span>
+                  <ng-template #notActive>
+                    <span class="status text-danger">
+                      &bull; 
                     </span>
-                    <ng-template #notActive>
-                      <span class="status text-danger">
-                        &bull;
-                      </span>
-                    </ng-template>
-                  </td>
-                  <td>
-                    <strong>Nom :</strong> {{ Assistant.cabinet?.nom }}<br />
-                    <strong>Adresse :</strong> {{ Assistant.cabinet?.adresse }}<br />
-                    <strong>Téléphone :</strong> {{ Assistant.cabinet?.numTel }}
-                  </td>
-                  <td>
-                    <a class="btn btn-secondary" (click)="openUpdateModal(Assistant)" class="settings" title="Settings" data-toggle="tooltip">
-                      <i class="material-icons">&#xE8B8;</i>
-                    </a>
-                    <a class="btn btn-secondary" (click)="openArchiveModal(Assistant.id)" class="delete" title="Delete" data-toggle="tooltip">
-                      <i class="material-icons">&#xE5C9;</i>
-                    </a>
-                  </td>
-                </tr>
-              </tbody>
-              
-              <!-- Template pour afficher une image si la liste est vide -->
-              <ng-template #noData>
-                <tr>
-                  <td colspan="7" class="text-center">
-                    <img src="./assets/img/3024051.jpg" alt="Aucune donnée disponible" style="width: 200px; height: auto; margin-top: 20px;">
-                    <p>Aucune donnée disponible</p>
-                  </td>
-                </tr>
-              </ng-template>
-              </table>
-            </div>
+                  </ng-template>
+                </td>
+                <td>
+                  <strong>Nom :</strong> {{ Assistant.cabinet?.nom }}<br />
+                  <strong>Adresse :</strong> {{ Assistant.cabinet?.adresse }}<br />
+                  <strong>Téléphone :</strong> {{ Assistant.cabinet?.numTel }}
+                </td>
+                <td>
+                  <!-- <a class="btn btn-secondary" (click)="openUpdateModal(Assistant)"  class="settings" title="Settings" data-toggle="tooltip"><i class="material-icons">&#xE8B8;</i></a> -->
+                  <a class="btn btn-secondary" (click)="openArchiveModal(Assistant.id)"   class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE5C9;</i></a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
         </div>
-        </div>
-
-
-
+      </div>
+    </div>
     <div *ngIf="isAddModalOpen || isUpdateModalOpen || isArchiveModalOpen" class="overlay" (click)="closeModal()"></div>
    
-
-
     <!-- Modal pour ajouter un Assistant -->
     <div *ngIf="isAddModalOpen" class="modal fade show" [ngClass]="{'d-block': isAddModalOpen}">
       <div class="modal-dialog">
@@ -230,23 +214,24 @@
         <div class="modal-content">
           <div class="modal-header ">
             <h5 class="modal-title">
-              <i class="material-icons">archive</i> Archiver un Assistant
+              <i class="material-icons">Desarchive</i> DesArchiver un Assistant
             </h5>
             <button type="button" class="close text-white" (click)="closeModal()">
               <span>&times;</span>
             </button>
           </div>
           <div class="modal-body">
-            <p>Êtes-vous sûr de vouloir archiver cet Assistant ?</p>
+            <p>Êtes-vous sûr de vouloir Desarchiver cet Assistant ?</p>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" (click)="closeModal()">
               <i class="fas fa-times mr-2"></i> Annuler
             </button>
             <button type="button" class="btn btn-danger" (click)="confirmArchive()">
-              <i class="fas fa-archive mr-2"></i> Archiver
+              <i class="fas fa-archive mr-2"></i> DesArchiver
             </button>
           </div>
         </div>
       </div>
     </div>
+</div>
