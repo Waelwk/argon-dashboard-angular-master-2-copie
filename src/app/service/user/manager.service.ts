@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Manager } from 'src/app/Models/manager';
+import { AuthService } from '../auth/auth.service';
 
 
 @Injectable({
@@ -12,28 +13,44 @@ export class ManagerService {
     throw new Error('Method not implemented.');
   }
   private apiUrl = 'http://localhost:8080/api/v1/auth';
-
-  constructor(private http: HttpClient) {}
-
+  private apiUrl2 = 'http://localhost:8080/api/v1/managers';
+  constructor(private http: HttpClient , private authService: AuthService) {}
+ // Récupérer le token via AuthService
+ private getAuthToken(): string | null {
+  return this.authService.getToken();
+}
   // Récupérer tous les utilisateurs
-  getAllUsers(): Observable<Manager[]> {
-    return this.http.get<Manager[]>(`${this.apiUrl}/get`);
+   // Get all users (managers in this case)
+   getAllUsers(): Observable<Manager[]> {
+    const token = this.getAuthToken();  // Get the JWT token
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`); // Add the token to the header
+    const url = `${this.apiUrl2}/all`; // The URL to fetch all users (managers)
+    return this.http.get<Manager[]>(url, { headers }); // Send GET request with headers
   }
 
   // Ajouter un manager avec un cabinet
   registerManager(request: any): Observable<any> {
     return this.http.post(`${this.apiUrl}/register-manager`, request);
   }
-  desarchiveUser(userId: number): Observable<any> {
-    const url = `${this.apiUrl}/${userId}/desArchivee`;
-    return this.http.put(url, {}, { responseType: 'text' }); // Retourne une réponse textuelle
-  }
   archiveUser(userId: number): Observable<any> {
-    const url = `${this.apiUrl}/${userId}/Archivee`;
-    return this.http.put(url, {}, { responseType: 'text' }); // Retourne une réponse textuelle
+    const token = this.getAuthToken();  // Get the JWT token
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`); // Add the token to the header
+    const url = `${this.apiUrl2}/${userId}/Archivee`;
+    return this.http.put(url, {}, { headers, responseType: 'text' }); // Return a textual response
   }
+
+  // Unarchive a user
+  desarchiveUser(userId: number): Observable<any> {
+    const token = this.getAuthToken();  // Get the JWT token
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`); // Add the token to the header
+    const url = `${this.apiUrl2}/${userId}/desArchivee`;
+    return this.http.put(url, {}, { headers, responseType: 'text' }); // Return a textual response
+  }
+
   // Mettre à jour un utilisateur
   updateUser(userId: number, request: any): Observable<any> {
     return this.http.put(`${this.apiUrl}/${userId}`, request);
+
   }
+  
 }

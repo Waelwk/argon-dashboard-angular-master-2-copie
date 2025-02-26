@@ -19,8 +19,8 @@
               <div class="col-lg-4 mb-4">
                   <div class="card h-100 border-start-lg border-start-secondary">
                     <div class="card-body">
-                      <div class="small text-muted"><i class="fas fa-user-tie"></i> Nombre des managers</div>
-                      <div class="h3">{{managers.length}}</div>
+                      <div class="small text-muted"><i class="fas fa-user-tie"></i> Nombre des managers archivee</div>
+                      <div class="h3">{{managersA.length}}</div>
                       <!-- <!~~ <a class="text-arrow-icon small" [routerLink]="['/dashboard/AssistantArchivee']"> ~~> -->
                         <!-- <!~~ Voir la liste des manager archivee ~~> -->
                         <!-- <i class="fas fa-arrow-right"></i> -->
@@ -34,7 +34,7 @@
                   <div class="card h-100 border-start-lg border-start-secondary">
                     <div class="card-body">
                       <div class="small text-muted"><i class="fas fa-user-tie"></i> Nombre des managers archivee</div>
-                      <div class="h3">{{managersA.length}}</div>
+                      <div class="h3">{{managers.length}}</div>
                    
                     </div>
                   </div>
@@ -77,7 +77,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let manager of managersA">
+              <tr *ngFor="let manager of managers">
                 <td>{{ manager.id }}</td>
                 <td>{{ manager.firstname }} {{ manager.lastname }}</td>
                 <td>{{ manager.email }}</td>
@@ -198,7 +198,7 @@
         <div class="modal-content">
           <div class="modal-header ">
             <h5 class="modal-title">
-              <i class="material-icons">archive</i> Archiver un Manager
+              <i class="material-icons">Desarchive</i> DesArchiver un Manager
             </h5>
             <button type="button" class="close text-white" (click)="closeModal()">
               <span>&times;</span>
@@ -212,7 +212,7 @@
               <i class="fas fa-times mr-2"></i> Annuler
             </button>
             <button type="button" class="btn btn-danger" (click)="confirmArchive()">
-              <i class="fas fa-archive mr-2"></i> Archiver
+              <i class="fas fa-archive mr-2"></i> DesArchiver
             </button>
           </div>
         </div>
