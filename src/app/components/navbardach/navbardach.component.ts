@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbardach.component.html',
-  styleUrls: ['./navbardach.component.scss']
+  styleUrls: ['./navbardach.component.css']
 })
 export class NavbardachComponent implements OnInit {
   public focus;

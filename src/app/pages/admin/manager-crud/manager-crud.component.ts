@@ -107,6 +107,7 @@ export class ManagerCrudComponent implements OnInit {
       (response) => {
         console.log('Manager ajouté avec succès:', response);
         this.loadManagers();
+        this.loadManagersA();
         this.closeModal();
         this.resetForm();
       },
@@ -127,6 +128,7 @@ export class ManagerCrudComponent implements OnInit {
         (response) => {
           console.log('Manager mis à jour avec succès:', response);
           this.loadManagers();
+          this.loadManagersA();
           this.closeModal();
         },
         (error) => {

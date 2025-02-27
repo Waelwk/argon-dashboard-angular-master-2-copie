@@ -16,7 +16,7 @@ export const ROUTES: RouteInfo[] = [
 @Component({
   selector: 'app-sidebarm',
   templateUrl: './sidebarm.component.html',
-  styleUrls: []
+  styleUrls: ['./sidebar.component.css']
 })
 export class sidebarm implements OnInit {
 
