@@ -1,12 +1,17 @@
-<!-- Sidenav -->
+<div id="wrapper">
+  <!-- Sidebar -->
+  <app-sidebarm></app-sidebarm>
 
-<div class="main-content">
-  <!-- Top navbar -->
- <app-navbar></app-navbar>
- <app-sidebarm></app-sidebarm>
-  <!-- Pages -->
-  <router-outlet></router-outlet>
-  <div class="container-fluid">
-    <!-- <app-footer></app-footer> -->
+  <!-- Content Wrapper -->
+  <div id="content-wrapper">
+    <div id="content ">
+      <!-- Navbar -->
+      <app-navbar></app-navbar>
+
+      <!-- Page Content -->
+      <div class="container-fluid">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
   </div>
 </div>

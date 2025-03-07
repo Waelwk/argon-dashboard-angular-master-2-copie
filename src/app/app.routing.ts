@@ -43,6 +43,7 @@ const routes: Routes = [
     children: [
       { path: '', component: DachbordMComponent },
       { path: 'profile', component: ProfileComponent },
+      { path: 'ManagerArchivee', component: ManagerArchiveeComponent},
     ]
   },
   {
