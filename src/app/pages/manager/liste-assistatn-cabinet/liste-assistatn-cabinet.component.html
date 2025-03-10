@@ -1,0 +1,252 @@
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Gestion des Assistants</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round" rel="stylesheet">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+  </head>
+  <div class="container-xl px-5 mt-5">
+    
+  <hr class="mt-0 mb-4">
+    <div>
+        <div class="row">
+            <div class="col-lg-4 mb-4">
+                <div class="card h-100 border-start-lg border-start-secondary">
+                  <div class="card-body">
+                    <div class="small text-muted"><i class="fas fa-user-tie"></i> Nombre d'assistants</div>
+                    <div class="h3">{{ Assistant.length }}</div>
+                    
+                    
+                  </div>
+                </div>
+              </div>
+            <!-- Carte 1 : Nombre d'avocats -->
+            <div class="col-lg-4 mb-4">
+                <div class="card h-100 border-start-lg border-start-secondary">
+                  <div class="card-body">
+                    <div class="small text-muted"><i class="fas fa-user-tie"></i> Nombre d'assistants archivee</div>
+                    <div class="h3">{{ Assistantt.length }}</div>
+                    <a class="text-arrow-icon small" [routerLink]="['/dashboardm/AssistantArchivee', cabinetId]">
+                        Voir la liste des assistants archivee
+                        <i class="fas fa-arrow-right"></i>
+                      </a>
+                  </div>
+                </div>
+              </div>
+            
+          
+            <!-- Carte 2 : Nombre d'assistants -->
+          
+          
+            <!-- Carte 3 : Nombre de dossiers -->
+          
+          </div>
+    <div class="container-xl">
+      <div class="table-responsive">
+        <div class="table-wrapper">
+          <div class="table-title">
+            <div class="row">
+              <div class="col-sm-5">
+                <h2>Liste des Assistants</h2>
+              </div>
+              <div class="col-sm-7">
+       
+                      <a class="btn btn-success " data-toggle="modal" (click)="openAddModal() "> <i class="material-icons">&#xE147;</i> <span>ajouter un cabinet</span></a>
+        
+              </div>
+            </div>
+          </div>
+  
+          <table class="table table-striped table-hover">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Nom complet</th>
+                <th>Email</th>
+                <!-- <th>Diplôme</th> -->
+                <th>Domaine</th>
+                <th>Statut</th>
+                <th>Cabinet</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody *ngIf="Assistant.length > 0; else noData">
+                <tr *ngFor="let Assistant of Assistant">
+                  <td>{{ Assistant.id }}</td>
+                  <td>{{ Assistant.firstname }} {{ Assistant.lastname }}</td>
+                  <td>{{ Assistant.email }}</td>
+                  <td>{{ Assistant.domaine }}</td>
+                  <td>
+                    <span *ngIf="Assistant?.enabled; else notActive" class="status text-success">
+                      &bull;
+                    </span>
+                    <ng-template #notActive>
+                      <span class="status text-danger">
+                        &bull;
+                      </span>
+                    </ng-template>
+                  </td>
+                  <td>
+                    <strong>Nom :</strong> {{ Assistant.cabinet?.nom }}<br />
+                    <strong>Adresse :</strong> {{ Assistant.cabinet?.adresse }}<br />
+                    <strong>Téléphone :</strong> {{ Assistant.cabinet?.numTel }}
+                  </td>
+                  <td>
+                    <a class="btn btn-secondary" (click)="openUpdateModal(Assistant)" class="settings" title="Settings" data-toggle="tooltip">
+                      <i class="material-icons">&#xE8B8;</i>
+                    </a>
+                    <a class="btn btn-secondary" (click)="openArchiveModal(Assistant.id)" class="delete" title="Delete" data-toggle="tooltip">
+                      <i class="material-icons">&#xE5C9;</i>
+                    </a>
+                  </td>
+                </tr>
+              </tbody>
+              
+              <!-- Template pour afficher une image si la liste est vide -->
+              <ng-template #noData>
+                <tr>
+                  <td colspan="7" class="text-center">
+                    <img src="./assets/img/3024051.jpg" alt="Aucune donnée disponible" style="width: 200px; height: auto; margin-top: 20px;">
+                    <p>Aucune donnée disponible</p>
+                  </td>
+                </tr>
+              </ng-template>
+              </table>
+            </div>
+        </div>
+        </div>
+
+
+
+    <div *ngIf="isAddModalOpen || isUpdateModalOpen || isArchiveModalOpen" class="overlay" (click)="closeModal()"></div>
+   
+
+
+    <!-- Modal pour ajouter un Assistant -->
+    <div *ngIf="isAddModalOpen" class="modal fade show" [ngClass]="{'d-block': isAddModalOpen}">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Ajouter un Assistant</h5>
+            <button type="button" class="close" (click)="closeModal()">
+              <span>&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form (ngSubmit)="addAssistant()">
+              <div class="form-group">
+                <label>Prénom :</label>
+                <input type="text" class="form-control" [(ngModel)]="newAssistant.firstname" name="firstname" required />
+              </div>
+              <div class="form-group">
+                <label>Nom :</label>
+                <input type="text" class="form-control" [(ngModel)]="newAssistant.lastname" name="lastname" required />
+              </div>
+              <div class="form-group">
+                <label>Email :</label>
+                <input type="email" class="form-control" [(ngModel)]="newAssistant.email" name="email" required />
+              </div>
+              <div class="form-group">
+                <label>Mot de passe :</label>
+                <input type="password" class="form-control" [(ngModel)]="newAssistant.password" name="password" required />
+              </div>
+              <!-- <div class="form-group"> -->
+                <!-- <label>Spécialité :</label> -->
+                <!-- <input type="text" class="form-control" [(ngModel)]="newAssistant.specialitee" name="specialitee" required /> -->
+              <!-- <!~~ </div> ~~> -->
+              <div class="form-group">
+                <label>Domaine :</label>
+                <input type="text" class="form-control" [(ngModel)]="newAssistant.domaine" name="domaine" required />
+              </div>
+              <div class="form-group">
+              
+                <input type="hidden" class="form-control" [(ngModel)]="newAssistant.cabinetId" name="cabinetId" required />
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" (click)="closeModal()">Fermer</button>
+                <button type="submit" class="btn btn-primary">Ajouter</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Modal pour Modifier un Assistant -->
+    <div *ngIf="isUpdateModalOpen" class="modal fade show" [ngClass]="{'d-block': isUpdateModalOpen}">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Modifier un Assistant</h5>
+            <button type="button" class="close" (click)="closeModal()">
+              <span>&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form (ngSubmit)="updateAssistant()">
+              <div class="form-group">
+                <label>Prénom :</label>
+                <input type="text" class="form-control" [(ngModel)]="selectedAssistant.firstname" name="firstname" required />
+              </div>
+              <div class="form-group">
+                <label>Nom :</label>
+                <input type="text" class="form-control" [(ngModel)]="selectedAssistant.lastname" name="lastname" required />
+              </div>
+              <div class="form-group">
+                <label>Email :</label>
+                <input type="email" class="form-control" [(ngModel)]="selectedAssistant.email" name="email" required />
+              </div>
+              <div class="form-group">
+                <label>Mot de passe :</label>
+                <input type="password" class="form-control" [(ngModel)]="selectedAssistant.password" name="password" required />
+              </div>
+              <div class="form-group">
+                <label>Domaine :</label>
+                <input type="text" class="form-control" [(ngModel)]="selectedAssistant.domaine" name="Domaine" required />
+              </div>
+              <!-- <div class="form-group"> -->
+                <!-- <label>Spécialité :</label> -->
+                <!-- <input type="text" class="form-control" [(ngModel)]="selectedAssistant.specialitee" name="specialitee" required /> -->
+              <!-- </div> -->
+              <div class="modal-footer">
+              <button type="submit" class="btn btn-primary">Mettre à jour</button>
+              <button type="button" class="btn btn-secondary" (click)="closeModal()">Annuler</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Modal pour archiver un Assistant -->
+    <div *ngIf="isArchiveModalOpen" class="modal fade show" [ngClass]="{'d-block': isArchiveModalOpen}">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header ">
+            <h5 class="modal-title">
+              <i class="material-icons">archive</i> Archiver un Assistant
+            </h5>
+            <button type="button" class="close text-white" (click)="closeModal()">
+              <span>&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p>Êtes-vous sûr de vouloir archiver cet Assistant ?</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" (click)="closeModal()">
+              <i class="fas fa-times mr-2"></i> Annuler
+            </button>
+            <button type="button" class="btn btn-danger" (click)="confirmArchive()">
+              <i class="fas fa-archive mr-2"></i> Archiver
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>

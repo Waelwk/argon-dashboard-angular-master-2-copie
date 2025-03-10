@@ -25,14 +25,20 @@ export class AuthService {
     } else {
       this.logout(); // Si le token est expiré ou absent, se déconnecter immédiatement
     }
+  }  sendPasswordResetEmail(email: string): Observable<any> {
+    const requestBody = { email };
+    return this.http.post(`${this.apiUrl}/send-password-reset-email`, requestBody);
   }
+
 
   // Méthode de login
   login(credentials: { email: string; password: string }): Observable<any> {
     return this.http.post<any>(`${this.apiUrl}/authenticate`, credentials).pipe(
       map((response) => {
+        console.log('Réponse de connexion :', response);
         this.saveToken(response.access_token); // Sauvegarder le token
         localStorage.setItem('role', response.role); // Stocker le rôle
+        localStorage.setItem('id', response.id);
         const decodedToken: any = jwtDecode(response.access_token);
         this.userSubject.next(decodedToken); // Mettre à jour l'état de l'utilisateur connecté
         return response;
@@ -129,4 +135,7 @@ export class AuthService {
   registerCabinet(cabinetData: any): Observable<any> {
     return this.http.post(`${this.apiUrl}/register-manager`, cabinetData);
   }
+  
+
+
 }

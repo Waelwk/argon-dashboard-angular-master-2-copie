@@ -14,13 +14,13 @@ export class AuthGuard implements CanActivate {
     const userRole = this.authService.getRole();
 
     // Si l'utilisateur est déjà connecté et essaie d'accéder aux pages login ou register
-    if (isAuthenticated && (state.url.includes('/auth/login') || state.url.includes('/auth/register'))) {
+    if (isAuthenticated && (state.url.includes('/auth/login') || state.url.includes('/auth/register')|| state.url.includes('/auth/resetPasword'))) {
       // Rediriger vers le dashboard ou la page d'accueil
       return this.router.createUrlTree(['/dashboard']);
     }
 
     // Si l'utilisateur n'est pas authentifié, il ne peut pas accéder à d'autres pages sauf login ou register
-    if (!isAuthenticated && !state.url.includes('/auth/login') && !state.url.includes('/auth/register')) {
+    if (!isAuthenticated && !state.url.includes('/auth/login') && !state.url.includes('/auth/register')&& !state.url.includes('/auth/resetPasword')) {
       return this.router.createUrlTree(['/auth/login'], { queryParams: { returnUrl: state.url } }); // Rediriger vers la page login
     }
 

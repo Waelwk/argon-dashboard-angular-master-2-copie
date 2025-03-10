@@ -47,6 +47,13 @@ import { CabinetInfoComponent } from './pages/admin/cabinet-info/cabinet-info.co
 import { ListeAssistantArchiveeComponent } from './pages/admin/liste-assistant-archivee/liste-assistant-archivee.component';
 import { ListeAvocatArchiveeComponent } from './pages/admin/liste-avocat-archivee/liste-avocat-archivee.component';
 import { ManagerArchiveeComponent } from './pages/admin/manager-archivee/manager-archivee.component';
+import { ResetPasswordComponent } from './pages/reset-password/reset-password.component';
+import { CabinetMComponent } from './pages/manager/cabinet/cabinet.component';
+import { ListeAvocatCabinetMComponent } from './pages/manager/liste-avocat-cabinet-m/liste-avocat-cabinet-m.component';
+import { ListeAvocatCabinetAComponent } from './pages/manager/liste-avocat-cabinet-a/liste-avocat-cabinet-a.component';
+import { ListeAssistatnCabinetComponent } from './pages/manager/liste-assistatn-cabinet/liste-assistatn-cabinet.component';
+import { ListeAssistatnCabinetAComponent } from './pages/manager/liste-assistatn-cabinet-a/liste-assistatn-cabinet-a.component';
+
 
 
 
@@ -99,10 +106,12 @@ import { ManagerArchiveeComponent } from './pages/admin/manager-archivee/manager
   ListeAssistantArchiveeComponent,
   ListeAvocatArchiveeComponent,
   ManagerArchiveeComponent,
-      
- 
-
-
+  ResetPasswordComponent,
+ CabinetMComponent,
+ ListeAvocatCabinetMComponent,
+ ListeAvocatCabinetAComponent,
+ ListeAssistatnCabinetAComponent,
+ ListeAssistatnCabinetComponent
   
    
   ],

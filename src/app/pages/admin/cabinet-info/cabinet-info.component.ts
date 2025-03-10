@@ -23,7 +23,7 @@ export class CabinetInfoComponent implements OnInit {
   ngOnInit(): void {
     // Récupérer l'ID du cabinet depuis l'URL
     this.cabinetId = +this.route.snapshot.paramMap.get('id');
-    console.log('ID du cabinet :', this.cabinetId);
+    console.log('avocats :', this.avocats);
     this.loadAssistantsByCabinetId(this.cabinetId);
     // Charger tous les cabinets
     this.loadCabinets();
