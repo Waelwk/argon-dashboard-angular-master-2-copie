@@ -46,6 +46,12 @@ export class AvocatService {
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
     return this.http.post<void>(`${this.apiUrl}/${avocatId}/desarchive`, {}, { headers });
   }
+// Obtenir un avocat par ID
+getAvocatById(avocatId: number): Observable<Avocat> {
+  const token = this.getAuthToken();
+  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+  return this.http.get<Avocat>(`${this.apiUrl}/${avocatId}`, { headers, withCredentials: true });
+}
 
   // Obtenir tous les avocats
   getAllAvocats(): Observable<Avocat[]> {

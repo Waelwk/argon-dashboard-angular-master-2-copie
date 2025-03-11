@@ -34,6 +34,13 @@ import { ListeAvocatCabinetAComponent } from './pages/manager/liste-avocat-cabin
 import { ListeAssistatnCabinetComponent } from './pages/manager/liste-assistatn-cabinet/liste-assistatn-cabinet.component';
 import { ListeAssistatnCabinetAComponent } from './pages/manager/liste-assistatn-cabinet-a/liste-assistatn-cabinet-a.component';
 
+import { ListedossierMComponent } from './pages/manager/listedossier-m/listedossier-m.component';
+import { AvocatLayoutComponent } from './layouts/avocat-layout/avocat-layout.component';
+import { ListedossierAvocatComponent } from './pages/Avocat/listedossier-avocat/listedossier-avocat.component';
+import { DossierJuridiqueComponent } from './pages/admin/dossier-juridique/dossier-juridique.component';
+import { DossierJuridiqueUpdate } from './Models/DossierJuridiqueUpdate';
+import { DossierJuridiqueUpdateComponent } from './pages/Avocat/dossier-juridique-update/dossier-juridique-update.component';
+
 
 
 const routes: Routes = [
@@ -56,6 +63,7 @@ const routes: Routes = [
       { path: 'listeAssistant/:id', component: ListeAssistatnCabinetComponent},
       { path: 'AssistantArchivee/:id', component:  ListeAssistatnCabinetAComponent},
       { path: 'AvocatArchivee/:id', component: ListeAvocatCabinetAComponent},
+      { path: 'DossierJuridique/:id',  component: ListedossierMComponent },
     ]
   },
   {
@@ -73,6 +81,17 @@ const routes: Routes = [
       { path: 'AssistantArchivee/:id', component:  ListeAssistantArchiveeComponent},
       { path: 'AvocatArchivee/:id', component: ListeAvocatArchiveeComponent},
       { path: 'ManagerArchivee', component: ManagerArchiveeComponent},
+      { path: 'DossierJuridique', component:DossierJuridiqueComponent},
+    ]
+  },{
+    path: 'dashboardA',
+    component: AvocatLayoutComponent,
+    canActivate: [AuthGuard],
+    data: { roles: ['AVOCAT'] },
+    children: [
+      { path: 'Dossier', component: ListedossierAvocatComponent },
+      { path: 'dj/:id', component: DossierJuridiqueUpdateComponent },
+    
     ]
   },
   { path: 'index', component: IndexComponent },

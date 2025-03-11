@@ -1,0 +1,261 @@
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+<div class="container" >
+    <div class="row align-items-center mt-5" >
+        <div class="col-xl-12 col-lg-12 col-md-12 col-12">
+          <div class="card rounded shadow-lg border-0">
+            <!-- En-tête -->
+            <div class="card-header bg-primary text-white text-center py-4 rounded-top">
+              <h2 class="mb-0">Dossier Juridique {{this.id}}</h2>
+              <p class="mb-0">Référence : <strong>DJ-2024-001</strong></p>
+            </div>
+      
+            <!-- Détails du dossier -->
+            <div class="card-body">
+              <h4 class="mb-3"><i class="fas fa-info-circle"></i> Informations du Dossier</h4>
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                  <strong>Client :</strong> <span>Mohamed Ben Ali</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                  <strong>Type d'affaire :</strong> <span>Droit du travail</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                  <strong>Statut :</strong> 
+                  <span class="badge bg-warning text-dark">En cours</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                  <strong>Date de création :</strong> <span>15 Février 2024</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                  <strong>Dernière mise à jour :</strong> <span>10 Mars 2024</span>
+                </li>
+              </ul>
+            </div>
+      
+            <!-- Pied de page -->
+            <div class="card-footer d-flex justify-content-between">
+              <a href="#" class="btn btn-outline-primary">
+                <i class="fas fa-edit"></i> Modifier
+              </a>
+              <ul class="nav">
+                <li class="nav-item">
+                  <!-- <a class="nav-link active" href="#"><i class="fas fa-history"></i> Historique</a> -->
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+    <!-- page content -->
+    <div class="py-6">
+      <div class="row">
+        <div class="offset-lg-1 col-lg-10 col-md-12 col-12">
+          <!-- row -->
+          <div class="row align-items-center mb-6">
+            <!-- <div class="col-lg-6 col-md-12 col-12"> -->
+              <!-- <!~~ form ~~> -->
+              <!-- <form> -->
+                <!-- <input type="search" class="form-control" placeholder="Search Your Activity"> -->
+              <!-- </form> -->
+            <!-- </div> -->
+            <div class="col-lg-6 col-md-12 col-12 d-flex justify-content-end">
+              <!-- form -->
+            <!-- <div> -->
+              <!-- <a href="#!" class="btn btn-ghost btn-icon btn-sm rounded-circle texttooltip" data-template="filterOne"> -->
+                <!-- <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-filter icon-xs"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon></svg> -->
+                <!-- <div class="d-none" id="filterOne"> -->
+                  <!-- <span>Filter</span> -->
+                <!-- </div> -->
+              <!-- </a> -->
+              <!-- <a href="#!" class="btn btn-outline-secondary ms-3"> -->
+                <!-- Delete -->
+              <!-- </a> -->
+            <!-- </div> -->
+
+            </div>
+          </div>
+          <!-- hr -->
+      
+          <div *ngIf="updates && updates.length > 0; else noUpdates">
+            <div *ngFor="let update of updates" class="card bg-gray-300 shadow-none mb-4">
+              
+            <!-- card -->
+            <div class="card bg-gray-300 shadow-none mb-4">
+              <!-- card body -->
+              <div class="card-body">
+                <div class="d-flex justify-content-between
+                  align-items-center">
+                  <div>
+                    <h5 class="mb-0">{{update.dateCreation|
+                   date: 'mediumDate' }}</h5>
+                  </div>
+                  <div>
+                    <a href="#!" class="text-muted"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash-2 icon-xs"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path><line x1="10" y1="11" x2="10" y2="17"></line><line x1="14" y1="11" x2="14" y2="17"></line></svg></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- card -->
+            <div class="card">
+              <!-- list group -->
+              <ul class="list-group list-group-flush">
+                <!-- list group item -->
+                <li class="list-group-item p-3">
+                  <div class="d-flex justify-content-between
+                    align-items-center">
+                    <div class="d-flex align-items-center">
+                            <!-- img -->
+                    <div>
+              <i class="fas fa-file-alt me-3"></i> <!-- Icône pour l'évaluation -->
+            </div>
+                            <!-- content -->
+                      <div class="ms-3">
+                        <p class="mb-0
+                          font-weight-medium"><a href="#!">
+                            &nbsp; evaluation</a> {{update.
+evaluation}}
+                            <!-- <a href="#!">Front End -->
+                            <!-- Developer Team</a> -->
+                        </p>
+                      </div>
+                    </div>
+                    <div>
+                            <!-- dropdown -->
+                      <div class="dropdown dropstart">
+                        <a href="#!" class="btn btn-ghost btn-icon btn-sm rounded-circle" id="dropdownactivityOne" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-vertical icon-xs"><circle cx="12" cy="12" r="1"></circle><circle cx="12" cy="5" r="1"></circle><circle cx="12" cy="19" r="1"></circle></svg>
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="dropdownactivityOne">
+                          <a class="dropdown-item d-flex align-items-center" href="#!">Action</a>
+                          <a class="dropdown-item d-flex align-items-center" href="#!">Another action</a>
+                          <a class="dropdown-item d-flex align-items-center" href="#!">Something else
+                            here</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+                      <!-- list group item -->
+                <li class="list-group-item p-3">
+                  <div class="d-flex justify-content-between
+                    align-items-center">
+                    <div class="d-flex align-items-center">
+                            <!-- avatar -->
+                      <!-- Icône de note -->
+            <div>
+                <i class="fas fa-sticky-note me-3 text-muted"></i> <!-- Icône pour la note -->
+              </div>
+                            <!-- content -->
+                      <div class="ms-3">
+                        <p class="mb-0 font-weight-medium
+                          text-dark"> &nbsp;note
+                          : {{update.note}}
+                         </p>
+                      </div>
+                    </div>
+                    <div>
+                            <!-- dropdown -->
+                      <div class="dropdown dropstart">
+                        <a href="#!" class="btn btn-ghost btn-icon btn-sm rounded-circle" id="dropdownactivityTwo" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-vertical icon-xs"><circle cx="12" cy="12" r="1"></circle><circle cx="12" cy="5" r="1"></circle><circle cx="12" cy="19" r="1"></circle></svg>
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="dropdownactivityTwo">
+                          <a class="dropdown-item d-flex align-items-center" href="#!">Action</a>
+                          <a class="dropdown-item d-flex align-items-center" href="#!">Another action</a>
+                          <a class="dropdown-item d-flex align-items-center" href="#!">Something else
+                            here</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+                      <!-- list group item -->
+                <li class="list-group-item p-3" *ngIf="update?.rendezVous?.dateHeure">
+                  <div class="d-flex justify-content-between
+                    align-items-center">
+                    <div class="d-flex align-items-center" >
+                            <!-- avatar -->
+                            <div>
+                                <i class="fas fa-calendar-alt me-3 text-muted"></i> <!-- Icône pour le rendez-vous -->
+                              </div>
+                            <!-- content -->
+                      <div class="ms-3" >
+                        <p class="mb-0
+                          font-weight-medium"> &nbsp;rendezVous: {{update.dateCreation|
+                   date: 'mediumDate' }} a  dateHeure 
+
+                          motif : {{update.rendezVous.motif}}
+
+
+                        </p>
+                      </div>
+                    </div>
+                    <div>
+                            <!-- dropdown -->
+                      <div class="dropdown dropstart">
+                        <a href="#!" class="btn btn-ghost btn-icon btn-sm rounded-circle" id="dropdownactivityThree" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-vertical icon-xs"><circle cx="12" cy="12" r="1"></circle><circle cx="12" cy="5" r="1"></circle><circle cx="12" cy="19" r="1"></circle></svg>
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="dropdownactivityThree">
+                          <a class="dropdown-item d-flex align-items-center" href="#!">Action</a>
+                          <a class="dropdown-item d-flex align-items-center" href="#!">Another action</a>
+                          <a class="dropdown-item d-flex align-items-center" href="#!">Something else
+                            here</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+                      <!-- list group item -->
+                <li class="list-group-item p-3">
+                  <div class="d-flex justify-content-between
+                    align-items-center">
+                    <div class="d-flex align-items-center">
+                            <!-- avatar -->
+                            <div>
+                                <i class="fas fa-file-download me-3 text-muted"></i> <!-- Icône pour la demande de documents -->
+                              </div>
+                            <!-- content -->
+                      <div class="ms-3">
+                        <p class="mb-0
+                          font-weight-medium">
+                          &nbsp; demandeDocuments :{{update.demandeDocuments}}
+                         
+                        </p>
+                      </div>
+                    </div>
+                    <div>
+                            <!-- dropdown -->
+                      <div class="dropdown dropstart">
+                        <a href="#!" class="btn btn-ghost btn-icon btn-sm rounded-circle" id="dropdownactivityFour" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-vertical icon-xs"><circle cx="12" cy="12" r="1"></circle><circle cx="12" cy="5" r="1"></circle><circle cx="12" cy="19" r="1"></circle></svg>
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="dropdownactivityFour">
+                          <a class="dropdown-item d-flex align-items-center" href="#!">Action</a>
+                          <a class="dropdown-item d-flex align-items-center" href="#!">Another action</a>
+                          <a class="dropdown-item d-flex align-items-center" href="#!">Something else
+                            here</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+                      
+             
+              </ul>
+            </div>
+          </div>
+          
+      </div>
+    </div>
+  </div>
+</div> <!-- Template à afficher si aucune donnée n'est présente -->
+<ng-template #noUpdates>
+  <div class="text-center mt-4">
+    <img src="assets/img/3024051.jpg" alt="Pas de mises à jour" width="250" height="200">
+    <p class="mt-2 text-muted">Aucune mise à jour disponible.</p>
+  </div>
+</ng-template>

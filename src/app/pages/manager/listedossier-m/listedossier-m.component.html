@@ -1,0 +1,248 @@
+<div class="container">
+    <h2>Liste des Dossiers Juridiques</h2>
+  <!-- Champ d'entrée avec bouton de recherche intégré -->
+<!-- Champ d'entrée avec bouton de recherche intégré -->
+<div class="input-group">
+    <input type="text" [(ngModel)]="codeAcces" placeholder="Entrez le code d'accès ou la référence" class="form-control" />
+    <div class="input-group-append">
+      <button (click)="consulterDossier()" class="btn btn-primary" data-toggle="modal" data-target="#resultModal">
+        <i class="fas fa-search"></i>
+      </button>
+    </div>
+  </div>
+  
+ 
+  
+  <!-- Afficher un message d'erreur si nécessaire -->
+  <div *ngIf="errorMessage" class="alert alert-danger mt-3">{{ errorMessage }}</div>
+  
+    <div *ngIf="errorMessage" class="alert alert-danger mt-3">{{ errorMessage }}</div>
+    <div class="mt-3">
+        <button class="btn btn-facebook" (click)="openAddModal()">Ajouter un Dossier</button>
+      </div>
+    <table *ngIf="dossiers.length > 0" class="table table-bordered mt-3">
+      <thead>
+        <tr>
+          <th>id</th>
+          <th>Référence</th>
+          <th>Titre</th>
+          <th>Description</th>
+          <th>Type</th>
+          <th>Statut</th>
+          <th>Priorité</th>
+          <th>Cabinet</th>
+          <th>Avocat</th>
+          <th>Code d'Accès</th>
+          <th>Actions</th> <!-- Ajout d'une colonne pour l'action -->
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let dossier of dossiers">
+          <td>{{ dossier.id }}</td>
+          <td>{{ dossier.reference }}</td>
+          <td>{{ dossier.titre }}</td>
+          <td>{{ dossier.description }}</td>
+          <td>{{ dossier.type }}</td>
+          <td>{{ dossier.statut }}</td>
+          <td>{{ dossier.priorite }}</td>
+          <td>{{ dossier.cabinet.nom }}</td>
+          <td>{{ dossier.avocat ? dossier.avocat.firstname + ' ' + dossier.avocat.lastname : 'N/A' }}</td>
+          <td>{{ dossier.codeAcces }}</td>
+          <td><!-- Bouton pour ouvrir le modal d'ajout de dossier -->
+      
+                <!-- Icône pour ajouter un dossier -->
+               
+                <!-- <a class="btn btn-info" (click)="openAddModal()" class="fa-add" title="add" data-toggle="tooltip"> -->
+                    <!-- <i class="material-icons">&#xE147;</i> -->
+                  <!-- </a> -->
+                    <a class="btn btn-secondary" (click)="openModal(dossier)" class="settings" title="Settings" data-toggle="tooltip">
+                      <i class="material-icons">&#xE8B8;</i>
+                    </a>
+                  
+              
+            
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div *ngIf="isAddModalOpen || isUpdateModalOpen || isArchiveModalOpen" class="overlay" (click)="closeModal()"></div>
+   
+    <!-- Modal de mise à jour -->
+    <div *ngIf="modalVisible" class="modal fade show d-block">
+        <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title">Modifier le Dossier Juridique</h5>
+                <button type="button" class="close" (click)="closeModal()">
+                  <span>&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <form (ngSubmit)="updateDossier()">
+                    <div class="form-group">
+                        <label>Référence :</label>
+                        <input disabled type="text" class="form-control" [(ngModel)]="selectedDossier.reference" name="reference" required />
+                      </div>
+                      <div class="form-group">
+                        <label>Titre :</label>
+                        <input type="text" class="form-control" [(ngModel)]="selectedDossier.titre" name="titre" required />
+                      </div>
+                      <div class="form-group">
+                          <label for="description">Description :</label>
+                          <textarea class="form-control" [(ngModel)]="selectedDossier.description" name="description" required></textarea>
+                        </div>
+                      <div class="form-group">
+                        <label>Type :</label>
+                        <input type="text" class="form-control" [(ngModel)]="selectedDossier.type" name="type" required />
+                      </div>
+                      <div class="form-group">
+                          <label for="statut">Statut :</label>
+                          <select class="form-control" [(ngModel)]="selectedDossier.statut" name="statut" required>
+                            <option value="En cours">En cours</option>
+                            <option value="Clôturé">Clôturé</option>
+                          </select>
+                        </div>
+                      <div class="form-group">
+                          <label for="priorite">Priorité :</label>
+                          <select class="form-control" [(ngModel)]="selectedDossier.priorite" name="priorite" required>
+                            <option value="Haute">Haute</option>
+                            <option value="Moyenne">Moyenne</option>
+                            <option value="Basse">Basse</option>
+                          </select>
+                        </div>
+            
+                      <div class="form-group">
+                        <label>Catégorie :</label>
+                        <input type="text" class="form-control" [(ngModel)]="selectedDossier.categorie" name="categorie" required />
+                      </div>
+                      <div class="form-group">
+                        <label>ID du Cabinet :</label>
+                        <input disabled type="number" class="form-control" [(ngModel)]="selectedDossier.cabinet.id" name="cabinetId" required />
+                      </div>
+                      <div class="form-group">
+                        <label>ID de l'Avocat :</label>
+                        <input disabled  type="number" class="form-control" [(ngModel)]="selectedDossier.avocat.id" name="avocatId" required />
+                      </div>
+                      <div class="form-group">
+                        <label>Email du Client :</label>
+                        <input type="email" class="form-control" [(ngModel)]="selectedDossier.client.email" name="clientEmail" />
+                      </div>
+                     
+                      <div class="modal-footer">
+                          <button type="submit" class="btn btn-primary">Créer Dossier</button>
+                          <button type="button" class="btn btn-secondary" (click)="closeModal()">Annuler</button>
+                        </div>
+                    </form>
+              </div>
+            </div>
+          </div>
+        </div>
+    <!-- Modal pour Ajouter un Dossier -->
+<div *ngIf="isAddModalOpen" class="modal fade show" [ngClass]="{'d-block': isAddModalOpen}">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Ajouter un Dossier</h5>
+          <button type="button" class="close" (click)="closeAddModal()">
+            <span>&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <form (ngSubmit)="addDossier()">
+                <div class="form-group">
+                  <label>Référence :</label>
+                  <input type="text" class="form-control" [(ngModel)]="newDossier.reference" name="reference" required />
+                </div>
+                <div class="form-group">
+                  <label>Titre :</label>
+                  <input type="text" class="form-control" [(ngModel)]="newDossier.titre" name="titre" required />
+                </div>
+                <div class="form-group">
+                    <label for="description">Description :</label>
+                    <textarea class="form-control" [(ngModel)]="newDossier.description" name="description" required></textarea>
+                  </div>
+                <div class="form-group">
+                  <label>Type :</label>
+                  <input type="text" class="form-control" [(ngModel)]="newDossier.type" name="type" required />
+                </div>
+                <div class="form-group">
+                    <label for="statut">Statut :</label>
+                    <select class="form-control" [(ngModel)]="newDossier.statut" name="statut" required>
+                      <option value="En cours">En cours</option>
+                      <option value="Clôturé">Clôturé</option>
+                    </select>
+                  </div>
+                <div class="form-group">
+                    <label for="priorite">Priorité :</label>
+                    <select class="form-control" [(ngModel)]="newDossier.priorite" name="priorite" required>
+                      <option value="Haute">Haute</option>
+                      <option value="Moyenne">Moyenne</option>
+                      <option value="Basse">Basse</option>
+                    </select>
+                  </div>
+      
+                <div class="form-group">
+                  <label>Catégorie :</label>
+                  <input type="text" class="form-control" [(ngModel)]="newDossier.categorie" name="categorie" required />
+                </div>
+                <div class="form-group">
+                  <label>ID du Cabinet :</label>
+                  <input type="number" class="form-control" [(ngModel)]="newDossier.cabinet.id" name="cabinetId" required />
+                </div>
+                <div class="form-group">
+                  <label>ID de l'Avocat :</label>
+                  <input type="number" class="form-control" [(ngModel)]="newDossier.avocat.id" name="avocatId" required />
+                </div>
+                <div class="form-group">
+                  <label>Email du Client :</label>
+                  <input type="email" class="form-control" [(ngModel)]="newDossier.client.email" name="clientEmail" />
+                </div>
+               
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Créer Dossier</button>
+                    <button type="button" class="btn btn-secondary" (click)="closeModal()">Annuler</button>
+                  </div>
+              </form>
+              
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Modal pour afficher les résultats -->
+  <div class="modal fade" id="resultModal" tabindex="-1" role="dialog" aria-labelledby="resultModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="resultModalLabel">Résultats de Recherche</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <!-- Affichage des résultats ici -->
+          <div *ngIf="this.resultatRechercher">
+          
+      <p><strong>Titre:</strong> {{this.resultatRechercher.titre }}</p>
+      <p><strong>Description:</strong> {{this.resultatRechercher.description }}</p>
+      <p><strong>Type:</strong> {{this.resultatRechercher.type }}</p>
+      <p><strong>Statut:</strong> {{this.resultatRechercher.statut }}</p>
+      <p><strong>Priorité:</strong> {{this.resultatRechercher.priorite }}</p>
+      <p><strong>Cabinet:</strong> {{this.resultatRechercher.cabinet.nom }}</p>
+      <p><strong>Avocat:</strong> {{this.resultatRechercher.avocat ?this.resultatRechercher.avocat.firstname + ' ' +this.resultatRechercher.avocat.lastname : 'N/A' }}</p>
+          </div>
+          <div *ngIf="! this.resultatRechercher">
+            <p>Aucun résultat trouvé.</p>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  
+   
+  </div>
+  

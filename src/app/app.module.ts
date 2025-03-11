@@ -54,9 +54,20 @@ import { ListeAvocatCabinetAComponent } from './pages/manager/liste-avocat-cabin
 import { ListeAssistatnCabinetComponent } from './pages/manager/liste-assistatn-cabinet/liste-assistatn-cabinet.component';
 import { ListeAssistatnCabinetAComponent } from './pages/manager/liste-assistatn-cabinet-a/liste-assistatn-cabinet-a.component';
 
+import { ListedossierMComponent } from './pages/manager/listedossier-m/listedossier-m.component';
+import { AvocatLayoutComponent } from './layouts/avocat-layout/avocat-layout.component';
+import { ListedossierAvocatComponent } from './pages/Avocat/listedossier-avocat/listedossier-avocat.component';
+import { DossierJuridiqueComponent } from './pages/admin/dossier-juridique/dossier-juridique.component';
+import { DossierJuridiqueUpdateComponent } from './pages/Avocat/dossier-juridique-update/dossier-juridique-update.component';
+import { registerLocaleData } from '@angular/common';
+
+
+import localeFr from '@angular/common/locales/fr';
 
 
 
+
+registerLocaleData(localeFr); 
 
 
 @NgModule({
@@ -111,8 +122,14 @@ import { ListeAssistatnCabinetAComponent } from './pages/manager/liste-assistatn
  ListeAvocatCabinetMComponent,
  ListeAvocatCabinetAComponent,
  ListeAssistatnCabinetAComponent,
- ListeAssistatnCabinetComponent
-  
+ ListeAssistatnCabinetComponent,
+ DossierJuridiqueComponent,
+ ListedossierMComponent,
+
+
+  AvocatLayoutComponent,
+  ListedossierAvocatComponent,
+  DossierJuridiqueUpdateComponent
    
   ],
   providers: [ { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },],

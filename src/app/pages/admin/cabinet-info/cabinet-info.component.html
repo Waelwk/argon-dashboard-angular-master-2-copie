@@ -38,8 +38,8 @@
                 <div class="card-body">
                   <div class="small text-muted"><i class="fas fa-folder-open"></i> Nombre de dossiers</div>
                   <div class="h3">{{ cabinet.numberOfCases }}</div>
-                  <a class="text-arrow-icon small text-success" href="#!">
-                    Voir la liste des dossiers
+                  <a class="text-arrow-icon small" [routerLink]="['/dashboard/DossierJuridique']">
+                    Voir la liste des assistants
                     <i class="fas fa-arrow-right"></i>
                   </a>
                 </div>

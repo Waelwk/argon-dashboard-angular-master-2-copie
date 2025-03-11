@@ -1,0 +1,90 @@
+/* Style général pour la mise en page */
+#wrapper {
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* Sidebar */
+app-side-bar-a {
+    width: 225px; /* Largeur normale */
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: white;
+    color: white;
+    overflow-y: auto;
+    transition: width 0.3s ease-in-out;
+}
+
+/* Contenu principal */
+#content-wrapper {
+    flex-grow: 1;
+    margin-left: 225px; /* Doit correspondre à la largeur de la sidebar */
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    overflow: hidden;
+    transition: margin-left 0.3s ease-in-out;
+}
+
+/* Navbar */
+app-navbar {
+    width: calc(100% - 225px);
+    position: fixed;
+    top: 0;
+    left: 225px;
+    height: 60px;
+    background-color: #007bff;
+    z-index: 1000;
+    transition: left 0.3s ease-in-out, width 0.3s ease-in-out;
+}
+
+/* Contenu sous la navbar */
+.container-fluid {
+    margin-top: 60px; /* Réduit l'espace en haut */
+    padding: px; /* Augmente l'espace intérieur */
+    overflow-y: auto;
+    height: calc(100vh - 110px); /* Ajustement pour navbar (60px) + footer (50px) */
+}
+
+
+/* Responsive Design: Sidebar rétractable */
+@media (max-width: 992px) { /* Tablettes et petits écrans */
+    .container-fluid {
+        height: calc(100vh - 100px); /* Ajuste en fonction de l'écran */
+        padding: 6px; /* Réduit légèrement le padding */
+    }
+    app-side-bar-a{
+        width: 225px; /* Réduire la sidebar */
+    }
+
+    #content-wrapper {
+        margin-left: 230px; /* Adapter la marge */
+    }
+
+    app-navbar {
+        width: calc(100% - 225px);
+        left: 225px;
+    }
+}
+
+@media (max-width: 768px) { /* Mobiles */
+    .container-fluid {
+        height: calc(100vh - 90px); /* Ajuste encore plus pour les petits écrans */
+        padding: 6px; /* Moins de padding pour optimiser l'espace */
+    }
+    app-side-bar-a{
+        width: 90px; /* Cacher la sidebar */
+    }
+
+    #content-wrapper {
+        margin-left: 70px;
+    }
+
+    app-navbar {
+        width: calc(100% - 90px);
+        left: 90px;
+    }
+}

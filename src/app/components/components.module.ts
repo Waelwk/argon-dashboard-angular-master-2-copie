@@ -8,6 +8,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NavbardachComponent } from './navbardach/navbardach.component';
 import { NavbarindexComponent } from './navbarindex/navbarindex.component';
 import { sidebarm } from './sidebarM/sidebarm.component';
+import { SideBarAComponent } from './side-bar-a/side-bar-a.component';
 
 
 
@@ -23,13 +24,14 @@ import { sidebarm } from './sidebarM/sidebarm.component';
     SidebarComponent,
 NavbarindexComponent,
 sidebarm,
+SideBarAComponent,
 
   ],
   exports: [
     FooterComponent,
     NavbardachComponent,
     SidebarComponent,
-    NavbarindexComponent,sidebarm
+    NavbarindexComponent,sidebarm,SideBarAComponent
   ]
 })
 export class ComponentsModule { }
