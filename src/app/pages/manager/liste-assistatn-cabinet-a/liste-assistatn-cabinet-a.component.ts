@@ -37,6 +37,7 @@ Assistant: Assistant[] = [];
   constructor(private route: ActivatedRoute,private AssistantService:AssistantService) {}
 
   ngOnInit(): void {
+    
     this.cabinetId = +this.route.snapshot.paramMap.get('id');
     console.log('ID du cabinet :', this.cabinetId);
     this.loadAssistantsByCabinetId(this.cabinetId);

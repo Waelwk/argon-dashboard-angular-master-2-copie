@@ -7,7 +7,7 @@ import { DossierJuridiqueService } from 'src/app/service/DossierJuridiques/dossi
 @Component({
   selector: 'app-listedossier-avocat',
   templateUrl: './listedossier-avocat.component.html',
-  styleUrls: ['./listedossier-avocat.component.css']
+  styleUrls: ['./listedossier-avocat.component.css', ]
 })
 export class ListedossierAvocatComponent implements OnInit {
 dossiers: DossierJuridique[] = [];

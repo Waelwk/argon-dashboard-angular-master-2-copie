@@ -86,8 +86,8 @@ const routes: Routes = [
   },{
     path: 'dashboardA',
     component: AvocatLayoutComponent,
-    canActivate: [AuthGuard],
-    data: { roles: ['AVOCAT'] },
+    // canActivate: [AuthGuard],
+    // data: { roles: ['AVOCAT'] },
     children: [
       { path: 'Dossier', component: ListedossierAvocatComponent },
       { path: 'dj/:id', component: DossierJuridiqueUpdateComponent },

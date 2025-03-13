@@ -63,6 +63,8 @@ import { registerLocaleData } from '@angular/common';
 
 
 import localeFr from '@angular/common/locales/fr';
+import { ToastrModule } from 'ngx-toastr';
+
 
 
 
@@ -71,7 +73,10 @@ registerLocaleData(localeFr);
 
 
 @NgModule({
-  imports: [  NgbModule,
+  imports: [ 
+    
+    BrowserAnimationsModule, // Nécessaire pour ngx-toastr
+    ToastrModule.forRoot(),
     BrowserAnimationsModule,
     FormsModule,
     HttpClientModule,

@@ -3,6 +3,14 @@ import { ActivatedRoute } from '@angular/router';
 import { DossierJuridiqueUpdate } from 'src/app/Models/DossierJuridiqueUpdate';
 import { RendezVous } from 'src/app/Models/RendezVous';
 import { DossierJuridiqueUpdateService } from 'src/app/service/Dossier_juridique_update/dossier-juridique-update.service';
+import { DossierJuridiqueService } from 'src/app/service/DossierJuridiques/dossier-juridique.service';
+import * as QRCode from 'qrcode';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { DossierJuridique } from '/Users/wael/Desktop/argon-dashboard-angular-master 2 copie/src/app/Models/ DossierJuridique';
+import { ToastrService } from 'ngx-toastr';
+
+
+
 
 @Component({
   selector: 'app-dossier-juridique-update',
@@ -10,7 +18,10 @@ import { DossierJuridiqueUpdateService } from 'src/app/service/Dossier_juridique
   styleUrls: ['./dossier-juridique-update.component.css']
 })
 export class DossierJuridiqueUpdateComponent implements OnInit {
- 
+  modalVisible: boolean = false;
+   selectedDossier?: DossierJuridique;
+  successMessage: string = '';
+errorMessage: string = '';
   dossierId: number = 1; // ID du dossier pour lequel on souhaite afficher les mises à jour
   updates: DossierJuridiqueUpdate[] = [];
   newUpdate: DossierJuridiqueUpdate = {
@@ -22,50 +33,237 @@ export class DossierJuridiqueUpdateComponent implements OnInit {
     note: '',
     dateCreation: undefined
   };
+
   selectedUpdate: DossierJuridiqueUpdate | null = null;
   idD: any;
-  
+  isModalOpen: boolean = false;
   id: number;
+  isAddModalOpen: boolean = false;
   DossierId: number;
+  dossier: import("/Users/wael/Desktop/argon-dashboard-angular-master 2 copie/src/app/Models/ DossierJuridique").DossierJuridique;
+  qrCodeImageUrl: string = '';
+  isUpdateModalOpen = false; //
+  dossierid: number = 123;  // L'ID du dossier que vous voulez mettre à jour
+  dossierUpdate: DossierJuridiqueUpdate = {
+    evaluation: "L'affaire est en cours d'investigation.",
+    demandeDocuments: true,
+    rendezVous: {
+      id: 22,
+      dateHeure: new Date("2026-03-10T14:00:00"),
+      motif: "Rendez-vous avec le juge"
+    },
+    note: "Nous avons besoin de documents supplémentaires pour avancer sur le dossier.",
+    dateCreation: new Date("2025-03-12T12:55:54.277033")
+  };
 
-  constructor(private dossierUpdateService: DossierJuridiqueUpdateService,private route: ActivatedRoute) { }
+  constructor( private toastr: ToastrService, private dossierUpdateService: DossierJuridiqueUpdateService,private route: ActivatedRoute, private DossierJuridiqueService : DossierJuridiqueService,private modalService: NgbModal,) { }
 
   ngOnInit(): void {
+  
     console.log("ngOnInit appelé"); // Vérifie si la méthode est appelée
     this.DossierId = +this.route.snapshot.paramMap.get('id');
     console.log('ID du dossier récupéré :', this.DossierId);
-  
+
+    this.loadDossier(this.DossierId);
+   
     if (this.DossierId !== null) {
       this.loadUpdates();
     } else {
       console.error('ID non trouvé dans l\'URL');
     }
   }
+  closeModal(modal: any): void {
+    modal.close();  // Ferme ce modal spécifique
+  }
+  closeUpdateModal() {
+    this.isUpdateModalOpen = false;
+  }
+  openQRCodeModal(qrCodeModal: any): void {
+    this.generateQRCode(); // Générer le QR Code
+    const modal = document.getElementById('qrCodeModal');
+    this.modalService.open(qrCodeModal); 
+    
+    if (modal) {
+      modal.classList.add('show'); // Afficher le modal
+      modal.style.display = 'block';
+      modal.style.zIndex = '0'; 
+    }
+  }
+  closeAddModal() {
+    this.isAddModalOpen = false;
+  }
+  openAddModal() {
+    this.isAddModalOpen = true;
+  }
+  closeModall() {
+    this.isAddModalOpen = false;
+  }
 
+  CreateUpdateDossier() {
+    this.dossierUpdateService.createUpdate(this.dossierId, this.dossierUpdate).subscribe(
+      (response) => {
+ 
+       // this.successMessage = 'Dossier mis à jour avec succès';
+        this.toastr.success('Mise à jour réussie', 'Succès');
+        this.closeModall();
+       // this.errorMessage = '';  // Reset en cas de succès
+      
+        this.loadUpdates(); // Recharger les mises à jour après modification
+     
+      },
+      (error) => {
+        this.toastr.error('Erreur lors de la mise à jour du dossier', 'Erreur');
+     //   this.errorMessage = 'Erreur lors de la mise à jour du dossier';
+        console.error('Erreur lors de la mise à jour du dossier :', error);
+      }
+    );
+  }
+  
+  loadDossier(id: number): void {
+    this. DossierJuridiqueService.getDossierById(id).subscribe(
+      (data) => {
+        this.dossier = data;
+        
+        console.log('Dossier chargé:', this.dossier); // Vérifiez les données du dossier
+        this.generateQRCode();
+ 
+      },
+      (error) => {
+        console.error('Erreur lors du chargement du dossier :', error);
+      }
+    );
+  }
+  openModal(dossier: DossierJuridique): void {
+    this.selectedDossier = { ...dossier }; // Crée une copie du dossier
+    this.modalVisible = true;
+    this.isUpdateModalOpen = true;
+  }
+  generateQRCode() {
+    if (!this.dossier || !this.dossier.client) {
+      console.error('Dossier ou informations client indisponibles.');
+      return;
+    }
+  
+    const qrData = {
+      id: this.dossier.id,
+      reference: this.dossier.reference,
+      clientNom: this.dossier.client.firstname,
+      clientPrenom: this.dossier.client.lastname,
+      clientEmail: this.dossier.emailClient,
+      dateCreation: this.dossier.dateCreation,
+    };
+  
+    QRCode.toDataURL(JSON.stringify(qrData), { errorCorrectionLevel: 'H' })
+      .then(url => this.qrCodeImageUrl = url)
+      .catch(err => console.error('Erreur lors de la génération du QR Code:', err));
+  }
+  
   loadUpdates(): void {
-    console.log('ID dans loadUpdates:', this.DossierId);
-    if (this.DossierId !== null) {
-      this.dossierUpdateService.getAllUpdates(this.DossierId).subscribe(
+    console.log('ID dans loadUpdates:', this.dossierId);
+    if (this.dossierId !== null) {
+      this.dossierUpdateService.getAllUpdates(this.dossierId).subscribe(
         (data) => {
           console.log('Mises à jour récupérées :', data);
-          this.updates = data;
+          this.updates = data.sort((a, b) => new Date(b.dateCreation).getTime() - new Date(a.dateCreation).getTime());
         },
         (error) => {
+          this.errorMessage = "Erreur lors du chargement des mises à jour.";
           console.error('Erreur lors de la récupération des mises à jour :', error);
         }
       );
     }
   }
+  
+
+ // Fonction de mise à jour
+updateUpdate(): void {
+  if (!this.selectedUpdate || !this.selectedUpdate.id) {
+    this.showError('L\'ID du dossier est manquant!');
+    return; // Stopper la mise à jour si l'ID est manquant
+  }
+
+  console.log('Mise à jour sélectionnée:', this.selectedUpdate);
+
+  this.dossierUpdateService.updateDossierUpdate(this.selectedUpdate.id, this.selectedUpdate).subscribe(
+    (response) => {
+      this.showSuccess('Mise à jour réussie');
+      this.errorMessage = ''; // Réinitialiser les erreurs
+
+      this.closeUpdateModal();
+      // Fermer le modal après mise à jour
+      this.loadUpdates(); // Rafraîchir la liste des mises à jour
+
+      this.isUpdateModalOpen = true;
+    },
+    (error) => {
+      this.showError('Erreur lors de la mise à jour');
+    }
+  );
+}
+closeModale(): void {
+  this.isUpdateModalOpen = false;
+  this.isAddModalOpen = false;
+ 
+  this.modalVisible = false;
+}
+showSuccess(message: string) {
+  this.toastr.success(message, 'Succès');
+}
+
+// Fonction pour afficher un message d'erreur
+showError(message: string) {
+  this.toastr.error(message, 'Erreur');
+}
+updateDossier(): void {
+    if (!this.selectedDossier) {
+      this.showError('Veuillez sélectionner un dossier à mettre à jour.');
+      return;
+    }
+
+    console.log('Dossier à mettre à jour:', this.selectedDossier);
+
+    if (!this.selectedDossier.id) {
+      this.showError('ID du dossier manquant!');
+      return;
+    }
+
+    this.DossierJuridiqueService.updateDossier(this.selectedDossier.id, this.selectedDossier).subscribe(
+      (data) => {
+        console.log('Dossier mis à jour:', data);
+        this.showSuccess('Dossier mis à jour avec succès!');
+        this.closeModale();
+        this.loadDossier(this.DossierId); // Recharger le dossier mis à jour
+      },
+      (error) => {
+        console.error('Erreur lors de la mise à jour:', error);
+        this.showError('Erreur lors de la mise à jour du dossier.');
+      }
+    );
+  }
 
 
+// Ouvrir le modal avec les détails du dossier sélectionné
+openUpdateDossierModal(dossier: any) {
+  this.selectedDossier = { ...dossier }; // Clone pour éviter de modifier directement l'objet
+  this.modalVisible = true;
+}
+
+openUpdateModall(update: DossierJuridiqueUpdate): void {
+  this.selectedUpdate = { ...update }; // Copier les données pour éviter la modification en direct
+  this.isUpdateModalOpen = true;
+  console.log('Mise à jour sélectionnée:', this.selectedUpdate);
+}
   // Créer une nouvelle mise à jour
+  
   createUpdate(): void {
     this.dossierUpdateService.createUpdate(this.dossierId, this.newUpdate).subscribe(
       (data) => {
         console.log('Mise à jour créée:', data);
-        this.loadUpdates(); // Recharger les mises à jour après création
+        this.loadUpdates();
+        this.toastr.success('Mise à jour créée avec succès!', 'Succès'); // Recharger les mises à jour après création
       },
       (error) => {
+        this.toastr.error('Erreur lors de la création de la mise à jour', 'Erreur');
         console.error('Erreur lors de la création de la mise à jour :', error);
       }
     );
@@ -76,33 +274,35 @@ export class DossierJuridiqueUpdateComponent implements OnInit {
     this.selectedUpdate = update;
   }
 
-  // Mettre à jour une mise à jour existante
-  updateUpdate(): void {
-    if (this.selectedUpdate) {
-      this.dossierUpdateService.updateDossierUpdate(this.selectedUpdate.id, this.selectedUpdate).subscribe(
-        (data) => {
-          console.log('Mise à jour modifiée:', data);
-          this.loadUpdates(); // Recharger les mises à jour après modification
-          this.selectedUpdate = null; // Désélectionner l'élément
-        },
-        (error) => {
-          console.error('Erreur lors de la mise à jour de la mise à jour :', error);
-        }
-      );
-    }
+  openDeleteConfirmationModal(deleteModal: any, updateId: number): void {
+    const modalRef = this.modalService.open(deleteModal, { ariaLabelledBy: 'modal-basic-title' });
+    modalRef.componentInstance.updateId = updateId; // Passer l'ID de la mise à jour à supprimer
   }
-
   // Supprimer une mise à jour
   deleteUpdate(id: number): void {
     this.dossierUpdateService.deleteDossierUpdate(id).subscribe(
       () => {
         console.log('Mise à jour supprimée');
+        this.toastr.success('Mise à jour supprimée avec succès!', 'Succès');
         this.loadUpdates(); // Recharger les mises à jour après suppression
       },
       (error) => {
+        this.toastr.error('Erreur lors de la suppression de la mise à jour', 'Erreur');
         console.error('Erreur lors de la suppression de la mise à jour :', error);
       }
     );
   }
+ // Fermer le modal
 
+ 
+ 
+  printQRCode(): void {
+    const printWindow = window.open('', '_blank', 'width=600,height=600');
+    printWindow.document.write('<html><head><title>Imprimer QR Code</title></head><body>');
+    printWindow.document.write('<img src="' + this.qrCodeImageUrl + '" />'); // Ajoute le QR code à la page à imprimer
+    printWindow.document.write('</body></html>');
+    printWindow.document.close();
+    printWindow.print();
+  }
+  
 }
