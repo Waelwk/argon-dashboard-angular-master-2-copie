@@ -1,6 +1,6 @@
 import { DossierJuridique } from "./ DossierJuridique";
 import { RendezVous } from "./RendezVous";
-
+import { Document } from "./Document";
 export class DossierJuridiqueUpdate {
     id?: number;
     dossierJuridique?: DossierJuridique; // Vous devrez également définir cette classe
@@ -9,4 +9,5 @@ export class DossierJuridiqueUpdate {
     rendezVous?: RendezVous; // Vous devrez également définir cette classe
     note?: string;
     dateCreation?: Date;
+    documents?: Document[];;
 }

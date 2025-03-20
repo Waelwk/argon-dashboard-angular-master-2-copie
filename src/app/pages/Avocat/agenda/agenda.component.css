@@ -1,0 +1,21 @@
+.fc-event-title, .fc-event-time {
+    font-size: 1.2rem; /* Augmente la taille du texte des événements */
+    font-weight: bold;
+  }
+  .card {
+    padding: 1.5rem; /* Ajoute de l'espace autour du contenu */
+  }
+  
+  h5 {
+    font-size: 1.4rem; /* Augmente la taille des titres */
+  }
+  
+  .table {
+    font-size: 1rem; /* Augmente la taille du texte dans la table */
+  }
+  
+  .btn-sm {
+    font-size: 1rem; /* Augmente la taille des boutons */
+    padding: 0.5rem 1rem; /* Ajuste le padding pour plus de visibilité */
+  }
+  

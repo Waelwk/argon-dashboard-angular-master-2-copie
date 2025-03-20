@@ -40,6 +40,7 @@ import { ListedossierAvocatComponent } from './pages/Avocat/listedossier-avocat/
 import { DossierJuridiqueComponent } from './pages/admin/dossier-juridique/dossier-juridique.component';
 import { DossierJuridiqueUpdate } from './Models/DossierJuridiqueUpdate';
 import { DossierJuridiqueUpdateComponent } from './pages/Avocat/dossier-juridique-update/dossier-juridique-update.component';
+import { AgendaComponent } from './pages/Avocat/agenda/agenda.component';
 
 
 
@@ -91,6 +92,7 @@ const routes: Routes = [
     children: [
       { path: 'Dossier', component: ListedossierAvocatComponent },
       { path: 'dj/:id', component: DossierJuridiqueUpdateComponent },
+      { path: 'agenda', component:AgendaComponent },
     
     ]
   },
