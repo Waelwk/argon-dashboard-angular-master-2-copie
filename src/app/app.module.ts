@@ -31,8 +31,8 @@ import { ProfileComponent } from './pages/manager/profile/profile.component';
 import { ManagerLayoutComponent } from './layouts/manager-layout/manager-layout.component';
 import { JwtInterceptor } from './interceptors/jwt.interceptor';
 import { ManagerCrudComponent } from './pages/admin/manager-crud/manager-crud.component';
-import { CalendarModule, DateAdapter } from 'angular-calendar';
-import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
+// import { CalendarModule, DateAdapter } from 'angular-calendar';
+// import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 
 import { MatTableModule } from '@angular/material/table';
 import { MatDialogModule } from '@angular/material/dialog';
@@ -62,7 +62,7 @@ import { DossierJuridiqueComponent } from './pages/admin/dossier-juridique/dossi
 import { DossierJuridiqueUpdateComponent } from './pages/Avocat/dossier-juridique-update/dossier-juridique-update.component';
 import { registerLocaleData } from '@angular/common';
 
-import { FullCalendarModule } from '@fullcalendar/angular';
+// import { FullCalendarModule } from '@fullcalendar/angular';
 import localeFr from '@angular/common/locales/fr';
 import { ToastrModule } from 'ngx-toastr';
 import { AgendaComponent } from './pages/Avocat/agenda/agenda.component';
@@ -77,11 +77,11 @@ registerLocaleData(localeFr);
 
 @NgModule({
   imports: [ 
-    CalendarModule.forRoot({
-      provide: DateAdapter,
-      useFactory: adapterFactory,
-    }),
-    FullCalendarModule ,
+    // CalendarModule.forRoot({
+    //   provide: DateAdapter,
+    //   useFactory: adapterFactory,
+    // }),
+    // FullCalendarModule ,
     BrowserAnimationsModule, // Nécessaire pour ngx-toastr
     ToastrModule.forRoot(),
     BrowserAnimationsModule,

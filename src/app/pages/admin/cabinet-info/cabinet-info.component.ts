@@ -4,6 +4,8 @@ import { AuthService } from 'src/app/service/auth/auth.service';
 import { CabinetService } from 'src/app/service/cabinet/cabinet.service';
 import { AssistantService } from 'src/app/service/Assistant/assistant.service';
 import { AvocatService } from 'src/app/service/Avocat/avocat.service';
+import { Avocat } from 'src/app/Models/avocat';
+import { Assistant } from 'src/app/Models/assistant';
 @Component({
   selector: 'app-cabinet-info',
   templateUrl: './cabinet-info.component.html',
@@ -14,9 +16,9 @@ export class CabinetInfoComponent implements OnInit {
   cabinetId: number;
   cabinet: any; // Remplacez `any` par le type de votre objet Cabinet
   cabinets: any[] = []; // Liste de tous les cabinets
-  Assistant: import("/Users/wael/Desktop/argon-dashboard-angular-master 2 copie/src/app/Models/assistant").Assistant[];
-  avocats: import("/Users/wael/Desktop/argon-dashboard-angular-master 2 copie/src/app/Models/avocat").Avocat[];
-
+  Assistant:Assistant[];
+  avocats:Avocat[];
+ 
 
   constructor(private avocatService: AvocatService, private AssistantService:AssistantService,private route: ActivatedRoute,private cabinetService: CabinetService, private authService:AuthService,) { }
 
