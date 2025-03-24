@@ -93,3 +93,76 @@ h3.text-center {
 .table td {
   text-align: center;
 }
+@media (max-width: 768px) {
+  .table-responsive {
+    width: 100%;
+    overflow-x: auto; /* Permet de scroller horizontalement si nécessaire */
+  }
+
+  table {
+    width: 100%;
+    display: block; /* Permet au tableau d'être scrollable */
+    overflow-x: auto;
+    white-space: nowrap; /* Empêche le texte de sauter à la ligne */
+  }
+
+  th, td {
+    font-size: 12px; /* Réduit la taille du texte sur mobile */
+    padding: 8px; /* Ajuste l'espacement */
+  }
+
+  button {
+    font-size: 10px; /* Réduit la taille des boutons */
+    padding: 4px 6px;
+  }
+
+  mat-icon {
+    font-size: 14px; /* Ajuste la taille des icônes */
+  }
+
+  .table td:last-child {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 5px;
+  }
+}
+@media (max-width: 576px) {
+  .table td:last-child {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .table td:last-child button {
+    width: 100%;
+    margin-bottom: 5px;
+  }
+}
+.action-btn {
+  margin-right: 8px;
+}
+
+.text-success {
+  color: green;
+}
+
+.text-danger {
+  color: red;
+}
+
+.text-muted {
+  color: #6c757d;
+}
+
+.table td {
+  vertical-align: middle; /* Pour centrer les contenus des cellules */
+}
+
+.btn-sm {
+  font-size: 0.875rem; /* Petite taille pour les boutons */
+}
+
+.table td button {
+  margin: 5px 0; /* Espacement pour les boutons */
+}

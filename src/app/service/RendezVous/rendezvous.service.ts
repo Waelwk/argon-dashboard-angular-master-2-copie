@@ -36,6 +36,11 @@ export class RendezVousService {
   demanderRendezVous(request: any): Observable<any> {
     return this.http.post(`${this.apiUrl}/demander`, request, { headers: this.getHeaders() });
   }
+  createRendezVous(rendezVous: RendezVous): Observable<RendezVous> {
+    return this.http.post<RendezVous>(`${this.apiUrl}/create`, rendezVous, {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+    });
+  }
 
   // Accepter un rendez-vous
   accepterRendezVous(id: number): Observable<any> {
@@ -46,7 +51,6 @@ export class RendezVousService {
   refuserRendezVous(id: number): Observable<any> {
     return this.http.put(`${this.apiUrl}/refuser/${id}`, {}, { headers: this.getHeaders() });
   }
-
   // Mettre à jour un rendez-vous
   updateRendezVous(id: number, request: any): Observable<any> {
     return this.http.put(`${this.apiUrl}/update/${id}`, request, { headers: this.getHeaders() });

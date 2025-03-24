@@ -21,6 +21,7 @@
               <mat-label>Motif</mat-label>
               <input matInput [(ngModel)]="rendezVousForm.motif" name="motif" required placeholder="Entrez le motif du rendez-vous">
             </mat-form-field>
+           
   
             <mat-form-field appearance="fill" class="w-100 mb-3">
               <mat-label>Date et Heure</mat-label>
@@ -55,26 +56,50 @@
         </thead>
         <tbody>
           <tr *ngFor="let rendezvous of rendezVousList; let i = index">
-            <td>{{ rendezvous.motif }}</td>
+            <td>{{ rendezvous.motif }}
+              <ng-container *ngIf="rendezvous.demandeParClient===true  && rendezvous.client">
+                Demandeur par  : {{ rendezvous.client.firstname }} {{ rendezvous.client.lastname }}
+              </ng-container>
+            </td>
             <td>{{ rendezvous.dateHeure | date: 'dd/MM/yyyy HH:mm' }}</td>
-            <td>{{ rendezvous.statut }}</td>
             <td>
-              <button mat-button color="primary" (click)="acceptRendezVous(i)">
-                <mat-icon>check</mat-icon> Accepter
-              </button>
-              <button mat-button color="warn" (click)="rejectRendezVous(i)">
-                <mat-icon>cancel</mat-icon> Refuser
-              </button>
-  
+              <!-- Si le statut est "EN_ATTENTE", afficher les boutons Accepter et Refuser -->
+              <ng-container *ngIf="rendezvous.statut === 'EN_ATTENTE'; else statusText">
+                <div class="action-buttons">
+                  <button mat-button color="primary" (click)="accepterRendezVous(rendezvous.id)">
+                    <mat-icon>check</mat-icon> Accepter
+                  </button>
+                  <button mat-button color="warn" (click)="refuserRendezVous(rendezvous.id)">
+                    <mat-icon>cancel</mat-icon> Refuser
+                  </button>
+                </div>
+              </ng-container>
+          
+              <!-- Si ce n'est pas "EN_ATTENTE", afficher le statut avec une classe dynamique -->
+              <ng-template #statusText>
+                <span [ngClass]="{
+                  'text-success': rendezvous.statut === 'ACCEPTE', 
+                  'text-danger': rendezvous.statut === 'REFUSE',
+                  'text-muted': rendezvous.statut !== 'ACCEPTE' && rendezvous.statut !== 'REFUSE'
+                }">
+                  {{ rendezvous.statut }}
+                </span>
+              </ng-template>
+            </td>
+          
+            <!-- Boutons Modifier et Supprimer (toujours visibles) -->
+            <td class="action-buttons">
               <button mat-button color="accent" (click)="openEditRendezVousModal(i)" class="btn btn-sm">
                 <mat-icon>edit</mat-icon> Modifier
               </button>
-  
-              <button mat-button color="warn" (click)="deleteRendezVous(rendezvous.id)">
+          
+              <button mat-button color="warn" (click)="deleteRendezVous(rendezvous.id)" class="btn btn-sm">
                 <mat-icon>delete</mat-icon> Supprimer
               </button>
             </td>
           </tr>
+          
+          
         </tbody>
       </table>
     </div>

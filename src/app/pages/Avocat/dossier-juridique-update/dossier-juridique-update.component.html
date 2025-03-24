@@ -35,8 +35,16 @@
                 </li>
                
                 <li class="list-group-item d-flex justify-content-between align-items-center">
-                  <strong>Client :</strong> <span>{{dossier.client.firstname}}&nbsp;{{dossier.client.lastname}}<br> {{dossier.client.email}} </span>
+                  <strong>Client :</strong>
+                  <span *ngIf="dossier.client; else noClient">
+                    {{ dossier.client.firstname }} {{ dossier.client.lastname }} <br> 
+                    {{ dossier.client.email }}
+                  </span>
+                  <ng-template #noClient>
+                    {{ dossier.emailClient }}
+                  </ng-template>
                 </li>
+                
                 <li class="list-group-item d-flex justify-content-between align-items-center">
                   <strong>Type d'affaire :</strong> <span>{{dossier.type}}</span>
                 </li>
