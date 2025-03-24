@@ -1,0 +1,82 @@
+<mat-toolbar color="primary">
+    <span>Agenda</span>
+  </mat-toolbar>
+  
+  <!-- FullCalendar -->
+  <full-calendar [options]="calendarOptions"></full-calendar>
+  
+  <!-- Formulaire d'ajout de rendez-vous -->
+  <div *ngIf="isRendezVousModalOpen" class="modal fade show" [ngClass]="{'d-block': isRendezVousModalOpen}">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">{{ isEditMode ? 'Modifier le rendez-vous' : 'Ajouter un rendez-vous' }}</h5>
+          <button type="button" class="close" (click)="closeRendezVousModal()">
+            <span>&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form (ngSubmit)="saveRendezVous()">
+            <mat-form-field appearance="fill" class="w-100 mb-3">
+              <mat-label>Motif</mat-label>
+              <input matInput [(ngModel)]="rendezVousForm.motif" name="motif" required placeholder="Entrez le motif du rendez-vous">
+            </mat-form-field>
+  
+            <mat-form-field appearance="fill" class="w-100 mb-3">
+              <mat-label>Date et Heure</mat-label>
+              <input matInput [(ngModel)]="rendezVousForm.dateHeure" name="dateHeure" type="datetime-local" required>
+            </mat-form-field>
+  
+            <button mat-raised-button color="primary" class="w-100" type="submit">{{ isEditMode ? 'Mettre à jour' : 'Ajouter' }}</button>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" (click)="closeRendezVousModal()">Fermer</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Tableau des rendez-vous ajoutés -->
+  <div class="mt-4">
+    <h3 class="text-center">Rendez-vous ajoutés</h3>
+  
+    <div class="table-responsive">
+      <button mat-raised-button color="primary" (click)="openAddRendezVousModal()">Ajouter un rendez-vous</button>
+  
+      <table class="table table-bordered table-striped">
+        <thead style="background: azure;">
+          <tr>
+            <th>Motif</th>
+            <th>Date et Heure</th>
+            <th>Statut</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let rendezvous of rendezVousList; let i = index">
+            <td>{{ rendezvous.motif }}</td>
+            <td>{{ rendezvous.dateHeure | date: 'dd/MM/yyyy HH:mm' }}</td>
+            <td>{{ rendezvous.statut }}</td>
+            <td>
+              <button mat-button color="primary" (click)="acceptRendezVous(i)">
+                <mat-icon>check</mat-icon> Accepter
+              </button>
+              <button mat-button color="warn" (click)="rejectRendezVous(i)">
+                <mat-icon>cancel</mat-icon> Refuser
+              </button>
+  
+              <button mat-button color="accent" (click)="openEditRendezVousModal(i)" class="btn btn-sm">
+                <mat-icon>edit</mat-icon> Modifier
+              </button>
+  
+              <button mat-button color="warn" (click)="deleteRendezVous(rendezvous.id)">
+                <mat-icon>delete</mat-icon> Supprimer
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  

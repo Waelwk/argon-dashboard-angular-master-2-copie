@@ -2,12 +2,16 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { AuthService } from '../auth/auth.service';
+import { RendezVous } from 'src/app/Models/RendezVous';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class RendezVousService {
+  addRendezVous(newRendezVous: RendezVous) {
+    throw new Error('Method not implemented.');
+  }
   private apiUrl = 'http://localhost:8080/rendezvous'; // URL du backend
 
   constructor(private http: HttpClient, private authService: AuthService) {}
@@ -25,7 +29,9 @@ export class RendezVousService {
   getAllRendezVous(): Observable<any> {
     return this.http.get(`${this.apiUrl}/all`, { headers: this.getHeaders() });
   }
-
+  getRendezVousByAvocat(avocatId: number): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/avocat/${avocatId}`);
+  }
   // Demander un rendez-vous
   demanderRendezVous(request: any): Observable<any> {
     return this.http.post(`${this.apiUrl}/demander`, request, { headers: this.getHeaders() });
@@ -48,6 +54,6 @@ export class RendezVousService {
 
   // Supprimer un rendez-vous
   deleteRendezVous(id: number): Observable<any> {
-    return this.http.delete(`${this.apiUrl}/delete/${id}`, { headers: this.getHeaders() });
+    return this.http.delete(`${this.apiUrl}/delete/${id}`, { headers:this.getHeaders() });
   }
 }

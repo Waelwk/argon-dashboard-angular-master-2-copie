@@ -321,8 +321,8 @@ evaluation}}
 
 
 
-<ng-template #qrCodeModal let-modal style="z-index: 0;">
-  <div style="z-index: 0;" class="custom-modal" > <!-- Appliquer la classe custom-modal -->
+<ng-template #qrCodeModal let-modal >
+  <div class="custom-modal"  > <!-- Appliquer la classe custom-modal -->
     <div class="modal-header">
       <h5 class="modal-title" id="qrCodeModalLabel">QR Code du Dossier</h5>
       <button type="button" class="close" (click)="closeModal(modal)">&times;</button>
@@ -388,6 +388,10 @@ evaluation}}
           <div class="form-group">
             <label>Date de Création :</label>
             <input type="text" class="form-control" [value]="dossierUpdate.dateCreation" disabled />
+          </div>
+          <div class="form-group">
+            <label>ID de l'Avocat :</label>
+            <input type="number" class="form-control" [(ngModel)]="this.avocatId" name="avocatId" required />
           </div>
 
           <div class="modal-footer">

@@ -41,6 +41,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatCardModule } from '@angular/material/card';
 import { CabinetComponent } from './pages/admin/cabinet/cabinet.component';
 import { ListeAvocatCabinetComponent } from './pages/admin/liste-avocat-cabinet/liste-avocat-cabinet.component';
 import { ListeAssistantComponent } from './pages/admin/liste-assistant/liste-assistant.component';
@@ -68,7 +70,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { AgendaComponent } from './pages/Avocat/agenda/agenda.component';
 
 
-
+import { FullCalendarModule } from '@fullcalendar/angular';
 
 
 
@@ -81,7 +83,7 @@ registerLocaleData(localeFr);
     //   provide: DateAdapter,
     //   useFactory: adapterFactory,
     // }),
-    // FullCalendarModule ,
+    FullCalendarModule ,
     BrowserAnimationsModule, // Nécessaire pour ngx-toastr
     ToastrModule.forRoot(),
     BrowserAnimationsModule,
@@ -104,6 +106,10 @@ registerLocaleData(localeFr);
     MatInputModule,
     MatIconModule,
     MatSnackBarModule,
+    MatToolbarModule,
+    MatTableModule,
+    MatCardModule,
+
   ],
   declarations: [ AppComponent, 
     AdminLayoutComponent,

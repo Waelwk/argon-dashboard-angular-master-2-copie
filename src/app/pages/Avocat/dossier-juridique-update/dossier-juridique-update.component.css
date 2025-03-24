@@ -186,7 +186,10 @@ body{padding-top:20px;
         height: 100%;
         background-color: rgba(0, 0, 0, 0.5); /* Fond gris transparent */
         z-index: 1040; /* Le niveau d'empilement de l'overlay */
+      }.custom-modal {
+        z-index: 9999 !important;
       }
+      
       
       /* Assurez-vous que le modal est au-dessus de l'overlay */
       .modal {

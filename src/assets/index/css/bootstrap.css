@@ -5729,7 +5729,7 @@ a.close.disabled {
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 1050;
+  z-index:1050;
   display: none;
   width: 100%;
   height: 100%;
@@ -5827,17 +5827,29 @@ a.close.disabled {
   border: 1px solid rgba(0, 0, 0, 0.2);
   border-radius: 0.3rem;
   outline: 0;
+  z-index: 1040; 
 }
 
 .modal-backdrop {
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 1040;
+    /* Plus élevé pour être en arrière-plan */
   width: 100vw;
   height: 100vh;
-  background-color: #000;
+  background-color: rgba(0, 0, 0, 0.5);
 }
+body .model {
+  position: fixed;
+  top: 0;
+  left: 0;
+/* Toujours inférieur à .modal-backdrop */
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  
+}
+
 
 .modal-backdrop.fade {
   opacity: 0;

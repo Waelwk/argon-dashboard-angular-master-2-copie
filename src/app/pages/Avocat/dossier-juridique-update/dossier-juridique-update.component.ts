@@ -57,16 +57,19 @@ documents: any[] = [];
       id: 22,
       dateHeure: new Date("2026-03-10T14:00:00"),
       motif: "Rendez-vous avec le juge",
-      demandeParClient: false
+      demandeParClient: false,
+      avocat: { id: null }
     },
     note: "Nous avons besoin de documents supplémentaires pour avancer sur le dossier.",
     dateCreation: new Date("2025-03-12T12:55:54.277033")
   };
+  avocatId: number;
 
   constructor(  private documentService: DocumentService ,private toastr: ToastrService, private dossierUpdateService: DossierJuridiqueUpdateService,private route: ActivatedRoute, private DossierJuridiqueService : DossierJuridiqueService,private modalService: NgbModal,) { }
 
   ngOnInit(): void {
-  
+    this.avocatId = Number(localStorage.getItem('id'));
+     console.log('ID de l\'avocat :', this.avocatId);
     console.log("ngOnInit appelé"); // Vérifie si la méthode est appelée
     this.DossierId = +this.route.snapshot.paramMap.get('id');
     console.log('ID du dossier récupéré :', this.DossierId);
@@ -107,6 +110,7 @@ documents: any[] = [];
   }
 
   CreateUpdateDossier() {
+    this.dossierUpdate.rendezVous.avocat = { id: this.avocatId };
     this.dossierUpdateService.createUpdate(this.dossierId, this.dossierUpdate).subscribe(
       (response) => {
  
