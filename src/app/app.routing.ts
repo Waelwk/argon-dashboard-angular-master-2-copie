@@ -41,6 +41,8 @@ import { DossierJuridiqueComponent } from './pages/admin/dossier-juridique/dossi
 import { DossierJuridiqueUpdate } from './Models/DossierJuridiqueUpdate';
 import { DossierJuridiqueUpdateComponent } from './pages/Avocat/dossier-juridique-update/dossier-juridique-update.component';
 import { AgendaComponent } from './pages/Avocat/agenda/agenda.component';
+import { C } from '@fullcalendar/core/internal-common';
+import { ClientLayoutComponent } from './layouts/client-layout/client-layout.component';
 
 
 
@@ -84,7 +86,8 @@ const routes: Routes = [
       { path: 'ManagerArchivee', component: ManagerArchiveeComponent},
       { path: 'DossierJuridique', component:DossierJuridiqueComponent},
     ]
-  },{
+  },
+  {
     path: 'dashboardA',
     component: AvocatLayoutComponent,
     // canActivate: [AuthGuard],
@@ -93,6 +96,17 @@ const routes: Routes = [
       { path: 'Dossier', component: ListedossierAvocatComponent },
       { path: 'dj/:id', component: DossierJuridiqueUpdateComponent },
       { path: 'agenda', component:AgendaComponent },
+    
+    ]
+  },
+  {
+    path: 'dashboardClient',
+    component: ClientLayoutComponent,
+    canActivate: [AuthGuard],
+    data: { roles: ['CLIENT'] },
+    children: [
+      { path: 'Dossier', component: ListedossierAvocatComponent },
+    
     
     ]
   },
