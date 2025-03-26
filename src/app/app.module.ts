@@ -71,6 +71,7 @@ import { AgendaComponent } from './pages/Avocat/agenda/agenda.component';
 
 
 import { FullCalendarModule } from '@fullcalendar/angular';
+import { ClientLayoutComponent } from './layouts/client-layout/client-layout.component';
 
 
 
@@ -148,7 +149,8 @@ registerLocaleData(localeFr);
   AvocatLayoutComponent,
   ListedossierAvocatComponent,
   DossierJuridiqueUpdateComponent,
-  AgendaComponent
+  AgendaComponent,
+  ClientLayoutComponent,
    
   ],
   providers: [ { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },],

@@ -9,6 +9,7 @@ import { NavbardachComponent } from './navbardach/navbardach.component';
 import { NavbarindexComponent } from './navbarindex/navbarindex.component';
 import { sidebarm } from './sidebarM/sidebarm.component';
 import { SideBarAComponent } from './side-bar-a/side-bar-a.component';
+import { SidebarClientComponent } from './sidebar-client/sidebar-client.component';
 
 
 
@@ -25,13 +26,13 @@ import { SideBarAComponent } from './side-bar-a/side-bar-a.component';
 NavbarindexComponent,
 sidebarm,
 SideBarAComponent,
-
+SidebarClientComponent
   ],
   exports: [
     FooterComponent,
     NavbardachComponent,
     SidebarComponent,
-    NavbarindexComponent,sidebarm,SideBarAComponent
+    NavbarindexComponent,sidebarm,SideBarAComponent,SidebarClientComponent 
   ]
 })
 export class ComponentsModule { }
