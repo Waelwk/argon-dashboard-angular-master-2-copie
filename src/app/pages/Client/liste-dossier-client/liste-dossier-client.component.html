@@ -1,1 +1,54 @@
-<p>liste-dossier-client works!</p>
+<div class="container mt-4">
+  <h2 class="text-primary text-center">📂 Dossiers par Codes d'Accès</h2>
+
+  <!-- Champ pour entrer un code d'accès -->
+  <div class="input-group mb-3">
+    <input type="text" class="form-control" [(ngModel)]="nouveauCode" placeholder="Saisir un code d'accès Pour Ajouter le dossier ">
+    <button class="btn btn-primary" (click)="ajouterCode()">Ajouter</button>
+  </div>
+  <!-- Loader -->
+  <div *ngIf="loading" class="alert alert-info text-center">
+    <i class="bi bi-hourglass-split"></i> Chargement en cours...
+  </div>
+  <!-- Message de succès -->
+  <div *ngIf="message" class="alert alert-success">
+    {{ message }}
+  </div>
+
+  <!-- Message d'erreur -->
+  <div *ngIf="error" class="alert alert-danger text-center">
+    <i class="bi bi-exclamation-triangle"></i> {{ error }}
+  </div>
+
+  <!-- Liste des dossiers sous forme de cartes -->
+  <div class="row mt-3">
+    <div class="col-md-6 col-lg-4 mb-4" *ngFor="let dossier of dossiers">
+      <a [routerLink]="['/dashboardA/dj',dossier.id] ">
+      <div class="card shadow-lg border-0">
+        <div class="card-header bg-primary text-white">
+          <h5 class="mb-0">
+            <i class="bi bi-folder-fill"></i> <strong>Referance de dossier</strong> : {{ dossier.reference }}
+          </h5>
+        </div>
+        <div class="card-body">
+          {{ dossier.titre }}
+          <p class="card-text"><strong> Titre:</strong>         {{ dossier.titre }}</p>
+          <p class="card-text"><strong> Email Client:</strong> {{ dossier.emailClient }}</p>
+          <p class="card-text"><strong> Date:</strong> {{ dossier.dateCreation | date }}</p>
+          <p class="card-text"><strong> Description:</strong> {{ dossier.description }}</p>
+          <p class="card-text"><strong>Catégorie:</strong> {{ dossier.categorie }}</p>
+          <p class="card-text"><strong>Type:</strong> {{ dossier.type }}</p>
+          <p class="card-text"><strong>Statut:</strong> <span class="badge bg-warning text-dark">{{ dossier.statut }}</span></p>
+          <p class="card-text"><strong>Priorité:</strong> <span class="badge bg-danger">{{ dossier.priorite }}</span></p>
+        </div>
+      </div>
+    </a>
+    </div>
+    
+  </div>
+
+  <!-- Message si aucun dossier trouvé -->
+  <div *ngIf="dossiers.length === 0" class="alert alert-warning text-center">
+    <i class="bi bi-exclamation-circle"></i> Aucun dossier trouvé.
+  </div>
+</div>

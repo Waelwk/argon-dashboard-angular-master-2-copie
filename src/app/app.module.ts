@@ -73,6 +73,7 @@ import { AgendaComponent } from './pages/Avocat/agenda/agenda.component';
 import { FullCalendarModule } from '@fullcalendar/angular';
 import { ClientLayoutComponent } from './layouts/client-layout/client-layout.component';
 import { ListeDossierClientComponent } from './pages/Client/liste-dossier-client/liste-dossier-client.component';
+import { DossierUpdateClientComponent } from './pages/Client/dossier-update-client/dossier-update-client.component';
 
 registerLocaleData(localeFr); 
 
@@ -151,7 +152,7 @@ registerLocaleData(localeFr);
   AgendaComponent,
   ClientLayoutComponent,
   ListeDossierClientComponent,
-   
+  DossierUpdateClientComponent,
   ],
   providers: [ { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },],
   bootstrap: [AppComponent]

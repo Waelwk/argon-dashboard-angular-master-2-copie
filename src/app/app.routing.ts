@@ -43,6 +43,7 @@ import { DossierJuridiqueUpdateComponent } from './pages/Avocat/dossier-juridiqu
 import { AgendaComponent } from './pages/Avocat/agenda/agenda.component';
 import { C } from '@fullcalendar/core/internal-common';
 import { ClientLayoutComponent } from './layouts/client-layout/client-layout.component';
+import { ListeDossierClientComponent } from './pages/Client/liste-dossier-client/liste-dossier-client.component';
 
 
 
@@ -102,10 +103,10 @@ const routes: Routes = [
   {
     path: 'dashboardClient',
     component: ClientLayoutComponent,
-    canActivate: [AuthGuard],
-    data: { roles: ['CLIENT'] },
+    // canActivate: [AuthGuard],
+    // data: { roles: ['CLIENT'] },
     children: [
-      { path: 'Dossier', component: ListedossierAvocatComponent },
+      { path: 'Dossier', component: ListeDossierClientComponent },
     
     
     ]
