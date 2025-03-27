@@ -44,6 +44,8 @@ import { AgendaComponent } from './pages/Avocat/agenda/agenda.component';
 import { C } from '@fullcalendar/core/internal-common';
 import { ClientLayoutComponent } from './layouts/client-layout/client-layout.component';
 import { ListeDossierClientComponent } from './pages/Client/liste-dossier-client/liste-dossier-client.component';
+import { DossierUpdateClientComponent } from './pages/Client/dossier-update-client/dossier-update-client.component';
+import { AgendaClientComponent } from './pages/Client/agenda-client/agenda-client.component';
 
 
 
@@ -107,6 +109,8 @@ const routes: Routes = [
     // data: { roles: ['CLIENT'] },
     children: [
       { path: 'Dossier', component: ListeDossierClientComponent },
+      { path: 'dj/:id', component: DossierUpdateClientComponent },
+      { path: 'agenda', component: AgendaClientComponent},
     
     
     ]

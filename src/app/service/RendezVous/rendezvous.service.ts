@@ -32,6 +32,10 @@ export class RendezVousService {
   getRendezVousByAvocat(avocatId: number): Observable<any[]> {
     return this.http.get<any[]>(`${this.apiUrl}/avocat/${avocatId}`);
   }
+  getRendezVousByClient(ClientId: number): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/client/${ClientId}`);
+   
+  }
   // Demander un rendez-vous
   demanderRendezVous(request: any): Observable<any> {
     return this.http.post(`${this.apiUrl}/demander`, request, { headers: this.getHeaders() });

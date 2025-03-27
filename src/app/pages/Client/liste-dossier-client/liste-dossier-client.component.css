@@ -262,4 +262,25 @@ table.table tr th:last-child {
   /* .input-group .btn:hover { */
     /* background-color: #007bff; /~ Changer la couleur du bouton au survol ~/ */
   /* } */
-  
+  .card {
+  height: 100%; /* Toutes les cartes auront la même hauteur */
+  display: flex;
+  flex-direction: column;
+}
+
+.card-body {
+  flex-grow: 1; /* Permet d'ajuster le contenu pour remplir l'espace */
+  overflow: hidden;
+}
+
+.card-text {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis; /* Coupe le texte trop long */
+}
+
+.card-header h5 {
+  font-size: 1.1rem; /* Taille ajustée pour éviter le débordement */
+}
+
+
