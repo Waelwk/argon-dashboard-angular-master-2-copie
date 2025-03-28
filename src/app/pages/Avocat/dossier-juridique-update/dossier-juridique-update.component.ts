@@ -64,7 +64,7 @@ documents: any[] = [];
     dateCreation: new Date("2025-03-12T12:55:54.277033")
   };
   avocatId: number;
-
+  isClicked: boolean = false;
   constructor(  private documentService: DocumentService ,private toastr: ToastrService, private dossierUpdateService: DossierJuridiqueUpdateService,private route: ActivatedRoute, private DossierJuridiqueService : DossierJuridiqueService,private modalService: NgbModal,) { }
 
   ngOnInit(): void {
@@ -82,6 +82,7 @@ documents: any[] = [];
       console.error('ID non trouvé dans l\'URL');
     }
   }
+  
   closeModal(modal: any): void {
     modal.close();  // Ferme ce modal spécifique
   }
@@ -110,8 +111,8 @@ documents: any[] = [];
   }
 
   CreateUpdateDossier() {
-    this.dossierUpdate.rendezVous.avocat = { id: this.avocatId };
-    this.dossierUpdateService.createUpdate(this.dossierId, this.dossierUpdate).subscribe(
+    this.dossierUpdate.rendezVous.avocat = { id:this.avocatId };
+    this.dossierUpdateService.createUpdate(this.DossierId, this.dossierUpdate).subscribe(
       (response) => {
  
        // this.successMessage = 'Dossier mis à jour avec succès';
@@ -282,7 +283,7 @@ updateUpdate(): void {
 closeModale(): void {
   this.isUpdateModalOpen = false;
   this.isAddModalOpen = false;
- 
+  this.isUpdateModalOpen = false;
   this.modalVisible = false;
 }
 showSuccess(message: string) {
@@ -309,10 +310,12 @@ updateDossier(): void {
     this.DossierJuridiqueService.updateDossier(this.selectedDossier.id, this.selectedDossier).subscribe(
       (data) => {
         console.log('Dossier mis à jour:', data);
-        this.showSuccess('Dossier mis à jour avec succès!');
         this.closeModale();
+        this.showSuccess('Dossier mis à jour avec succès!');
+     
         
         this.loadDossier(this.DossierId); // Recharger le dossier mis à jour
+        
       },
       (error) => {
         console.error('Erreur lors de la mise à jour:', error);

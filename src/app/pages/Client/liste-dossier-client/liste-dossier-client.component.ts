@@ -23,24 +23,31 @@ export class ListeDossierClientComponent implements OnInit {
   ngOnInit(): void {
     this.loadData();
   }
-
   ajouterCode(): void {
+    // Vérifiez que le code n'est pas vide
     if (!this.nouveauCode.trim()) {
       alert('Veuillez saisir un code valide.');
       return;
     }
-
+  
+    // Appelez le service pour ajouter le code d'accès
     this.accessCodeService.addAccessCode(this.ClientId, this.nouveauCode).subscribe({
       next: (response) => {
+        // Si le code a été ajouté avec succès, affichez un message de confirmation
         this.message = `Code ajouté : ${response.code}`;
         this.nouveauCode = ''; // Réinitialise l'input
         this.loadData(); // Recharge les données après ajout
       },
-      error: (err) => {
-        this.error = err.error?.error || 'Erreur lors de l\'ajout du code.';
+      error: (response) => {
+        // Récupérer le message d'erreur renvoyé par l'API et l'afficher
+        console.log('Erreur reçue :', response.error); // Pour déboguer et afficher l'erreur dans la console
+  
+        // Vérifiez si l'erreur contient un message spécifique et l'afficher
+        this.error = response.error?.error || 'Erreur lors de l\'ajout du code ou code existe .';
       }
     });
   }
+     
 
   loadData(): void {
     this.loading = true;
