@@ -10,6 +10,7 @@ import { NavbarindexComponent } from './navbarindex/navbarindex.component';
 import { sidebarm } from './sidebarM/sidebarm.component';
 import { SideBarAComponent } from './side-bar-a/side-bar-a.component';
 import { SidebarClientComponent } from './sidebar-client/sidebar-client.component';
+import { SidebarAssistantComponent } from './sidebar-assistant/sidebar-assistant.component';
 
 
 
@@ -26,13 +27,18 @@ import { SidebarClientComponent } from './sidebar-client/sidebar-client.componen
 NavbarindexComponent,
 sidebarm,
 SideBarAComponent,
-SidebarClientComponent
-  ],
-  exports: [
-    FooterComponent,
-    NavbardachComponent,
-    SidebarComponent,
-    NavbarindexComponent,sidebarm,SideBarAComponent,SidebarClientComponent 
+  SidebarClientComponent,
+  SidebarAssistantComponent
+],
+exports: [
+  FooterComponent,
+  NavbardachComponent,
+  SidebarComponent,
+  NavbarindexComponent,
+  sidebarm,
+  SideBarAComponent,
+  SidebarClientComponent,
+  SidebarAssistantComponent,
   ]
 })
 export class ComponentsModule { }

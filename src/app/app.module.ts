@@ -75,6 +75,7 @@ import { ClientLayoutComponent } from './layouts/client-layout/client-layout.com
 import { ListeDossierClientComponent } from './pages/Client/liste-dossier-client/liste-dossier-client.component';
 import { DossierUpdateClientComponent } from './pages/Client/dossier-update-client/dossier-update-client.component';
 import { AgendaClientComponent } from './pages/Client/agenda-client/agenda-client.component';
+import { AssistantLayoutComponent } from './layouts/assistant-layout/assistant-layout.component';
 
 registerLocaleData(localeFr); 
 
@@ -155,6 +156,7 @@ registerLocaleData(localeFr);
   ListeDossierClientComponent,
   DossierUpdateClientComponent,
   AgendaClientComponent,
+  AssistantLayoutComponent,
   ],
   providers: [ { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },],
   bootstrap: [AppComponent]

@@ -39,6 +39,8 @@ export class AuthService {
         this.saveToken(response.access_token); // Sauvegarder le token
         localStorage.setItem('role', response.role); // Stocker le rôle
         localStorage.setItem('id', response.id);
+        localStorage.setItem('email', response.email);
+        localStorage.setItem('prenom', response.firstname);        localStorage.setItem('nom', response.lastname);
         const decodedToken: any = jwtDecode(response.access_token);
         this.userSubject.next(decodedToken); // Mettre à jour l'état de l'utilisateur connecté
         return response;
@@ -100,7 +102,9 @@ export class AuthService {
 
   // Récupérer le token depuis le localStorage
   getToken(): string | null {
+
     return localStorage.getItem('access_token');
+
   }
 
   // Récupérer le rôle utilisateur

@@ -112,6 +112,7 @@ dossiers: DossierJuridique[] = [];
       console.error('Impossible de créer un dossier sans ID d\'avocat ou de cabinet.');
       this.errorMessage = 'Veuillez fournir un ID d\'avocat et un ID de cabinet.';
       this.successMessage = ''; // Vider le message de succès
+
       return;
     }
 
@@ -142,7 +143,7 @@ dossiers: DossierJuridique[] = [];
 
         // Fermer le modal d'ajout si nécessaire
         this.closeAddModal();
-
+ this.getAllDossiers();
         // Effacer le message de succès après quelques secondes
         setTimeout(() => this.successMessage = '', 3000);
       },

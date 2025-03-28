@@ -16,12 +16,13 @@ export class ListeDossierClientComponent implements OnInit {
   error: string | null = null;
   nouveauCode: string = '';
   message: string = '';
-  ClientId: number = 308; // ID du client (peut être récupéré dynamiquement)
+ ClientId = Number(localStorage.getItem('id'));// ID du client (peut être récupéré dynamiquement)
 
   constructor(private accessCodeService: AccessCodeService) {}
 
   ngOnInit(): void {
     this.loadData();
+    this.ClientId = Number(localStorage.getItem('id'));
   }
   ajouterCode(): void {
     // Vérifiez que le code n'est pas vide
@@ -62,7 +63,7 @@ export class ListeDossierClientComponent implements OnInit {
         this.loading = false;
       },
       error: (err) => {
-        this.error = 'Erreur lors du chargement des données';
+       // this.error = 'Erreur lors du chargement des données';
         this.loading = false;
         console.error('Détails erreur:', err);
       }
