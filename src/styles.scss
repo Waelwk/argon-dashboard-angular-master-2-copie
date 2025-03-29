@@ -4,3 +4,12 @@ html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 /* angular-cli file: src/styles.css */
 @import "../node_modules/angular-calendar/css/angular-calendar.css";
+.modal-backdrop {
+    z-index: 100 !important;
+}
+$zindex-modal-backdrop: 100; .modal-backdrop {
+    z-index: 100 !important;
+}
+.modal-backdrop {
+    z-index: 100 !important;
+}

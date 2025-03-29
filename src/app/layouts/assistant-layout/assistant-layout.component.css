@@ -6,7 +6,7 @@
 }
 
 /* Sidebar */
-app-sidebar-client {
+app-sidebar-assistant {
     width: 225px; /* Largeur normale */
     height: 100vh;
     position: fixed;
@@ -56,7 +56,7 @@ app-navbar {
         height: calc(100vh - 100px); /* Ajuste en fonction de l'écran */
         padding: 6px; /* Réduit légèrement le padding */
     }
-    app-sidebar-client{
+    app-sidebar-assistant{
         width: 225px; /* Réduire la sidebar */
     }
 
@@ -75,7 +75,7 @@ app-navbar {
         height: calc(100vh - 90px); /* Ajuste encore plus pour les petits écrans */
         padding: 6px; /* Moins de padding pour optimiser l'espace */
     }
-    app-sidebar-client{
+    app-sidebar-assistant{
         width: 90px; /* Cacher la sidebar */
     }
 

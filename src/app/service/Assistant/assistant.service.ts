@@ -31,7 +31,11 @@ export class AssistantService {
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
     return this.http.put(`${this.apiUrl}/${assistantId}`, request, { headers });
   }
-
+  getAssistantById(id: number): Observable<Assistant> {
+    const token = this.getAuthToken();
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.get<Assistant>(`${this.apiUrl}/${id}`, { headers, withCredentials: true });
+  }
   // Archiver un avocat
 //   archiveAssistant(assistantId: number): Observable<void> {
 //     const token = this.getAuthToken();

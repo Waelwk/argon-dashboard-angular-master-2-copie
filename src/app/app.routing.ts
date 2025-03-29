@@ -47,6 +47,8 @@ import { ListeDossierClientComponent } from './pages/Client/liste-dossier-client
 import { DossierUpdateClientComponent } from './pages/Client/dossier-update-client/dossier-update-client.component';
 import { AgendaClientComponent } from './pages/Client/agenda-client/agenda-client.component';
 import { AssistantLayoutComponent } from './layouts/assistant-layout/assistant-layout.component';
+import { LissteAvocatCabinetComponent } from './pages/Assistant/lisste-avocat-cabinet/lisste-avocat-cabinet.component';
+import { ListeDossierAvocatAssistantComponent } from './pages/Assistant/liste-dossier-avocat-assistant/liste-dossier-avocat-assistant.component';
 
 
 
@@ -82,7 +84,7 @@ const routes: Routes = [
       { path: '', component: DashboardComponent },
       { path: 'listeAvocat/:id', component: ListeAvocatCabinetComponent },
       { path: 'tables', component: CabinetComponent },
-      { path: 'maps', component: ManagerCrudComponent },
+   
       { path: 'listeAssistant/:id', component: ListeAssistantComponent},
       { path: 'cabinetinfo/:id', component:  CabinetInfoComponent},
       { path: 'AssistantArchivee/:id', component:  ListeAssistantArchiveeComponent},
@@ -104,15 +106,15 @@ const routes: Routes = [
     ]
   },
   {
-    path: 'dashboardAssistant ',
+     path: 'dashboardAssistant',
     component: AssistantLayoutComponent,
-    canActivate: [AuthGuard],
-    data: { roles: ['ASSISTANT'] },
+    // canActivate: [AuthGuard],
+    // data: { roles: ['ASSISTANT'] },
     children: [
-      { path: 'Dossier', component: ListeDossierClientComponent },
+      { path: 'Dossier/:id', component: ListeDossierAvocatAssistantComponent},
       { path: 'dj/:id', component: DossierUpdateClientComponent },
       { path: 'agenda', component: AgendaClientComponent},
-    
+      { path: 'Avocat', component: LissteAvocatCabinetComponent },
     
     ]
   },

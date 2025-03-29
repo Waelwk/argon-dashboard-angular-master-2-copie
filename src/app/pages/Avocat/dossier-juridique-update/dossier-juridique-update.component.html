@@ -14,6 +14,7 @@
             <!-- Détails du dossier -->
             <div class="card-body">
               <!-- <h4 class="mb-3"><i class="fas fa-info-circle"></i> Informations du Dossier</h4> -->
+
             <!-- Bouton ou élément pour ouvrir le modal -->
 <h4 class="mb-3" (click)="openQRCodeModal(qrCodeModal)">
   <i class="fas fa-info-circle"></i>  Code Qr   
@@ -330,7 +331,9 @@ evaluation}}
 
 
 <ng-template #qrCodeModal let-modal >
-  <div class="custom-modal"  > <!-- Appliquer la classe custom-modal -->
+  <div class="custom-modal"   style="element.style {
+       z-index: 10;
+  }" > <!-- Appliquer la classe custom-modal -->
     <div class="modal-header">
       <h5 class="modal-title" id="qrCodeModalLabel">QR Code du Dossier</h5>
       <button type="button" class="close" (click)="closeModal(modal)">&times;</button>

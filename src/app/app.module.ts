@@ -76,6 +76,9 @@ import { ListeDossierClientComponent } from './pages/Client/liste-dossier-client
 import { DossierUpdateClientComponent } from './pages/Client/dossier-update-client/dossier-update-client.component';
 import { AgendaClientComponent } from './pages/Client/agenda-client/agenda-client.component';
 import { AssistantLayoutComponent } from './layouts/assistant-layout/assistant-layout.component';
+import { LissteAvocatCabinetComponent } from './pages/Assistant/lisste-avocat-cabinet/lisste-avocat-cabinet.component';
+import { ListeDossierAvocatAssistantComponent } from './pages/Assistant/liste-dossier-avocat-assistant/liste-dossier-avocat-assistant.component';
+
 
 registerLocaleData(localeFr); 
 
@@ -157,6 +160,8 @@ registerLocaleData(localeFr);
   DossierUpdateClientComponent,
   AgendaClientComponent,
   AssistantLayoutComponent,
+  LissteAvocatCabinetComponent,
+  ListeDossierAvocatAssistantComponent,
   ],
   providers: [ { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },],
   bootstrap: [AppComponent]

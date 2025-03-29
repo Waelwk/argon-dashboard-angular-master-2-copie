@@ -211,7 +211,7 @@ openAllDocumentsModal(): void {
     this.isUpdateModalOpen = true;
   }
   generateQRCode() {
-    if (!this.dossier || !this.dossier.client) {
+    if (!this.dossier ) {
       console.error('Dossier ou informations client indisponibles.');
       return;
     }
@@ -219,16 +219,17 @@ openAllDocumentsModal(): void {
     const qrData = {
       id: this.dossier.id,
       reference: this.dossier.reference,
-      clientNom: this.dossier.client.firstname,
-      clientPrenom: this.dossier.client.lastname,
-      clientEmail: this.dossier.emailClient,
-      dateCreation: this.dossier.dateCreation,
+      clientNom: this.dossier.client?.firstname ?? 'pas insecrit ', // Valeur par défaut si null ou undefined
+      clientPrenom: this.dossier.client?.lastname ?? 'pas insecrit', // Valeur par défaut si null ou undefined
+      clientEmail: this.dossier.emailClient ?? 'Email Inconnu', // Si emailClient est null ou undefined, valeur par défaut
+      dateCreation: this.dossier.dateCreation ?? 'Date Inconnue', // Si dateCreation est null ou undefined
     };
-  
+    
     QRCode.toDataURL(JSON.stringify(qrData), { errorCorrectionLevel: 'H' })
       .then(url => this.qrCodeImageUrl = url)
       .catch(err => console.error('Erreur lors de la génération du QR Code:', err));
   }
+
   loadUpdates(): void {
     this.dossierUpdateService.getAllUpdates(this.DossierId).subscribe(
       (data) => {

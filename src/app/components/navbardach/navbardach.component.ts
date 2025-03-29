@@ -28,7 +28,14 @@ export class NavbardachComponent implements OnInit {
     this.listTitles = ROUTES.filter(listTitle => listTitle);
   }
 } 
-
+ngAfterViewInit() {
+  setTimeout(() => {
+    const backdrop = document.querySelector('.modal-backdrop');
+    if (backdrop) {
+      (backdrop as HTMLElement).style.zIndex = '100';
+    }
+  }, 500); // Attendre un peu après l'affichage de la modal
+}
   getTitle(){
     var titlee = this.location.prepareExternalUrl(this.location.path());
     if(titlee.charAt(0) === '#'){

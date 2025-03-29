@@ -5834,7 +5834,7 @@ a.close.disabled {
   position: fixed;
   top: 0;
   left: 0;
-    /* Plus élevé pour être en arrière-plan */
+  z-index: 100; /* Plus élevé pour être en arrière-plan */
   width: 100vw;
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.5);
