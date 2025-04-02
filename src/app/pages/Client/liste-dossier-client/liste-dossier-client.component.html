@@ -1,19 +1,19 @@
 <div class="container mt-4">
-  <h2 class="text-primary text-center">📂 Vous Dossiers </h2>
+  <h2 class="text-primary text-center">📂 Vos Dossiers</h2>
 
   <!-- Champ pour entrer un code d'accès -->
   <div class="input-group mb-3">
-    <input type="text" class="form-control" [(ngModel)]="nouveauCode" placeholder="Saisir un code d'accès Pour Ajouter le dossier ">
+    <input type="text" class="form-control" [(ngModel)]="nouveauCode" placeholder="Saisir un code d'accès">
     <button class="btn btn-primary" (click)="ajouterCode()">Ajouter</button>
   </div>
+
   <!-- Loader -->
   <div *ngIf="loading" class="alert alert-info text-center">
     <i class="bi bi-hourglass-split"></i> Chargement en cours...
   </div>
+
   <!-- Message de succès -->
-  <div *ngIf="message" class="alert alert-success">
-    {{ message }}
-  </div>
+  <div *ngIf="message" class="alert alert-success">{{ message }}</div>
 
   <!-- Message d'erreur -->
   <div *ngIf="error" class="alert alert-danger text-center">
@@ -21,34 +21,72 @@
   </div>
 
   <!-- Liste des dossiers sous forme de cartes -->
- <!-- Liste des dossiers sous forme de cartes -->
-<div class="row mt-3">
-  <div class="col-md-6 col-lg-4 mb-4" *ngFor="let dossier of dossiers">
-    <a [routerLink]="['/dashboardClient/dj', dossier.id]" class="text-decoration-none">
+  <div class="row mt-3">
+    <div class="col-md-6 col-lg-4 mb-4" *ngFor="let dossier of dossiers">
       <div class="card shadow-lg border-0">
-        <div class="card-header bg-primary text-white">
-          <h5 class="mb-0">
-            <i class="bi bi-folder-fill"></i> <strong>Référence :</strong> {{ dossier.reference }}
-          </h5>
+        <a [routerLink]="['/dashboardClient/dj', dossier.id]" class="text-decoration-none">
+          <div class="card-header bg-primary text-white">
+            <h5 class="mb-0">
+              <i class="bi bi-folder-fill"></i> <strong>Référence :</strong> {{ dossier.reference }}
+            </h5>
+          </div>
+          <div class="card-body">
+            <p><strong>Titre:</strong> {{ dossier.titre }}</p>
+            <p><strong>Email Client:</strong> {{ dossier.emailClient }}</p>
+            <p><strong>Date Création:</strong> {{ dossier.dateCreation | date }}</p>
+            <p><strong>Description:</strong> {{ dossier.description }}</p>
+            <p><strong>Catégorie:</strong> {{ dossier.categorie }}</p>
+            <p><strong>Type :</strong> {{ dossier.type }}</p>
+            <p><strong>Statut:</strong> <span class="badge bg-warning text-dark">{{ dossier.statut }}</span></p>
+            <p><strong>Priorité:</strong> <span class="badge bg-danger">{{ dossier.priorite }}</span></p>
+          </div>
+        </a>
+        <button class="btn btn-primary mt-3" (click)="openAddRendezVousModal(dossier)">
+          Planifier un rendez-vous
+        </button>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="isRendezVousModalOpen" class="modal fade show" [ngClass]="{'d-block': isRendezVousModalOpen}">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content rounded-bg">
+        <div class="modal-header">
+          <h5 class="modal-title">{{ isEditMode ? 'Modifier le rendez-vous' : 'Ajouter un rendez-vous' }}</h5>
+          <button type="button" class="close" (click)="closeRendezVousModal()">
+            <span>&times;</span>
+          </button>
         </div>
-        <div class="card-body">
-          <p class="card-text"><strong>Titre:</strong> <span class="text-truncate">{{ dossier.titre }}</span></p>
-          <p class="card-text"><strong>Email Client:</strong> <span class="text-truncate">{{ dossier.emailClient }}</span></p>
-          <p class="card-text"><strong>Date Creation :</strong> {{ dossier.dateCreation | date }}</p>
-          <p class="card-text"><strong>Description:</strong> <span class="text-truncate">{{ dossier.description }}</span></p>
-          <p class="card-text"><strong>Catégorie:</strong> {{ dossier.categorie }}</p>
-          <p class="card-text"><strong>Type :</strong> {{ dossier.type }}</p>
-          <p class="card-text"><strong>Statut:</strong> <span class="badge bg-warning text-dark">{{ dossier.statut }}</span></p>
-          <p class="card-text"><strong>Priorité:</strong> <span class="badge bg-danger">{{ dossier.priorite }}</span></p>
+        <div class="modal-body">
+          <form (ngSubmit)="createRendezVous()" #rendezVousFormDirective="ngForm">
+            <!-- Motif -->
+            <mat-form-field appearance="fill" class="w-100 mb-3">
+              <mat-label>Motif</mat-label>
+              <input matInput [(ngModel)]="rendezVousForm.motif" name="motif" required #motif="ngModel">
+              <mat-error *ngIf="motif.invalid && motif.touched">Le motif est requis.</mat-error>
+            </mat-form-field>
+  
+            <!-- Date et Heure -->
+            <mat-form-field appearance="fill" class="w-100 mb-3">
+              <mat-label>Date et Heure</mat-label>
+              <input matInput [(ngModel)]="rendezVousForm.dateHeure" name="dateHeure" type="datetime-local" required #dateHeure="ngModel">
+              <mat-error *ngIf="dateHeure.invalid && dateHeure.touched">La date et l'heure sont requis.</mat-error>
+            </mat-form-field>
+  
+            <!-- Bouton Ajouter (désactivé si le formulaire est invalide) -->
+            <button mat-raised-button color="primary" class="w-100" type="submit" [disabled]="rendezVousFormDirective.invalid">
+              {{ isEditMode ? 'Mettre à jour' : 'Ajouter' }}
+            </button>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" (click)="closeRendezVousModal()">Fermer</button>
         </div>
       </div>
-    </a>
+    </div>
   </div>
-</div>
-
-
+  
   <!-- Message si aucun dossier trouvé -->
   <div *ngIf="dossiers.length === 0" class="alert alert-warning text-center">
-    <i class="bi bi-exclamation-circle"></i> Aucun dossier existe pour vous pour le moment .
+    <i class="bi bi-exclamation-circle"></i> Aucun dossier trouvé.
   </div>
-</div>
+  

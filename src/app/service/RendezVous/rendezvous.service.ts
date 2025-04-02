@@ -24,7 +24,10 @@ export class RendezVousService {
     const token = this.getAuthToken();
     return new HttpHeaders().set('Authorization', `Bearer ${token}`);
   }
-
+  getRendezVousByCabinet(cabinetId: number): Observable<RendezVous[]> {
+    return this.http.get<RendezVous[]>(`${this.apiUrl}/cabinet/${cabinetId}`, { headers: this.getHeaders() })
+    
+  }
   // Récupérer tous les rendez-vous
   getAllRendezVous(): Observable<any> {
     return this.http.get(`${this.apiUrl}/all`, { headers: this.getHeaders() });

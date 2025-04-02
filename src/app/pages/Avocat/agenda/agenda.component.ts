@@ -3,8 +3,10 @@ import { CalendarOptions } from '@fullcalendar/core';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from '@fullcalendar/interaction';
 import { ToastrService } from 'ngx-toastr';
+import { Client } from 'src/app/Models/client';
 import { RendezVous } from 'src/app/Models/RendezVous';
 import { StatutRendezVous } from 'src/app/Models/StatutRendezVous';
+import { ClientService } from 'src/app/service/client/client.service';
 import { RendezVousService } from 'src/app/service/RendezVous/rendezvous.service';
 
 @Component({
@@ -32,8 +34,9 @@ export class AgendaComponent implements OnInit {
     dateClick: this.onDateClick.bind(this),
     eventClick: this.onEventClick.bind(this)
   };
+  clients: Client[] = [];
 
-  constructor(private toastr: ToastrService,private rendezVousService: RendezVousService, private cdr: ChangeDetectorRef) {}
+  constructor(private clientService :ClientService,private toastr: ToastrService,private rendezVousService: RendezVousService, private cdr: ChangeDetectorRef) {}
 
   ngOnInit(): void {
     this.avocatId = Number(localStorage.getItem('id'));
@@ -185,11 +188,34 @@ export class AgendaComponent implements OnInit {
     this.rendezVousService.getRendezVousByAvocat(this.avocatId).subscribe(
       (data: RendezVous[]) => {
         this.rendezVousList = data;
+        console.log('Rendez-vous récupérés avec succès :', data);
+
+        // Récupérer les informations des clients
+        this.rendezVousList.forEach((rdv) => {
+          if (rdv.client) {
+            this.getClientById(rdv.client.id);
+          }
+        });
+
         this.updateCalendar();
       },
       (error) => {
         console.error('Erreur lors du chargement des rendez-vous', error);
       }
     );
+  }
+
+  getClientById(clientId: number): void {
+    if (!this.clients[clientId]) { // Évite les appels API en double
+      this.clientService.getClientById(clientId).subscribe(
+        (client: Client) => {
+          this.clients[clientId] = client;
+          console.log(`Client ${clientId} récupéré avec succèss :`, client);
+        },
+        (error) => {
+          console.error(`Erreur lors du chargement du client ${clientId}`, error);
+        }
+      );
+    }
   }
 }

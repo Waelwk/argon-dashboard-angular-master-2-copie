@@ -284,3 +284,22 @@ table.table tr th:last-child {
 }
 
 
+/* Style pour la popup/modal avec fond arrondi */
+.modal-content.rounded-bg {
+  border-radius: 20px; /* Bords arrondis */
+  background-color: #f0f8ff; /* Fond clair pour la popup */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Légère ombre pour plus de contraste */
+}
+
+/* Si tu veux un effet de transition en douceur lors de l'ouverture */
+.modal.fade .modal-dialog {
+  transition: transform 0.3s ease-out;
+}
+
+.modal-dialog {
+  transform: translateY(-50px); /* Déplacement initial vers le haut */
+}
+
+.modal.fade.show .modal-dialog {
+  transform: translateY(0); /* Déplacement vers la position finale */
+}

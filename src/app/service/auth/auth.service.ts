@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, map, Observable } from 'rxjs';
+import { BehaviorSubject, catchError, map, Observable, tap, throwError } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { jwtDecode } from 'jwt-decode'; // Correction de l'importation
@@ -34,20 +34,28 @@ export class AuthService {
   // Méthode de login
   login(credentials: { email: string; password: string }): Observable<any> {
     return this.http.post<any>(`${this.apiUrl}/authenticate`, credentials).pipe(
-      map((response) => {
-        console.log('Réponse de connexion :', response);
-        this.saveToken(response.access_token); // Sauvegarder le token
-        localStorage.setItem('role', response.role); // Stocker le rôle
+      tap((response) => {
+        if (response.message === "Votre compte n'est pas activé. Veuillez vérifier votre email pour l'activer.") {
+          throw new Error(response.message); // Convertit en erreur pour le flux error
+        }
+        
+        // Si le compte est activé, procéder au stockage des informations
+        this.saveToken(response.access_token);
+        localStorage.setItem('role', response.role);
         localStorage.setItem('id', response.id);
         localStorage.setItem('email', response.email);
-        localStorage.setItem('prenom', response.firstname);        localStorage.setItem('nom', response.lastname);
+        localStorage.setItem('prenom', response.firstname);
+        localStorage.setItem('nom', response.lastname);
+        
         const decodedToken: any = jwtDecode(response.access_token);
-        this.userSubject.next(decodedToken); // Mettre à jour l'état de l'utilisateur connecté
-        return response;
+        this.userSubject.next(decodedToken);
+      }),
+      catchError(error => {
+        console.error('Erreur de connexion:', error);
+        return throwError(() => error);
       })
     );
   }
-
   // Sauvegarder le token
   private saveToken(jwt: string): void {
     localStorage.setItem('access_token', jwt);

@@ -49,6 +49,8 @@ import { AgendaClientComponent } from './pages/Client/agenda-client/agenda-clien
 import { AssistantLayoutComponent } from './layouts/assistant-layout/assistant-layout.component';
 import { LissteAvocatCabinetComponent } from './pages/Assistant/lisste-avocat-cabinet/lisste-avocat-cabinet.component';
 import { ListeDossierAvocatAssistantComponent } from './pages/Assistant/liste-dossier-avocat-assistant/liste-dossier-avocat-assistant.component';
+import { DossierUpdateAssistantComponent } from './pages/Assistant/dossier-update-assistant/dossier-update-assistant.component';
+import { AgendaCabinetAssistantComponent } from './pages/Assistant/agenda-cabinet-assistant/agenda-cabinet-assistant.component';
 
 
 
@@ -111,9 +113,10 @@ const routes: Routes = [
     // canActivate: [AuthGuard],
     // data: { roles: ['ASSISTANT'] },
     children: [
+
       { path: 'Dossier/:id', component: ListeDossierAvocatAssistantComponent},
-      { path: 'dj/:id', component: DossierUpdateClientComponent },
-      { path: 'agenda', component: AgendaClientComponent},
+      { path: 'dj/:id', component: DossierUpdateAssistantComponent},
+      { path: 'agenda', component:AgendaCabinetAssistantComponent},
       { path: 'Avocat', component: LissteAvocatCabinetComponent },
     
     ]

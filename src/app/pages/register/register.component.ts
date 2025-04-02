@@ -30,7 +30,8 @@ export class RegisterComponent implements OnInit {
       confirmPassword: ['', Validators.required],
       nomCabinet: [''],
       adresse: [''],
-      numTel: ['']
+      numTel: [''],
+      emailC: ['', Validators.email], 
     });
   }
 
@@ -38,10 +39,12 @@ export class RegisterComponent implements OnInit {
     this.isCabinet = event.target.value === 'cabinet';
   
     if (this.isCabinet) {
+      this.registerForm.get('emailC')?.setValidators([Validators.required, Validators.email]);
       this.registerForm.get('nomCabinet')?.setValidators([Validators.required]);
       this.registerForm.get('adresse')?.setValidators([Validators.required]);
       this.registerForm.get('numTel')?.setValidators([Validators.required]);
     } else {
+      this.registerForm.get('emailC')?.clearValidators();
       this.registerForm.get('nomCabinet')?.clearValidators();
       this.registerForm.get('adresse')?.clearValidators();
       this.registerForm.get('numTel')?.clearValidators();
@@ -50,7 +53,8 @@ export class RegisterComponent implements OnInit {
       this.registerForm.patchValue({
         nomCabinet: '',
         adresse: '',
-        numTel: ''
+        numTel: '',
+        emailC: '',
       });
     }
   
@@ -58,6 +62,7 @@ export class RegisterComponent implements OnInit {
     this.registerForm.get('nomCabinet')?.updateValueAndValidity();
     this.registerForm.get('adresse')?.updateValueAndValidity();
     this.registerForm.get('numTel')?.updateValueAndValidity();
+    this.registerForm.get('emailC')?.updateValueAndValidity();
   }
   
   onSubmit() {
@@ -83,7 +88,7 @@ export class RegisterComponent implements OnInit {
         lastname: this.registerForm.value.nom,
         email: this.registerForm.value.email,
         password: this.registerForm.value.password,
-   
+        emailC: this.registerForm.value.emailC, 
           nomCabinet: this.registerForm.value.nomCabinet,
           adresse: this.registerForm.value.adresse,
           numTel: this.registerForm.value.numTel,
@@ -91,12 +96,16 @@ export class RegisterComponent implements OnInit {
       };    console.log("📢 Données envoyées à l'API :", cabinetData); 
 
       this.authService.registerCabinet(cabinetData).subscribe({
-        next: () => {
-          this.successMessage = 'Cabinet et Manager créés avec succès.';
-          this.router.navigate(['/auth/login']);
+ 
+
+          next: (response) => {
+           
+            this.successMessage = response.message;  // "Manager et Cabinet créés. Vérifiez votre email pour activer votre compte."
+            this.successMessage = 'Cabinet et Manager créés avec succès.';
+            this.router.navigate(['/auth/login']);
         },
         error: (err) => {
-          this.errorMessage = 'Erreur: ' + err.error.message;
+          this.errorMessage = 'Erreur: ' + err.error.message;  // Gérer l'erreur et afficher le message
           this.loading = false;
         },
       });

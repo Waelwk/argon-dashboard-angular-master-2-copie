@@ -58,7 +58,7 @@
           <tr *ngFor="let rendezvous of rendezVousList; let i = index">
             <td>{{ rendezvous.motif }}
               <ng-container *ngIf="rendezvous.demandeParClient===true  && rendezvous.client">
-                Demandeur par  : {{ rendezvous.client.firstname }} {{ rendezvous.client.lastname }}
+                Demandeur par  : {{ clients[rendezvous.client].firstname }} {{ clients[rendezvous.client].lastname }}
               </ng-container>
             </td>
             <td>{{ rendezvous.dateHeure | date: 'dd/MM/yyyy HH:mm' }}</td>
@@ -88,7 +88,7 @@
             </td>
           
             <!-- Boutons Modifier et Supprimer (toujours visibles) -->
-            <td class="action-buttons">
+            <td class="action-buttons" *ngIf="!(rendezvous.demandeParClient === true && rendezvous.client)">
               <button mat-button color="accent" (click)="openEditRendezVousModal(i)" class="btn btn-sm">
                 <mat-icon>edit</mat-icon> Modifier
               </button>

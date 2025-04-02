@@ -41,22 +41,23 @@ export class LoginComponent implements OnInit {
   login() {
     const { email, password } = this.loginForm.value;
     this.isLoading = true;
-
+    this.errorMessage = '';
+  
     this.authService.login({ email, password }).subscribe({
       next: (response) => {
         this.isLoading = false;
-
-        if (response.message === "Votre compte n'est pas activé. Veuillez vérifier votre email pour l'activer.") {
-          this.errorMessage = response.message;
-        } else {
-          this.redirectUserBasedOnRole(response.role);
-        }
+        this.redirectUserBasedOnRole(response.role);
       },
       error: (err) => {
         this.isLoading = false;
         console.error('Erreur de connexion', err);
-        this.errorMessage = 'Veuillez entrer un email et un mot de passe valides.';
-      },
+        
+        if (err.message === "Votre compte n'est pas activé. Veuillez vérifier votre email pour l'activer.") {
+          this.errorMessage = err.message;
+        } else {
+          this.errorMessage = 'Email ou mot de passe incorrect';
+        }
+      }
     });
   }
 
