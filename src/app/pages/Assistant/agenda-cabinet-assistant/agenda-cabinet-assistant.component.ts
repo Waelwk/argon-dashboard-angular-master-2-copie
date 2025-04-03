@@ -6,6 +6,8 @@ import { ToastrService } from 'ngx-toastr';
 import { RendezVous } from 'src/app/Models/RendezVous';
 import { StatutRendezVous } from 'src/app/Models/StatutRendezVous';
 import { AssistantService } from 'src/app/service/Assistant/assistant.service';
+import { AvocatService } from 'src/app/service/Avocat/avocat.service';
+import { ClientService } from 'src/app/service/client/client.service';
 import { RendezVousService } from 'src/app/service/RendezVous/rendezvous.service';
 
 @Component({
@@ -41,7 +43,7 @@ export class AgendaCabinetAssistantComponent implements OnInit {
   cabinetId: number;
   error: string;
 
-  constructor(private assistantService:AssistantService,private toastr: ToastrService,private rendezVousService: RendezVousService, private cdr: ChangeDetectorRef) {}
+  constructor(private assistantService:AssistantService,private toastr: ToastrService,private rendezVousService: RendezVousService, private cdr: ChangeDetectorRef,private clientService:ClientService,private avocatService :AvocatService  ) {}
 
   ngOnInit(): void {
 
@@ -121,15 +123,39 @@ export class AgendaCabinetAssistantComponent implements OnInit {
         this.toastr.success('Erreur lors de la suppression du rendez-vous', error);
       }
     );
-  }
+  }     
 
-  // Récupérer les rendez-vous depuis l'API
   getRendezVousByCabinet(cabinetId: number): void {
-    this.rendezVousService.getRendezVousByCabinet(this.cabinetId).subscribe(
-
+    this.rendezVousService.getRendezVousByCabinet(cabinetId).subscribe(
       (data: RendezVous[]) => {
-        console.log('daate',data)
+        console.log('Rendez-vous récupérés:', data);
+  
         this.rendezVousList = data;
+  
+        this.rendezVousList.forEach(rendezvous => {
+          // Charger l'avocat SEULEMENT si c'est un ID
+          if (typeof rendezvous.avocat === 'number') {
+            this.avocatService.getAvocatById(rendezvous.avocat).subscribe(
+              avocatData => {
+                rendezvous.avocat = avocatData; // Remplace l'ID par l'objet
+                console.log('Avocat récupéré:', avocatData);
+              },
+              error => console.error('Erreur lors du chargement de l\'avocat', error)
+            );
+          }
+  
+          // Charger le client SEULEMENT si c'est un ID
+          if (typeof rendezvous.client === 'number') {
+            this.clientService.getClientById(rendezvous.client).subscribe(
+              clientData => {
+                rendezvous.client = clientData; // Remplace l'ID par l'objet
+                console.log('Client récupéré:', clientData);
+              },
+              error => console.error('Erreur lors du chargement du client', error)
+            );
+          }
+        });
+  
         this.updateCalendar();
       },
       (error) => {
@@ -137,6 +163,4 @@ export class AgendaCabinetAssistantComponent implements OnInit {
       }
     );
   }
-  
-
-}
+}  

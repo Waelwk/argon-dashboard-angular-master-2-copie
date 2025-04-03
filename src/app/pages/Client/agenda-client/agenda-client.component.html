@@ -40,10 +40,10 @@
   
   <!-- Tableau des rendez-vous ajoutés -->
   <div class="mt-4">
-    <h3 class="text-center">Rendez-vous ajoutés</h3>
+    <h3 class="text-center">Rendez-vous Demandee</h3>
   
     <div class="table-responsive">
-      <button mat-raised-button color="primary" (click)="openAddRendezVousModal()">Ajouter un rendez-vous</button>
+      <!-- <button mat-raised-button color="primary" (click)="openAddRendezVousModal()">demander  rendez-vous</button> -->
   
       <table class="table table-bordered table-striped">
         <thead style="background: azure;">
@@ -62,7 +62,7 @@
               
            
             </td>
-            <td>avec{{ rendezvous.avocat.firstname}}{{ rendezvous.avocat.lastname}}  </td>
+            <td>avec Maître {{ rendezvous.avocat.firstname }} {{ rendezvous.avocat.lastname }}  </td>
             <td>{{ rendezvous.dateHeure | date: 'dd/MM/yyyy HH:mm' }}</td>
             <td>
              

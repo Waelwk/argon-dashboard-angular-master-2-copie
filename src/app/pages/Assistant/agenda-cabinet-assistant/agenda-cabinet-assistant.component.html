@@ -49,21 +49,28 @@
       <thead style="background: azure;">
         <tr>
           <th>Motif</th>
+          <th>Avocat</th>
           <th>Date et Heure</th>
           <th>Statut</th>
-          <!-- <th>Actions</th> -->
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let rendezvous of rendezVousList; let i = index">
-          <td>{{ rendezvous.motif }}
-            <ng-container *ngIf="rendezvous.demandeParClient===true  && rendezvous.client">
-              Demandeur par  : {{ rendezvous.client.firstname }} {{ rendezvous.client.lastname }}
+          <td>
+            {{ rendezvous.motif }}
+            <!-- Si un client a demandé, afficher "Demandeur par Maître [Nom Avocat]" -->
+            <ng-container *ngIf="rendezvous.demandeParClient && rendezvous.client && rendezvous.avocat">
+              <br> <strong>Demandeur par  {{ rendezvous.client.firstname }} {{ rendezvous.client.lastname }}</strong>
             </ng-container>
           </td>
+    
+          <!-- Afficher toujours l'avocat -->
+          <td *ngIf="rendezvous.avocat">
+            Maître {{ rendezvous.avocat.firstname }} {{ rendezvous.avocat.lastname }}
+          </td>
+    
           <td>{{ rendezvous.dateHeure | date: 'dd/MM/yyyy HH:mm' }}</td>
           <td>
-            <!-- Si le statut est "EN_ATTENTE", afficher les boutons Accepter et Refuser -->
             <ng-container *ngIf="rendezvous.statut === 'EN_ATTENTE'; else statusText">
               <div class="action-buttons">
                 <button mat-button color="primary" (click)="accepterRendezVous(rendezvous.id)">
@@ -74,8 +81,7 @@
                 </button>
               </div>
             </ng-container>
-        
-            <!-- Si ce n'est pas "EN_ATTENTE", afficher le statut avec une classe dynamique -->
+    
             <ng-template #statusText>
               <span [ngClass]="{
                 'text-success': rendezvous.statut === 'ACCEPTE', 
@@ -86,21 +92,9 @@
               </span>
             </ng-template>
           </td>
-        
-          <!-- Boutons Modifier et Supprimer (toujours visibles) -->
-          <!-- <td class="action-buttons"> -->
-            <!-- <button mat-button color="accent" (click)="openEditRendezVousModal(i)" class="btn btn-sm"> -->
-              <!-- <mat-icon>edit</mat-icon> Modifier -->
-            <!-- </button> -->
-        
-            <!-- <button mat-button color="warn" (click)="deleteRendezVous(rendezvous.id)" class="btn btn-sm"> -->
-              <!-- <mat-icon>delete</mat-icon> Supprimer -->
-            <!-- </button> -->
-          <!-- </td> -->
         </tr>
-        
-        
       </tbody>
     </table>
+    
   </div>
 </div>

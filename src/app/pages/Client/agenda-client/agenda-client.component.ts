@@ -7,6 +7,8 @@ import { RendezVousService } from 'src/app/service/RendezVous/rendezvous.service
 
 import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from '@fullcalendar/interaction';
+import { ClientService } from 'src/app/service/client/client.service';
+import { AvocatService } from 'src/app/service/Avocat/avocat.service';
 
 
 @Component({
@@ -36,7 +38,7 @@ export class AgendaClientComponent implements OnInit {
   };
   ClientId: number;
 
-  constructor(private toastr: ToastrService,private rendezVousService: RendezVousService, private cdr: ChangeDetectorRef) {}
+  constructor(private toastr: ToastrService,private rendezVousService: RendezVousService, private cdr: ChangeDetectorRef,private clientService:ClientService,private avocatService :AvocatService ) {}
 
   ngOnInit(): void {
     this.ClientId = Number(localStorage.getItem('id'));
@@ -187,7 +189,32 @@ export class AgendaClientComponent implements OnInit {
   getRendezVous(): void {
     this.rendezVousService.getRendezVousByClient(this.ClientId).subscribe(
       (data: RendezVous[]) => {
+        console.log('Rendez-vous récupérés:', data);
         this.rendezVousList = data;
+  
+        // Charger les détails de l'avocat et du client
+        this.rendezVousList.forEach(rendezvous => {
+          // Vérifie et charge l'avocat
+          if (typeof rendezvous.avocat === 'number') {
+            this.avocatService.getAvocatById(rendezvous.avocat).subscribe(
+              avocatData => {
+                rendezvous.avocat = avocatData;
+              },
+              error => console.error('Erreur chargement avocat', error)
+            );
+          }
+  
+          // Vérifie et charge le client
+          if (typeof rendezvous.client === 'number') {
+            this.clientService.getClientById(rendezvous.client).subscribe(
+              clientData => {
+                rendezvous.client = clientData;
+              },
+              error => console.error('Erreur chargement client', error)
+            );
+          }
+        });
+  
         this.updateCalendar();
       },
       (error) => {
@@ -195,4 +222,4 @@ export class AgendaClientComponent implements OnInit {
       }
     );
   }
-}
+}  

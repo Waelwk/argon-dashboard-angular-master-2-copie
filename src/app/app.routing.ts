@@ -51,6 +51,8 @@ import { LissteAvocatCabinetComponent } from './pages/Assistant/lisste-avocat-ca
 import { ListeDossierAvocatAssistantComponent } from './pages/Assistant/liste-dossier-avocat-assistant/liste-dossier-avocat-assistant.component';
 import { DossierUpdateAssistantComponent } from './pages/Assistant/dossier-update-assistant/dossier-update-assistant.component';
 import { AgendaCabinetAssistantComponent } from './pages/Assistant/agenda-cabinet-assistant/agenda-cabinet-assistant.component';
+import { ClientComponent } from './pages/admin/client/client.component';
+import { ClientArchiveeComponent } from './pages/admin/client-archivee/client-archivee.component';
 
 
 
@@ -67,6 +69,7 @@ const routes: Routes = [
     // data: { roles: ['MANAGER'] },
     children: [
       { path: '', component: DachbordMComponent },
+ 
       { path: 'profile', component: ProfileComponent },
       { path: 'ManagerArchivee', component: ManagerArchiveeComponent},
       { path: 'cabinet', component: CabinetMComponent},
@@ -85,8 +88,10 @@ const routes: Routes = [
     children: [
       { path: '', component: DashboardComponent },
       { path: 'listeAvocat/:id', component: ListeAvocatCabinetComponent },
-      { path: 'tables', component: CabinetComponent },
-   
+      { path: 'Cabinet', component: CabinetComponent },
+      { path: 't', component:ManagerCrudComponent  },
+      { path: 'Client', component: ClientComponent },
+      { path:'ClientArchivee', component: ClientArchiveeComponent },
       { path: 'listeAssistant/:id', component: ListeAssistantComponent},
       { path: 'cabinetinfo/:id', component:  CabinetInfoComponent},
       { path: 'AssistantArchivee/:id', component:  ListeAssistantArchiveeComponent},

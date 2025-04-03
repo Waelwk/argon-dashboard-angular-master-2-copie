@@ -181,6 +181,10 @@
               <label>Email :</label>
               <input type="email" class="form-control" [(ngModel)]="selectedManager.email" name="email" required />
             </div>
+            <div class="form-group">
+              <label>Mot de passe :</label>
+              <input type="password" class="form-control" [(ngModel)]="selectedManager.password" name="password" required />
+            </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" (click)="closeModal()">Fermer</button>
               <button type="submit" class="btn btn-warning">Mettre à jour</button>

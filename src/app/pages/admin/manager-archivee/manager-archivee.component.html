@@ -19,12 +19,12 @@
               <div class="col-lg-4 mb-4">
                   <div class="card h-100 border-start-lg border-start-secondary">
                     <div class="card-body">
-                      <div class="small text-muted"><i class="fas fa-user-tie"></i> Nombre des managers archivee</div>
+                      <div class="small text-muted"><i class="fas fa-user-tie"></i> Nombre des managers </div>
                       <div class="h3">{{managersA.length}}</div>
-                      <!-- <!~~ <a class="text-arrow-icon small" [routerLink]="['/dashboard/AssistantArchivee']"> ~~> -->
-                        <!-- <!~~ Voir la liste des manager archivee ~~> -->
-                        <!-- <i class="fas fa-arrow-right"></i> -->
-                      <!-- </a> -->
+                      <a class="text-arrow-icon small" [routerLink]="['/dashboard/Managera']">
+                        Voir la liste des managers 
+                        <i class="fas fa-arrow-right"></i>
+                      </a>
                       
                     </div>
                   </div>
@@ -181,6 +181,10 @@
               <div class="form-group">
                 <label>Email :</label>
                 <input type="email" class="form-control" [(ngModel)]="selectedManager.email" name="email" required />
+              </div>
+              <div class="form-group">
+                <label>Mot de passe :</label>
+                <input type="password" class="form-control" [(ngModel)]="selectedManager.password" name="password" required />
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" (click)="closeModal()">Fermer</button>

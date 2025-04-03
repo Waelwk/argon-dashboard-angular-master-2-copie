@@ -26,24 +26,33 @@ export class ClientService {
   getClientById(id: number): Observable<Client> {
     return this.http.get<Client>(`${this.apiUrl}/${id}`, { headers: this.getHeaders() });
   }
-
+ // 🔹 Enregistrer un nouveau client
+ Create(clientData: Client): Observable<any> {
+    return this.http.post(`${this.apiUrl}/register`, clientData, { headers: this.getHeaders() });
+  }
   // Récupérer tous les clients
   getAllClients(): Observable<Client[]> {
-    return this.http.get<Client[]>(this.apiUrl);
+    return this.http.get<Client[]>(`${this.apiUrl}/all`, { headers: this.getHeaders() });
   }
 
-  // Créer un nouveau client
-  createClient(client: Client): Observable<Client> {
-    return this.http.post<Client>(this.apiUrl, client);
-  }
 
   // Mettre à jour un client
-  updateClient(id: number, client: Client): Observable<Client> {
-    return this.http.put<Client>(`${this.apiUrl}/${id}`, client);
+
+  updateClient(id: number, clientData: Client): Observable<any> {
+    return this.http.put(`${this.apiUrl}/update/${id}`, clientData, { headers: this.getHeaders() });
   }
 
   // Supprimer un client
   deleteClient(id: number): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/${id}`);
+  }// 🔹 Archiver un client
+  archiveClient(id: number): Observable<any> {
+    return this.http.post(`http://localhost:8080/api/clients/archive/${id}`, {}, { headers: this.getHeaders()});
+  }
+  
+
+  // 🔹 Désarchiver un client
+  desarchiveClient(id: number): Observable<any> {
+    return this.http.put(`${this.apiUrl}/desarchive/${id}`, {}, { headers: this.getHeaders() });
   }
 }
