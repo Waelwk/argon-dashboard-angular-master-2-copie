@@ -13,8 +13,15 @@ export class NavbardachComponent implements OnInit {
   public focus;
   public listTitles: any[];
   public location: Location;
+  role!: string | null;
+  id!: string | null;
+  email!: string | null;
+  prenom!: string | null;
+  nom!: string | null;
+  editLink!: string;
   constructor(location: Location,  private element: ElementRef, private router: Router , private authService: AuthService,) {
     this.location = location;
+    
   }
   ngOnInit() {
     this.authService.testTokenDecoding();
@@ -26,6 +33,31 @@ export class NavbardachComponent implements OnInit {
 
  
     this.listTitles = ROUTES.filter(listTitle => listTitle);
+
+  }
+  this.role = localStorage.getItem('role');
+  this.id = localStorage.getItem('id');
+  this.email = localStorage.getItem('email');
+  this.prenom = localStorage.getItem('prenom');
+  this.nom = localStorage.getItem('nom');
+  switch (this.role) {
+    case 'ADMIN':
+      this.editLink = '/dashboard/admin/edit';
+      break;
+    case 'CLIENT':
+      this.editLink = '/dashboard/client/edit';
+      break;
+    case 'AVOCAT':
+      this.editLink = '/dashboard/avocat/edit';
+      break;
+    case 'MANAGER':
+      this.editLink = '/dashboard/manager/edit';
+      break;
+      case 'ASSISTANT':
+        this.editLink = '/dashboard/assistant/edit';
+        break;
+    default:
+      this.editLink = '/dashboard/profile'; // fallback
   }
 } 
 ngAfterViewInit() {

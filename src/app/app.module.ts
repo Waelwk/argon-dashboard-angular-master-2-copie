@@ -82,6 +82,8 @@ import { DossierUpdateAssistantComponent } from './pages/Assistant/dossier-updat
 import { AgendaCabinetAssistantComponent } from './pages/Assistant/agenda-cabinet-assistant/agenda-cabinet-assistant.component';
 import { ClientComponent } from './pages/admin/client/client.component';
 import { ClientArchiveeComponent } from './pages/admin/client-archivee/client-archivee.component';
+import { EditerProfilComponent } from './pages/admin/editer-profil/editer-profil.component';
+
 
 registerLocaleData(localeFr); 
 
@@ -169,7 +171,8 @@ registerLocaleData(localeFr);
   AgendaCabinetAssistantComponent,
   ManagerCrudComponent,
   ClientComponent,
-  ClientArchiveeComponent 
+  ClientArchiveeComponent,
+  EditerProfilComponent 
   ],
   providers: [ { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },],
   bootstrap: [AppComponent]

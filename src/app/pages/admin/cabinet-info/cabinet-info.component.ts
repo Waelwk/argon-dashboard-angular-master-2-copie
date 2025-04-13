@@ -6,6 +6,7 @@ import { AssistantService } from 'src/app/service/Assistant/assistant.service';
 import { AvocatService } from 'src/app/service/Avocat/avocat.service';
 import { Avocat } from 'src/app/Models/avocat';
 import { Assistant } from 'src/app/Models/assistant';
+import { DossierJuridiqueService } from 'src/app/service/DossierJuridiques/dossier-juridique.service';
 @Component({
   selector: 'app-cabinet-info',
   templateUrl: './cabinet-info.component.html',
@@ -18,19 +19,20 @@ export class CabinetInfoComponent implements OnInit {
   cabinets: any[] = []; // Liste de tous les cabinets
   Assistant:Assistant[];
   avocats:Avocat[];
- 
+  errorMessage: string;
+  dossiers: any[] = []; // Liste des dossiers
 
-  constructor(private avocatService: AvocatService, private AssistantService:AssistantService,private route: ActivatedRoute,private cabinetService: CabinetService, private authService:AuthService,) { }
+  constructor(private dossierService: DossierJuridiqueService, private avocatService: AvocatService, private AssistantService:AssistantService,private route: ActivatedRoute,private cabinetService: CabinetService, private authService:AuthService,) { }
 
   ngOnInit(): void {
     // Récupérer l'ID du cabinet depuis l'URL
     this.cabinetId = +this.route.snapshot.paramMap.get('id');
-    console.log('avocats :', this.avocats);
+ //   console.log('avocats :', this.avocats);
     this.loadAssistantsByCabinetId(this.cabinetId);
     // Charger tous les cabinets
     this.loadCabinets();
     this.loadAvocatsByCabinetId(this.cabinetId);
-
+   this.getAllDossiers()
   }
 
   // Charger tous les cabinets
@@ -102,5 +104,16 @@ loadAvocatsByCabinetId(cabinetId: number): void {
 
 
 
-
+getAllDossiers(): void {
+  this.dossierService.getAllDossiers().subscribe(
+    (data) => {
+      // Filtrer les dossiers en fonction de l'ID du cabinet
+      this.dossiers = data.filter(dossier => dossier.cabinet.id === this.cabinetId);
+      console.log('Dossierss filtrés:', this.dossiers);
+    },
+    (error) => {
+      this.errorMessage = 'Erreur lors du chargement des dossiers.';
+    }
+  );
+}
 }

@@ -78,7 +78,8 @@
                 <th>Actions</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody *ngIf="Assistantt.length > 0; else noData">
+
               <tr *ngFor="let Assistant of Assistantt">
                 <td>{{ Assistant.id }}</td>
                 <td>{{ Assistant.firstname }}{{ Assistant.lastname }}</td>
@@ -106,6 +107,15 @@
                 </td>
               </tr>
             </tbody>
+             <!-- Template pour afficher une image si la liste est vide -->
+             <ng-template #noData>
+              <tr>
+                <td colspan="7" class="text-center">
+                  <img src="./assets/img/3024051.jpg" alt="Aucune donnée disponible" style="width: 200px; height: auto; margin-top: 20px;">
+                  <p>Aucune donnée disponible</p>
+                </td>
+              </tr>
+            </ng-template>
           </table>
         </div>
       </div>

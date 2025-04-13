@@ -18,9 +18,9 @@
   
     <div *ngIf="errorMessage" class="alert alert-danger mt-3">{{ errorMessage }}</div>
     <div class="mt-3">
-        <button class="btn btn-facebook" (click)="openAddModal()">Ajouter un Dossier</button>
+        <button class="btn btn" style="background-color: rgb(0, 0, 244);" (click)="openAddModal()">Ajouter un Dossier</button>
       </div>
-    <table *ngIf="dossiers.length > 0" class="table table-bordered mt-3">
+    <table  class="table table-bordered mt-3">
       <thead>
         <tr>
           <th>id</th>
@@ -36,7 +36,7 @@
           <th>Actions</th> <!-- Ajout d'une colonne pour l'action -->
         </tr>
       </thead>
-      <tbody>
+      <tbody *ngIf="dossiers.length > 0 ; else noData">
         <tr *ngFor="let dossier of dossiers">
           <td>{{ dossier.id }}</td>
           <td>{{ dossier.reference }}</td>
@@ -64,6 +64,14 @@
           </td>
         </tr>
       </tbody>
+      <ng-template #noData>
+        <tr>
+          <td colspan="11" class="text-center">
+            <img src="./assets/img/3024051.jpg" alt="Aucune donnée disponible" style="width: 250px; height: 250px;">
+            <p>Aucune donnée disponible</p>
+          </td>
+        </tr>
+      </ng-template>
     </table>
     <div *ngIf="isAddModalOpen || isUpdateModalOpen || isArchiveModalOpen" class="overlay" (click)="closeModal()"></div>
    

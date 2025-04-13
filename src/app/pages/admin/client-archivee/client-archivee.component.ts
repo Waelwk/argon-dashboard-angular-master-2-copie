@@ -133,9 +133,9 @@ addClient() {
   // Confirmer l'archivage
   confirmArchive(): void {
     if (this.clientToArchiveId !== null) {
-      this.clientService.archiveClient(this.clientToArchiveId).subscribe(
+      this.clientService.desarchiveClient(this.clientToArchiveId).subscribe(
         () => {
-          console.log('Client archivé avec succès');
+          console.log('Client Desarchivé avec succès');
           this.loadClients();
           this.loadArchivedClients();
           this.closeModal();

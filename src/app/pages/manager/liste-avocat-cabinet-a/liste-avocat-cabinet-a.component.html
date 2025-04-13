@@ -21,7 +21,7 @@
                     <div class="card-body">
                       <div class="small text-muted"><i class="fas fa-user-tie"></i> Nombre d'Avocat</div>
                       <div class="h3">{{avocats.length}}</div>
-                      <a class="text-arrow-icon small" [routerLink]="['/dashboard/listeAvocat', cabinetId]">
+                      <a class="text-arrow-icon small" [routerLink]="['/dashboardm/listeAvocatM', cabinetId]">
                         Voir la liste des avocats
                         <i class="fas fa-arrow-right"></i>
                       </a>
@@ -72,7 +72,7 @@
                 <th>Diplôme</th>
                 <th>Spécialité</th>
                 <th>Statut</th>
-                <th>Cabinet</th>
+                <!-- <th>Cabinet</th> -->
                 <th>Actions</th>
               </tr>
             </thead>
@@ -93,11 +93,11 @@
                     </span>
                   </ng-template>
                 </td>
-                <td>
-                  <strong>Nom :</strong> {{ avocat.cabinet?.nom }}<br />
-                  <strong>Adresse :</strong> {{ avocat.cabinet?.adresse }}<br />
-                  <strong>Téléphone :</strong> {{ avocat.cabinet?.numTel }}
-                </td>
+                <!-- <td> -->
+                  <!-- <strong>Nom :</strong> {{ avocat.cabinet?.nom }}<br /> -->
+                  <!-- <strong>Adresse :</strong> {{ avocat.cabinet?.adresse }}<br /> -->
+                  <!-- <strong>Téléphone :</strong> {{ avocat.cabinet?.numTel }} -->
+                <!-- </td> -->
                 <td>
                   <a class="btn btn-secondary" (click)="openUpdateModal(avocat)"  class="settings" title="Settings" data-toggle="tooltip"><i class="material-icons">&#xE8B8;</i></a>
                   <a class="btn btn-secondary" (click)="openArchiveModal(avocat.id)"   class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE5C9;</i></a>

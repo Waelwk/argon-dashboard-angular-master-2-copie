@@ -71,7 +71,7 @@ const routes: Routes = [
       { path: '', component: DachbordMComponent },
  
       { path: 'profile', component: ProfileComponent },
-      { path: 'ManagerArchivee', component: ManagerArchiveeComponent},
+      
       { path: 'cabinet', component: CabinetMComponent},
       { path: 'listeAvocatM/:id', component: ListeAvocatCabinetMComponent}, 
       { path: 'listeAssistant/:id', component: ListeAssistatnCabinetComponent},
@@ -89,7 +89,7 @@ const routes: Routes = [
       { path: '', component: DashboardComponent },
       { path: 'listeAvocat/:id', component: ListeAvocatCabinetComponent },
       { path: 'Cabinet', component: CabinetComponent },
-      { path: 't', component:ManagerCrudComponent  },
+      { path: 'Manager', component:ManagerCrudComponent  },
       { path: 'Client', component: ClientComponent },
       { path:'ClientArchivee', component: ClientArchiveeComponent },
       { path: 'listeAssistant/:id', component: ListeAssistantComponent},
@@ -97,7 +97,7 @@ const routes: Routes = [
       { path: 'AssistantArchivee/:id', component:  ListeAssistantArchiveeComponent},
       { path: 'AvocatArchivee/:id', component: ListeAvocatArchiveeComponent},
       { path: 'ManagerArchivee', component: ManagerArchiveeComponent},
-      { path: 'DossierJuridique', component:DossierJuridiqueComponent},
+      { path: 'DossierJuridique/:id',  component: ListedossierMComponent },
     ]
   },
   {

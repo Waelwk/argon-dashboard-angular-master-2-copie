@@ -47,12 +47,18 @@ export class ClientService {
     return this.http.delete<void>(`${this.apiUrl}/${id}`);
   }// 🔹 Archiver un client
   archiveClient(id: number): Observable<any> {
-    return this.http.post(`http://localhost:8080/api/clients/archive/${id}`, {}, { headers: this.getHeaders()});
+    return this.http.put(`${this.apiUrl}/archive/${id}`, {}, {
+      headers: this.getHeaders(),
+      responseType: 'text' as 'json' // Indiquer que la réponse est du texte brut
+    });
   }
   
 
-  // 🔹 Désarchiver un client
   desarchiveClient(id: number): Observable<any> {
-    return this.http.put(`${this.apiUrl}/desarchive/${id}`, {}, { headers: this.getHeaders() });
+    return this.http.put(`${this.apiUrl}/desarchive/${id}`, {}, {
+      headers: this.getHeaders(),
+      responseType: 'text' as 'json' // Indiquer que la réponse est du texte brut
+    });
   }
+  
 }

@@ -7,6 +7,7 @@ import { AssistantService } from 'src/app/service/Assistant/assistant.service';
 import { AuthService } from 'src/app/service/auth/auth.service';
 import { AvocatService } from 'src/app/service/Avocat/avocat.service';
 import { CabinetService } from 'src/app/service/cabinet/cabinet.service';
+import { DossierJuridiqueService } from 'src/app/service/DossierJuridiques/dossier-juridique.service';
 
 @Component({
   selector: 'app-cabinet',
@@ -18,13 +19,15 @@ export class CabinetMComponent implements OnInit {
   cabinet: Cabinet;  // Le cabinet du gestionnaire
   assistants: Assistant[] = []; // Liste des assistants filtrés
   avocats: Avocat[] = []; // Liste des avocats filtrés
+  dossiers: any[] = []; // Liste des dossiers
+  errorMessage: string;
 
   constructor(
     private avocatService: AvocatService,
     private assistantService: AssistantService,
     private route: ActivatedRoute,
     private cabinetService: CabinetService,
-    private authService: AuthService
+    private authService: AuthService,private dossierService: DossierJuridiqueService
   ) { }
   
   ngOnInit(): void {
@@ -90,5 +93,16 @@ export class CabinetMComponent implements OnInit {
       }
     );
   }
-
+  getAllDossiers(): void {
+    this.dossierService.getAllDossiers().subscribe(
+      (data) => {
+        // Filtrer les dossiers en fonction de l'ID du cabinet
+        this.dossiers = data.filter(dossier => dossier.cabinet.id === this.cabinetId);
+        console.log('Dossierss filtrés:', this.dossiers);
+      },
+      (error) => {
+        this.errorMessage = 'Erreur lors du chargement des dossiers.';
+      }
+    );
+  }
 }

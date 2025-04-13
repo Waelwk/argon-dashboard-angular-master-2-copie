@@ -127,7 +127,9 @@ export class AuthService {
 
   // Obtenir l'état d'authentification en temps réel
   getUser(): Observable<any> {
+    console.log('Etat d\'authentification :', this.userSubject.value);
     return this.userSubject.asObservable();
+
   }
 
   // Vérifier l'expiration du token et rediriger si nécessaire

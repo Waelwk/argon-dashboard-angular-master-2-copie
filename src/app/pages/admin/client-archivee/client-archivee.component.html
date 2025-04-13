@@ -19,6 +19,10 @@
                     <div class="card-body">
                         <div class="small text-muted"><i class="fas fa-user"></i> Nombre de clients</div>
                         <div class="h3">{{ clients?.length || 0 }}</div>
+                        <a class="text-arrow-icon small" [routerLink]="['/dashboard/Client']">
+                            Voir la liste des clients Desarchivés
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -27,10 +31,7 @@
                     <div class="card-body">
                         <div class="small text-muted"><i class="fas fa-user"></i> Nombre de clients archivés</div>
                         <div class="h3">{{ archivedClients?.length || 0 }}</div>
-                        <a class="text-arrow-icon small" [routerLink]="['/dashboard/ClientArchivee']">
-                            Voir la liste des clients archivés
-                            <i class="fas fa-arrow-right"></i>
-                        </a>
+                       
                     </div>
                 </div>
             </div>
@@ -45,11 +46,11 @@
                             <h2>Liste des Clients</h2>
                         </div
                         >
-                        <div class="col-sm-7 text-left">
-                          <button class="btn btn-debug" (click)="openAddClientModal()">
-                              <i class="material-icons">add</i> Ajouter un Client
-                          </button>
-                      </div>
+                        <!-- <div class="col-sm-7 text-left"> -->
+                          <!-- <button class="btn btn-debug" (click)="openAddClientModal()"> -->
+                              <!-- <i class="material-icons">add</i> Ajouter un Client -->
+                          <!-- </button> -->
+                      <!-- </div> -->
                     </div>
                   
                 </div>
@@ -71,8 +72,8 @@
                             <td>{{ client?.email }}</td>
                             <td>{{ client?.adresse }}</td>
                             <td>
-                                <a class="btn btn-secondary" (click)="openUpdateModal(client)" title="Modifier"><i class="material-icons">edit</i></a>
-                                <a class="btn btn-danger" (click)="openArchiveModal(client?.id)" title="Archiver"><i class="material-icons">archive</i></a>
+                                <a class="btn " (click)="openUpdateModal(client)" title="Modifier"><i class="material-icons">edit</i></a>
+                                <a class="btn " (click)="openArchiveModal(client?.id)" title="Archiver"><i class="material-icons">archive</i></a>
                             </td>
                         </tr>
                     </tbody>
