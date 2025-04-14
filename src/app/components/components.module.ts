@@ -11,6 +11,8 @@ import { sidebarm } from './sidebarM/sidebarm.component';
 import { SideBarAComponent } from './side-bar-a/side-bar-a.component';
 import { SidebarClientComponent } from './sidebar-client/sidebar-client.component';
 import { SidebarAssistantComponent } from './sidebar-assistant/sidebar-assistant.component';
+import { ChatbotComponent } from '../pages/chatbot/chatbot.component';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -19,6 +21,8 @@ import { SidebarAssistantComponent } from './sidebar-assistant/sidebar-assistant
     CommonModule,
     RouterModule,
     NgbModule
+    ,
+    FormsModule 
   ],
   declarations: [
     FooterComponent,
@@ -28,7 +32,8 @@ NavbarindexComponent,
 sidebarm,
 SideBarAComponent,
   SidebarClientComponent,
-  SidebarAssistantComponent
+  SidebarAssistantComponent,
+  ChatbotComponent
 ],
 exports: [
   FooterComponent,

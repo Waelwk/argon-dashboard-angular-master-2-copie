@@ -1,0 +1,26 @@
+
+<div class="chat-container">
+  <div class="chat-header">
+    Assistant Juridique
+  </div>
+
+  <div class="chat-messages">
+    <div *ngFor="let msg of messages" class="message" [ngClass]="msg.type">
+      {{ msg.text }}
+    </div>
+
+    <div *ngIf="loading" class="message typing-indicator">
+      Assistant réfléchit...
+    </div>
+  </div>
+
+  <div class="chat-input">
+    <input
+      type="text"
+      [(ngModel)]="question"
+      (keydown.enter)="sendQuestion()"
+      placeholder="Posez une question juridique..."
+    />
+    <button (click)="sendQuestion()" [disabled]="loading || !question.trim()">Envoyer</button>
+  </div>
+</div>

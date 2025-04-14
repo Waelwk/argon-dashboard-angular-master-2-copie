@@ -53,6 +53,7 @@ import { DossierUpdateAssistantComponent } from './pages/Assistant/dossier-updat
 import { AgendaCabinetAssistantComponent } from './pages/Assistant/agenda-cabinet-assistant/agenda-cabinet-assistant.component';
 import { ClientComponent } from './pages/admin/client/client.component';
 import { ClientArchiveeComponent } from './pages/admin/client-archivee/client-archivee.component';
+import { ChatbotComponent } from './pages/chatbot/chatbot.component';
 
 
 
@@ -62,6 +63,8 @@ const routes: Routes = [
     component: IndexComponent,
     pathMatch: 'full',
   },
+  { path: 'Chatboot', component: ChatbotComponent }, 
+
   {
     path: 'dashboardm',
     component: ManagerLayoutComponent,
@@ -140,7 +143,7 @@ const routes: Routes = [
     ]
   },
   { path: 'index', component: IndexComponent },
- 
+  
   {
     path: 'auth',
     component: AuthLayoutComponent,
@@ -149,6 +152,7 @@ const routes: Routes = [
       { path: 'login', component: LoginComponent },
       { path: 'register', component: RegisterComponent },
       { path: 'resetPasword', component:ResetPasswordComponent },
+    
     ]
   },
   {
@@ -161,7 +165,7 @@ const routes: Routes = [
   imports: [
     CommonModule,
     BrowserModule,
-    RouterModule.forRoot(routes, { useHash: true })
+    RouterModule.forRoot(routes, { useHash: false })
   ],
   exports: [RouterModule]
 })
