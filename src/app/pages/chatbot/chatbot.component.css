@@ -13,15 +13,30 @@
 }
 
 :host {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    background-color: #0a2647; /* Bleu foncé professionnel */
+    background-image: url('https://www.efe.fr/sites/default/files/training_products/juridique.jpg'); /* Motif juridique subtil */
+    background-size: cover;
+    background-position: center;
     min-height: 100vh;
-    background-color: #0d0e26;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 0; /* pour que le ::before reste derrière le contenu */
 }
 
+:host::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(10, 15, 40, 0.7); /* Bleu nuit 70% */
+    z-index: -1; /* Derrière le contenu */
+}
 .chat-container {
+    height: 400px; /* Taille fixe */
     width: 100%;
     max-width: 600px;
     background-color: #16213e;

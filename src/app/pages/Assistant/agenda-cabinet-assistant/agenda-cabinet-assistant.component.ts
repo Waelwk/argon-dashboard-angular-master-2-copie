@@ -3,7 +3,7 @@ import { CalendarOptions } from '@fullcalendar/core';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from '@fullcalendar/interaction';
 import { ToastrService } from 'ngx-toastr';
-import { RendezVous } from 'src/app/Models/RendezVous';
+import { DemandePar, RendezVous } from 'src/app/Models/RendezVous';
 import { StatutRendezVous } from 'src/app/Models/StatutRendezVous';
 import { AssistantService } from 'src/app/service/Assistant/assistant.service';
 import { AvocatService } from 'src/app/service/Avocat/avocat.service';
@@ -24,7 +24,12 @@ export class AgendaCabinetAssistantComponent implements OnInit {
   isEditMode = false; // Contrôle si on est en mode ajout ou modification
 
   rendezVousList: RendezVous[] = []; // Liste des rendez-vous récupérés
-
+  legendItems = [
+    { color: '#007bff', label: 'Demande par Client' },
+    { color: '#28a745', label: 'Demande par Avocat' },
+    { color: '#dc3545', label: 'Demande par Dossier Juridique' },
+    { color: '#625859', label: 'Inconnu' }
+  ];
  
 
   calendarOptions: CalendarOptions = {
@@ -88,17 +93,43 @@ export class AgendaCabinetAssistantComponent implements OnInit {
   
 
   // Mettre à jour les événements du calendrier
-  updateCalendar() {
-    this.calendarOptions.events = this.rendezVousList.map(rdv => ({
-      title: rdv.motif,
-      start: rdv.dateHeure,  // Assurez-vous que ce champ est bien au format ISO
-      id: rdv.id.toString()
+  updateCalendar()  {
+      this.calendarOptions.events = this.rendezVousList.map((rdv: RendezVous) => ({
+        title: rdv.motif,
+        start: rdv.dateHeure,
+        id: rdv.id.toString(),
+        color: this.getColorByDemandePar(rdv.demandePar),
+        extendedProps: {
+          demandePar: rdv.demandePar
+        }
+      }));
     
-    }));
+      
+      this.cdr.detectChanges();
+    // Forcer la mise à jour du calendrier
+    }
+    getColorByDemandePar(demandePar?: DemandePar | string): string {
+      // Si c'est une chaîne comme 'CLIENT', on convertit en enum
+      if (typeof demandePar === 'string') {
+        const enumValue = DemandePar[demandePar as keyof typeof DemandePar];
+        if (enumValue !== undefined) {
+          demandePar = enumValue;
+        }
+      }
     
-    this.cdr.detectChanges();
-  // Forcer la mise à jour du calendrier
-  }
+      switch (demandePar) {
+        case DemandePar.CLIENT:
+          return '#007bff'; // Bleu
+        case DemandePar.AVOCAT:
+          return '#28a745'; // Vert
+        case DemandePar.DOSSIER_JURIDIQUE:
+          return '#dc3545'; // Rouge
+        default:
+          return '#6c757d'; // Gris si indéfini
+      }
+    }
+    
+  
 
   // Gérer le clic sur une date
   onDateClick(info: any) {

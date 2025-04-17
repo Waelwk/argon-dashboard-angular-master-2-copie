@@ -76,7 +76,7 @@
                   <th>Spécialité</th>
                   <th>Statut</th>
                   <!-- <th>Cabinet</th> -->
-                  <th>Dossier</th>
+                  <th>les Dossiers</th>
                 </tr>
               </thead>
               <tbody>
@@ -102,10 +102,10 @@
                     <!-- <strong>Téléphone :</strong> {{ avocat.cabinet?.numTel }} -->
                   <!-- </td> -->
                   <td>
-                    <a [routerLink]="['/dashboardAssistant/Dossier',avocat.id]">Home</a>
-                    <a class="btn btn" (click)="openArchiveModal(avocat.id)" title="Delete" data-toggle="tooltip">
-                      <i class="material-icons">&#xE5C9;</i>
-                    </a>
+                    <a [routerLink]="['/dashboardAssistant/Dossier',avocat.id]">voir dossier</a>
+                    <!-- <a class="btn btn" (click)="openArchiveModal(avocat.id)" title="Delete" data-toggle="tooltip"> -->
+                      <!-- <i class="material-icons">&#xE5C9;</i> -->
+                    <!-- </a> -->
                   </td>
                 </tr>
               </tbody>

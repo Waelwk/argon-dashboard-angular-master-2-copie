@@ -4,7 +4,19 @@
 
 <!-- FullCalendar -->
 <full-calendar [options]="calendarOptions"></full-calendar>
-
+<div class="color-legend">
+  <h4>Signification des couleurs</h4>
+  <div class="legend-container">
+    <mat-card class="legend-card" *ngFor="let item of legendItems">
+      <mat-card-content>
+        <div class="legend-item">
+          <span class="color-box" [ngStyle]="{'background-color': item.color}"></span>
+          <span>{{ item.label }}</span>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>
 <!-- <!~~ Formulaire d'ajout de rendez-vous ~~> -->
 <!-- <div *ngIf="isRendezVousModalOpen" class="modal fade show" [ngClass]="{'d-block': isRendezVousModalOpen}"> -->
   <!-- <div class="modal-dialog modal-lg"> -->
@@ -71,7 +83,7 @@
     
           <td>{{ rendezvous.dateHeure | date: 'dd/MM/yyyy HH:mm' }}</td>
           <td>
-            <ng-container *ngIf="rendezvous.statut === 'EN_ATTENTE'; else statusText">
+            <ng-container *ngIf="rendezvous.statut === 'EN_ATTENTEe'; else statusText">
               <div class="action-buttons">
                 <button mat-button color="primary" (click)="accepterRendezVous(rendezvous.id)">
                   <mat-icon>check</mat-icon> Accepter
@@ -84,6 +96,7 @@
     
             <ng-template #statusText>
               <span [ngClass]="{
+                 'text-muted': rendezvous.statut === 'EN_ATTENTE',
                 'text-success': rendezvous.statut === 'ACCEPTE', 
                 'text-danger': rendezvous.statut === 'REFUSE',
                 'text-muted': rendezvous.statut !== 'ACCEPTE' && rendezvous.statut !== 'REFUSE'

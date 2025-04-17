@@ -22,6 +22,8 @@
       </div>
     <table  class="table table-bordered mt-3">
       <thead>
+       
+        
         <tr>
           <th>id</th>
           <th>Référence</th>
@@ -32,6 +34,14 @@
           <th>Priorité</th>
           <th>Cabinet</th>
           <th>Avocat</th>
+          <th>
+            Date de création
+            <button class="btn btn-sm btn-light" (click)="sortByDateCreation()">
+              <i class="material-icons">
+                {{ sortAsc ? 'arrow_upward' : 'arrow_downward' }}
+              </i>
+            </button>
+          </th>
           <th>Code d'Accès</th>
           <th>Actions</th> <!-- Ajout d'une colonne pour l'action -->
         </tr>
@@ -47,6 +57,7 @@
           <td>{{ dossier.priorite }}</td>
           <td>{{ dossier.cabinet.nom }}</td>
           <td>{{ dossier.avocat ? dossier.avocat.firstname + ' ' + dossier.avocat.lastname : 'N/A' }}</td>
+          <td>{{ dossier.dateCreation | date: 'dd/MM/yyyy ' }}</td>
           <td>{{ dossier.codeAcces }}</td>
           <td><!-- Bouton pour ouvrir le modal d'ajout de dossier -->
       
@@ -62,6 +73,7 @@
               
             
           </td>
+
         </tr>
       </tbody>
       <ng-template #noData>
@@ -137,7 +149,7 @@
                       </div>
                      
                       <div class="modal-footer">
-                          <button type="submit" class="btn btn-primary">Créer Dossier</button>
+                          <button type="submit" class="btn btn-primary">Modifier</button>
                           <button type="button" class="btn btn-secondary" (click)="closeModal()">Annuler</button>
                         </div>
                     </form>
@@ -156,62 +168,173 @@
           </button>
         </div>
         <div class="modal-body">
-            <form (ngSubmit)="addDossier()">
-                <div class="form-group">
-                  <label>Référence :</label>
-                  <input type="text" class="form-control" [(ngModel)]="newDossier.reference" name="reference" required />
-                </div>
-                <div class="form-group">
-                  <label>Titre :</label>
-                  <input type="text" class="form-control" [(ngModel)]="newDossier.titre" name="titre" required />
-                </div>
-                <div class="form-group">
-                    <label for="description">Description :</label>
-                    <textarea class="form-control" [(ngModel)]="newDossier.description" name="description" required></textarea>
-                  </div>
-                <div class="form-group">
-                  <label>Type :</label>
-                  <input type="text" class="form-control" [(ngModel)]="newDossier.type" name="type" required />
-                </div>
-                <div class="form-group">
-                    <label for="statut">Statut :</label>
-                    <select class="form-control" [(ngModel)]="newDossier.statut" name="statut" required>
-                      <option value="En cours">En cours</option>
-                      <option value="Clôturé">Clôturé</option>
-                    </select>
-                  </div>
-                <div class="form-group">
-                    <label for="priorite">Priorité :</label>
-                    <select class="form-control" [(ngModel)]="newDossier.priorite" name="priorite" required>
-                      <option value="Haute">Haute</option>
-                      <option value="Moyenne">Moyenne</option>
-                      <option value="Basse">Basse</option>
-                    </select>
-                  </div>
-      
-                <div class="form-group">
-                  <label>Catégorie :</label>
-                  <input type="text" class="form-control" [(ngModel)]="newDossier.categorie" name="categorie" required />
-                </div>
-                <div class="form-group">
-                  <label>ID du Cabinet :</label>
-                  <input type="number" class="form-control" [(ngModel)]="newDossier.cabinet.id" name="cabinetId" required />
-                </div>
-                <div class="form-group">
-                  <label>ID de l'Avocat :</label>
-                  <input type="number" class="form-control" [(ngModel)]="newDossier.avocat.id" name="avocatId" required />
-                </div>
-                <div class="form-group">
-                  <label>Email du Client :</label>
-                  <input type="email" class="form-control" [(ngModel)]="newDossier.client.email" name="clientEmail" />
-                </div>
-               
-                <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary">Créer Dossier</button>
-                    <button type="button" class="btn btn-secondary" (click)="closeModal()">Annuler</button>
-                  </div>
-              </form>
-              
+          <form (ngSubmit)="addDossier()" #dossierForm="ngForm">
+
+            <!-- Référence -->
+            <div class="form-group">
+              <label>Référence :</label>
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Ex : REF123"
+                [(ngModel)]="newDossier.reference"
+                name="reference"
+                required
+                minlength="3"
+                #reference="ngModel"
+              />
+              <div *ngIf="reference.invalid && reference.touched" class="text-danger">
+                <small *ngIf="reference.errors?.required">Référence est requise.</small>
+                <small *ngIf="reference.errors?.minlength">Au moins 3 caractères.</small>
+              </div>
+            </div>
+          
+            <!-- Titre -->
+            <div class="form-group">
+              <label>Titre :</label>
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Ex : Dossier Contrat Client"
+                [(ngModel)]="newDossier.titre"
+                name="titre"
+                required
+                minlength="3"
+                #titre="ngModel"
+              />
+              <div *ngIf="titre.invalid && titre.touched" class="text-danger">
+                <small *ngIf="titre.errors?.required">Titre est requis.</small>
+                <small *ngIf="titre.errors?.minlength">Au moins 3 caractères.</small>
+              </div>
+            </div>
+          
+            <!-- Description -->
+            <div class="form-group">
+              <label>Description :</label>
+              <textarea
+                class="form-control"
+                placeholder="Décrivez le dossier..."
+                [(ngModel)]="newDossier.description"
+                name="description"
+                required
+                #description="ngModel"
+              ></textarea>
+              <div *ngIf="description.invalid && description.touched" class="text-danger">
+                <small>Description est requise.</small>
+              </div>
+            </div>
+          
+            <!-- Type -->
+            <div class="form-group">
+              <label>Type :</label>
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Ex : Litige commercial"
+                [(ngModel)]="newDossier.type"
+                name="type"
+                required
+                #type="ngModel"
+              />
+              <div *ngIf="type.invalid && type.touched" class="text-danger">
+                <small>Type est requis.</small>
+              </div>
+            </div>
+          
+            <!-- Statut -->
+            <div class="form-group">
+              <label>Statut :</label>
+              <select
+                class="form-control"
+                [(ngModel)]="newDossier.statut"
+                name="statut"
+                required
+                #statut="ngModel"
+              >
+                <option [ngValue]="null" disabled selected>-- Sélectionner un statut --</option>
+                <option value="En cours">En cours</option>
+                <option value="Clôturé">Clôturé</option>
+              </select>
+              <div *ngIf="statut.invalid && statut.touched" class="text-danger">
+                <small>Statut est requis.</small>
+              </div>
+            </div>
+          
+            <!-- Priorité -->
+            <div class="form-group">
+              <label>Priorité :</label>
+              <select
+                class="form-control"
+                [(ngModel)]="newDossier.priorite"
+                name="priorite"
+                required
+                #priorite="ngModel"
+              >
+                <option [ngValue]="null" disabled selected>-- Sélectionner la priorité --</option>
+                <option value="Haute">Haute</option>
+                <option value="Moyenne">Moyenne</option>
+                <option value="Basse">Basse</option>
+              </select>
+              <div *ngIf="priorite.invalid && priorite.touched" class="text-danger">
+                <small>Priorité est requise.</small>
+              </div>
+            </div>
+          
+            <!-- Avocat -->
+            <div class="form-group">
+              <label>Avocat :</label>
+              <select
+                class="form-control"
+                [(ngModel)]="newDossier.avocat"
+                name="avocat"
+                required
+                #avocat="ngModel"
+              >
+                <option [ngValue]="null" disabled selected>-- Sélectionner un avocat --</option>
+                <option *ngFor="let avocat of avocats" [ngValue]="avocat">
+                  {{ avocat.firstname }} {{ avocat.lastname }}
+                </option>
+              </select>
+              <div *ngIf="avocat.invalid && avocat.touched" class="text-danger">
+                <small>Avocat est requis.</small>
+              </div>
+            </div>
+          
+            <!-- Email client -->
+            <div class="form-group">
+              <label>Email du Client :</label>
+              <input
+                type="email"
+                class="form-control"
+                placeholder="client@exemple.com"
+                [(ngModel)]="newDossier.client.email"
+                name="clientEmail"
+                #clientEmail="ngModel"
+              />
+              <div *ngIf="clientEmail.invalid && clientEmail.touched" class="text-danger">
+                <small *ngIf="clientEmail.errors?.email">Email invalide.</small>
+              </div>
+            </div>
+          
+            <!-- Messages -->
+            <div *ngIf="errorMessage" class="alert alert-danger">
+              {{ errorMessage }}
+            </div>
+            <div *ngIf="successMessage" class="alert alert-success">
+              {{ successMessage }}
+            </div>
+          
+            <!-- Boutons -->
+            <div class="modal-footer">
+              <button type="submit" class="btn btn-primary" [disabled]="dossierForm.invalid || isLoading">
+                Créer Dossier
+              </button>
+              <button type="button" class="btn btn-secondary" (click)="closeModal()">Annuler</button>
+            </div>
+          
+          </form>
+          
+          
         </div>
       </div>
     </div>

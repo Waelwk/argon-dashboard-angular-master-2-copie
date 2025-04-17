@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { Assistant } from 'src/app/Models/assistant';
 import { Avocat } from 'src/app/Models/avocat';
 import { Cabinet } from 'src/app/Models/cabinet';
@@ -21,8 +22,10 @@ export class CabinetMComponent implements OnInit {
   avocats: Avocat[] = []; // Liste des avocats filtrés
   dossiers: any[] = []; // Liste des dossiers
   errorMessage: string;
-
-  constructor(
+  selectedCabinet: Cabinet | null = null;
+  isUpdateModalOpen: boolean= false
+  
+  constructor(  private toastr: ToastrService,
     private avocatService: AvocatService,
     private assistantService: AssistantService,
     private route: ActivatedRoute,
@@ -104,5 +107,34 @@ export class CabinetMComponent implements OnInit {
         this.errorMessage = 'Erreur lors du chargement des dossiers.';
       }
     );
+  }  openUpdateModal(cabinet: Cabinet): void {
+    this.selectedCabinet = { ...cabinet }; // Ensure the cabinet data is copied
+    this.isUpdateModalOpen = true;
   }
+  onUpdateCabinet(): void {
+    if (this.selectedCabinet) {
+      this.cabinetService.updateCabinet(this.selectedCabinet.id, this.selectedCabinet).subscribe({
+        next: (updatedCabinet) => {
+          console.log('Cabinet updated successfully:', updatedCabinet);
+          this.loadCabinetAndAssociates();
+          this.closeModal();
+       
+          this.toastr.success('Cabinet mis à jour avec succès ✅');
+        },
+        error: (err) => {
+          this.toastr.error('Error updating cabinet:', err);
+        }
+      });
+    }
+  }
+  closeModal(): void {
+
+    this.isUpdateModalOpen = false;
+
+    this.selectedCabinet = null;
+  }
+  loadCabinets() {
+    throw new Error('Method not implemented.');
+  }
+ 
 }

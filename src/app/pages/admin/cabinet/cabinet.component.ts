@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { Cabinet } from 'src/app/Models/cabinet';
 import { Role } from 'src/app/Models/user';
 import { AuthService } from 'src/app/service/auth/auth.service';
@@ -16,6 +17,8 @@ export class CabinetComponent implements OnInit {
   isUpdateModalOpen = false;
   isDeleteModalOpen = false;
   isArchiveModalOpen = false;
+  confirmPassword: string = '';
+
   selectedCabinet: Cabinet | null = null;
   newCabinet: Cabinet = {
     id: 0,
@@ -36,7 +39,7 @@ export class CabinetComponent implements OnInit {
     }
   };
 
-  constructor(private router: Router,private cabinetService: CabinetService, private authService:AuthService) {}
+  constructor(  private toastr: ToastrService,private router: Router,private cabinetService: CabinetService, private authService:AuthService) {}
 
 
   voirInformationsCabinet(cabinetId: number) {
@@ -54,7 +57,7 @@ export class CabinetComponent implements OnInit {
         this.cabinets = data;
       },
       error: (err) => {
-        console.error('Erreur lors du chargement des cabinets :', err);
+        this.toastr.error('Erreur lors du chargement des cabinets :', err);
       }
     });
   }
@@ -107,9 +110,10 @@ export class CabinetComponent implements OnInit {
       next: () => {
         this.loadCabinets();
         this.closeModal();
+        this.toastr.success('Cabinet ajouté avec succès 🎉');
       },
       error: (err) => {
-        console.error("Erreur lors de l'ajout du cabinet :", err);
+        this.toastr.error("Erreur lors de l'ajout du cabinet :", err);
       }
     });
   }
@@ -122,9 +126,10 @@ export class CabinetComponent implements OnInit {
           console.log('Cabinet updated successfully:', updatedCabinet);
           this.loadCabinets(); // Reload the cabinets list after update
           this.closeModal();
+          this.toastr.success('Cabinet mis à jour avec succès ✅');
         },
         error: (err) => {
-          console.error('Error updating cabinet:', err);
+          this.toastr.error('Error updating cabinet:', err);
         }
       });
     }
@@ -139,9 +144,11 @@ export class CabinetComponent implements OnInit {
         next: () => {
           this.loadCabinets();
           this.closeModal();
+          this.toastr.success('Cabinet supprimé avec succès 🗑️');
+
         },
         error: (err) => {
-          console.error("Erreur lors de la suppression :", err);
+          this.toastr.error("Erreur lors de la suppression :", err);
         }
       });
     }

@@ -132,39 +132,39 @@ avocats: Avocat[] = [];
   
 
 
-  // // Open archive modal
-  // openArchiveModal(avocatId: number): void {
-  //   this.avocatToArchiveId = avocatId;
-  //   this.isArchiveModalOpen = true;
-  // }
+  // Open archive modal
+  openArchiveModal(avocatId: number): void {
+    this.avocatToArchiveId = avocatId;
+    this.isArchiveModalOpen = true;
+  }
 
-  // // Confirm archiving
-  // confirmArchive(): void {
-  //   if (this.avocatToArchiveId) {
-  //     this.avocatService.archiveAvocat(this.avocatToArchiveId).subscribe(
-  //       (response) => {
-  //         console.log('Avocat archived successfully:', response);
-  //         this.loadAvocatsByCabinetId(this.cabinetId);
-  //         this.loadAvocatsByCabinetIdA(this.cabinetId); // Reload avocats list
-  //         this.closeModal();
-  //       },
-  //       (error) => {
-  //         console.error('Error archiving avocat:', error);
-  //       }
-  //     );
-  //   }
-  // }
+  // Confirm archiving
+  confirmArchive(): void {
+    if (this.avocatToArchiveId) {
+      this.avocatService.archiveAvocat(this.avocatToArchiveId).subscribe(
+        (response) => {
+          console.log('Avocat archived successfully:', response);
+          this.loadAvocatsByCabinetId(this.cabinetId);
+          this.loadAvocatsByCabinetIdA(this.cabinetId); // Reload avocats list
+          this.closeModal();
+        },
+        (error) => {
+          console.error('Error archiving avocat:', error);
+        }
+      );
+    }
+  }
 
-  // // Close all modals
-  // closeModal(): void {
-  //   this.isAddModalOpen = false;
-  //   this.isUpdateModalOpen = false;
-  //   this.isDeleteModalOpen = false;
-  //   this.isArchiveModalOpen = false; // Close archive modal
-  //   this.selectedAvocat = null;
-  //   this.avocatToDeleteId = null;
-  //   this.avocatToArchiveId = null;
-  // }
+  // Close all modals
+  closeModal(): void {
+    this.isAddModalOpen = false;
+    this.isUpdateModalOpen = false;
+    this.isDeleteModalOpen = false;
+    this.isArchiveModalOpen = false; // Close archive modal
+    this.selectedAvocat = null;
+    this.avocatToDeleteId = null;
+    this.avocatToArchiveId = null;
+  }
 
   // // Open add modal
   // openAddModal(): void {

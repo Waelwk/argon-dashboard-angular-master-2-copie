@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 import { Client } from 'src/app/Models/client';
 import { ClientService } from 'src/app/service/client/client.service';
 
@@ -11,6 +12,7 @@ export class ClientComponent implements OnInit {
   clients: Client[] = [];
   archivedClients: Client[] = [];
   isAddClientModalOpen = false;
+  confirmPassword: string = '';
 
   newClient: Client = {
     id: 0, // Ajout de l'ID
@@ -32,7 +34,7 @@ export class ClientComponent implements OnInit {
   clientToDeleteId: number | null = null;
   clientToArchiveId: number | null = null;
 
-  constructor(private clientService: ClientService) {}
+  constructor(private clientService: ClientService ,  private toastr: ToastrService ) {}
 
   ngOnInit(): void {
     this.loadClients();
@@ -46,12 +48,12 @@ export class ClientComponent implements OnInit {
 addClient() {
     this.clientService.Create(this.newClient).subscribe(
         (response) => {
-            console.log('Client ajouté avec succès', response);
+          this.toastr.success('Client ajouté avec succès', response);
             this.clients.push(response); // Mettre à jour la liste localement
             this.closeModal();
         },
         (error) => {
-            console.error('Erreur lors de l\'ajout du client', error);
+          this.toastr.error('Erreur lors de l\'ajout du client', error);
         }
     );
 }
@@ -63,7 +65,7 @@ addClient() {
         this.clients = data.filter(client => !client.archivee);
       },
       (error) => {
-        console.error('Erreur lors du chargement des clients:', error);
+        this.toastr.error('Erreur lors du chargement des clients:', error);
       }
     );
   }
@@ -81,7 +83,7 @@ addClient() {
         }
       },
       (error) => {
-        console.error('Erreur API:', error); // Étape 3: Vérifiez les erreurs
+        this.toastr.error('Erreur API:', error); // Étape 3: Vérifiez les erreurs
       }
     );
   }
@@ -101,16 +103,16 @@ addClient() {
     if (this.selectedClient && this.selectedClient.id) {
       this.clientService.updateClient(this.selectedClient.id, this.selectedClient).subscribe(
         () => {
-          console.log('Client mis à jour avec succès');
+          this.toastr.success('Client mis à jour avec succès');
           this.loadClients();
           this.closeModal();
         },
         (error) => {
-          console.error('Erreur lors de la mise à jour du client:', error);
+          this.toastr.error('Erreur lors de la mise à jour du client:', error);
         }
       );
     } else {
-      console.error("Erreur : Client invalide ou ID manquant.");
+      this.toastr.error("Erreur : Client invalide ou ID manquant.");
     }
   }
   
@@ -121,7 +123,7 @@ addClient() {
       this.selectedClient = { ...client }; // Copie des données
       this.isUpdateModalOpen = true;
     } else {
-      console.error("Erreur : Client invalide");
+      this.toastr.error("Erreur : Client invalide");
     }
   }
   
@@ -138,13 +140,13 @@ addClient() {
     if (this.clientToArchiveId !== null) {
       this.clientService.archiveClient(this.clientToArchiveId).subscribe(
         () => {
-          console.log('Client archivé avec succès');
+          this.toastr.success('Client archivé avec succès');
           this.loadClients();
           this.loadArchivedClients();
           this.closeModal();
         },
         (error) => {
-          console.error('Erreur lors de l\'archivage du client:', error);
+          this.toastr.error('Erreur lors de l\'archivage du client:', error);
         }
       );
     } else {
@@ -165,11 +167,12 @@ addClient() {
       this.clientService.deleteClient(this.clientToDeleteId).subscribe(
         (response) => {
           console.log('Client supprimé avec succès:', response);
+          this.toastr.success('Client supprimé avec succès');
           this.loadClients();
           this.closeModal();
         },
         (error) => {
-          console.error('Erreur lors de la suppression du client:', error);
+          this.toastr.error('Erreur lors de la suppression du client:', error);
         }
       );
     }

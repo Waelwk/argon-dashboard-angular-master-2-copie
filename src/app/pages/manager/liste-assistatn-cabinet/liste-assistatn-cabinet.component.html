@@ -83,14 +83,17 @@
                   <td>{{ Assistant.email }}</td>
                   <td>{{ Assistant.domaine }}</td>
                   <td>
-                    <span *ngIf="Assistant?.enabled; else notActive" class="status text-success">
-                      &bull;
+                    <span *ngIf=" Assistant?.enabled; else notActive" class="badge bg-success px-3 py-2 d-inline-flex align-items-center gap-2">
+                      <i class="fas fa-check-circle"></i>
+                      Activé
                     </span>
                     <ng-template #notActive>
-                      <span class="status text-danger">
-                        &bull;
+                      <span class="badge bg-danger px-3 py-2 d-inline-flex align-items-center gap-2">
+                        <i class="fas fa-times-circle"></i>
+                        Non activé
                       </span>
                     </ng-template>
+                    
                   </td>
                   <td>
                     <strong>Nom :</strong> {{ Assistant.cabinet?.nom }}<br />
@@ -139,38 +142,90 @@
             </button>
           </div>
           <div class="modal-body">
-            <form (ngSubmit)="addAssistant()">
+            <form (ngSubmit)="addAssistant()" #form="ngForm" novalidate>
+              <!-- Prénom -->
               <div class="form-group">
                 <label>Prénom :</label>
-                <input type="text" class="form-control" [(ngModel)]="newAssistant.firstname" name="firstname" required />
+                <input type="text" class="form-control"
+                       [(ngModel)]="newAssistant.firstname" name="firstname"
+                       required #firstname="ngModel" />
+                <div *ngIf="firstname.invalid && (firstname.touched || form.submitted)" class="text-danger">
+                  Le prénom est obligatoire.
+                </div>
               </div>
+            
+              <!-- Nom -->
               <div class="form-group">
                 <label>Nom :</label>
-                <input type="text" class="form-control" [(ngModel)]="newAssistant.lastname" name="lastname" required />
+                <input type="text" class="form-control"
+                       [(ngModel)]="newAssistant.lastname" name="lastname"
+                       required #lastname="ngModel" />
+                <div *ngIf="lastname.invalid && (lastname.touched || form.submitted)" class="text-danger">
+                  Le nom est obligatoire.
+                </div>
               </div>
+            
+              <!-- Email -->
               <div class="form-group">
                 <label>Email :</label>
-                <input type="email" class="form-control" [(ngModel)]="newAssistant.email" name="email" required />
+                <input type="email" class="form-control"
+                       [(ngModel)]="newAssistant.email" name="email"
+                       required #email="ngModel" />
+                <div *ngIf="email.invalid && (email.touched || form.submitted)" class="text-danger">
+                  L'email est obligatoire.
+                </div>
               </div>
+            
+              <!-- Mot de passe -->
               <div class="form-group">
                 <label>Mot de passe :</label>
-                <input type="password" class="form-control" [(ngModel)]="newAssistant.password" name="password" required />
+                <input type="password" class="form-control"
+                       [(ngModel)]="newAssistant.password" name="password"
+                       required minlength="6" #password="ngModel" />
+                <div *ngIf="password.invalid && (password.touched || form.submitted)" class="text-danger">
+                  <div *ngIf="password.errors?.['required']">Le mot de passe est obligatoire.</div>
+                  <div *ngIf="password.errors?.['minlength']">Minimum 6 caractères.</div>
+                </div>
               </div>
-              <!-- <div class="form-group"> -->
-                <!-- <label>Spécialité :</label> -->
-                <!-- <input type="text" class="form-control" [(ngModel)]="newAssistant.specialitee" name="specialitee" required /> -->
-              <!-- <!~~ </div> ~~> -->
+            
+              <!-- Confirmer mot de passe -->
+              <div class="form-group">
+                <label>Confirmer le mot de passe :</label>
+                <input type="password" class="form-control"
+                       [(ngModel)]="confirmPassword" name="confirmPassword"
+                       required #confirmPwd="ngModel" />
+                <div *ngIf="confirmPwd.invalid && (confirmPwd.touched || form.submitted)" class="text-danger">
+                  La confirmation du mot de passe est obligatoire.
+                </div>
+                <div *ngIf="(confirmPwd.touched || form.submitted) && newAssistant.password !== confirmPassword" class="text-danger">
+                  Les mots de passe ne correspondent pas.
+                </div>
+              </div>
+            
+              <!-- Domaine -->
               <div class="form-group">
                 <label>Domaine :</label>
-                <input type="text" class="form-control" [(ngModel)]="newAssistant.domaine" name="domaine" required />
+                <input type="text" class="form-control"
+                       [(ngModel)]="newAssistant.domaine" name="domaine"
+                       required #domaine="ngModel" />
+                <div *ngIf="domaine.invalid && (domaine.touched || form.submitted)" class="text-danger">
+                  Le domaine est obligatoire.
+                </div>
               </div>
+            
+              <!-- Cabinet ID -->
               <div class="form-group">
-              
-                <input type="hidden" class="form-control" [(ngModel)]="newAssistant.cabinetId" name="cabinetId" required />
+                <input type="hidden" class="form-control"
+                       [(ngModel)]="newAssistant.cabinetId" name="cabinetId" required />
               </div>
+            
+              <!-- Footer -->
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" (click)="closeModal()">Fermer</button>
-                <button type="submit" class="btn btn-primary">Ajouter</button>
+                <button type="submit" class="btn btn-primary"
+                        [disabled]="form.invalid || newAssistant.password !== confirmPassword">
+                  Ajouter
+                </button>
               </div>
             </form>
           </div>

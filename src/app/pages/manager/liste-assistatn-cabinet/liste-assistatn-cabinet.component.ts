@@ -107,7 +107,7 @@ loadAssistantsByCabinetIdA(cabinetId: number): void {
   // Confirm archiving
   confirmArchive(): void {
     if (this.AssistantToArchiveId) {
-      this.AssistantService.desarchiveAssistant(this.AssistantToArchiveId).subscribe(
+      this.AssistantService.archiveAssistant(this.AssistantToArchiveId).subscribe(
         (response) => {
           console.log('Assistant archived successfully:', response);
           this.loadAssistantsByCabinetId(this.cabinetId);

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { Avocat } from 'src/app/Models/avocat';
 import { AvocatService } from 'src/app/service/Avocat/avocat.service';
 
@@ -24,6 +25,7 @@ export class ListeAvocatCabinetComponent implements OnInit {
       email: '',
     },
   };
+  confirmPassword: string = '';
 
   selectedAvocat: Avocat | null = null;
   isAddModalOpen: boolean = false;
@@ -36,7 +38,7 @@ export class ListeAvocatCabinetComponent implements OnInit {
 
  
 
-  constructor(private route: ActivatedRoute,private avocatService: AvocatService) {}
+  constructor(private toastr: ToastrService,private route: ActivatedRoute,private avocatService: AvocatService) {}
 
   ngOnInit(): void {
     this.loadAvocatsByCabinetId(this.cabinetId);
@@ -117,12 +119,13 @@ export class ListeAvocatCabinetComponent implements OnInit {
       this.avocatService.archiveAvocat(this.avocatToArchiveId).subscribe(
         (response) => {
           console.log('Avocat archived successfully:', response);
+          this.toastr.success('Avocat archived successfully');
           this.loadAvocatsByCabinetId(this.cabinetId);
           this.loadAvocatsByCabinetIdA(this.cabinetId); // Reload avocats list
           this.closeModal();
         },
         (error) => {
-          console.error('Error archiving avocat:', error);
+          this.toastr.error('Error archiving avocat:', error);
         }
       );
     }
@@ -149,12 +152,13 @@ export class ListeAvocatCabinetComponent implements OnInit {
     this.avocatService.register(this.newAvocat).subscribe(
       (response) => {
         console.log('Avocat added successfully:', response);
+        this.toastr.success('Avocat added successfully');
         this.loadAvocatsByCabinetId(this.cabinetId);
         this.closeModal();
         this.resetForm();
       },
       (error) => {
-        console.error('Error adding avocat:', error);
+        this.toastr.error('Error adding avocat:', error);
       }
     );
   }
@@ -170,12 +174,12 @@ export class ListeAvocatCabinetComponent implements OnInit {
     if (this.selectedAvocat) {
       this.avocatService.updateAvocat(this.selectedAvocat.id, this.selectedAvocat).subscribe(
         (response) => {
-          console.log('Avocat updated successfully:', response);
+          this.toastr.success('Avocat updated successfully:', response);
           this.loadAvocatsByCabinetId(this.cabinetId);
           this.closeModal();
         },
         (error) => {
-          console.error('Error updating avocat:', error);
+          this.toastr.error('Error updating avocat:', error);
         }
       );
     }

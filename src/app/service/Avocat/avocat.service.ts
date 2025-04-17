@@ -18,7 +18,11 @@ export class AvocatService {
   private getAuthToken(): string | null {
     return this.authService.getToken();
   }
-
+  getAvocatsByCabinetId(cabinetId: number): Observable<any[]> {
+    const token = this.getAuthToken();
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.get<any[]>(`${this.apiUrl}/cabinet/${cabinetId}`,{ headers , withCredentials: true});
+  }
   // Ajouter un avocat
   register(request: any): Observable<any> {
     const token = this.getAuthToken();

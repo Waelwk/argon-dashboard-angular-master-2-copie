@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Domain } from 'domain';
+import { ToastrService } from 'ngx-toastr';
 import { Assistant } from 'src/app/Models/assistant';
 import { AssistantService } from 'src/app/service/Assistant/assistant.service';
 @Component({
@@ -35,7 +36,7 @@ export class ListeAssistantComponent implements OnInit {
   cabinetId: number;
   Assistantt: Assistant[];
 
-  constructor(private route: ActivatedRoute,private AssistantService:AssistantService) {}
+  constructor(private toastr: ToastrService ,private route: ActivatedRoute,private AssistantService:AssistantService) {}
 
   ngOnInit(): void {
     this.cabinetId = +this.route.snapshot.paramMap.get('id');
@@ -48,6 +49,7 @@ export class ListeAssistantComponent implements OnInit {
   loadAssistantsByCabinetId(cabinetId: number): void {
     this.AssistantService.getAllAssistant().subscribe(
       (data) => {
+        
         console.log('Données reçues:', data); // Vérifie les données complètes
         console.log('ID Cabinet recherché:', cabinetId, 'Type:', typeof cabinetId);
 
@@ -111,13 +113,13 @@ loadAssistantsByCabinetIdA(cabinetId: number): void {
     if (this.AssistantToArchiveId) {
       this.AssistantService.archiveAssistant(this.AssistantToArchiveId).subscribe(
         (response) => {
-          console.log('Assistant archived successfully:', response);
+          this.toastr.success('Assistant archived successfully:', response);
           this.loadAssistantsByCabinetId(this.cabinetId);
           this.loadAssistantsByCabinetIdA(this.cabinetId); // Reload Assistants list
           this.closeModal();
         },
         (error) => {
-          console.error('Error archiving Assistant:', error);
+          this.toastr.error('Error archiving Assistant:', error);
         }
       );
     }
@@ -143,13 +145,13 @@ loadAssistantsByCabinetIdA(cabinetId: number): void {
   addAssistant(): void {
     this.AssistantService.register(this.newAssistant).subscribe(
       (response) => {
-        console.log('Assistant added successfully:', response);
+        this.toastr.success('Assistant added successfully:', response);
         this.loadAssistantsByCabinetId(this.cabinetId);
         this.closeModal();
         this.resetForm();
       },
       (error) => {
-        console.error('Error adding Assistant:', error);
+        this.toastr.error('Error adding Assistant:', error);
       }
     );
   }
@@ -165,13 +167,13 @@ loadAssistantsByCabinetIdA(cabinetId: number): void {
     if (this.selectedAssistant) {
       this.AssistantService.updateAssistant(this.selectedAssistant.id, this.selectedAssistant).subscribe(
         (response) => {
-          console.log('Assistant updated successfully:', response);
+          this.toastr.success('Assistant updated successfully:', response);
           this.loadAssistantsByCabinetId(this.cabinetId);
           this.loadAssistantsByCabinetIdA(this.cabinetId);
           this.closeModal();
         },
         (error) => {
-          console.error('Error updating Assistant:', error);
+          this.toastr.error('Error updating Assistant:', error);
         }
       );
     }

@@ -119,6 +119,7 @@ export class ListeAvocatCabinetAComponent implements OnInit {
           (response) => {
             console.log('Avocat desarchived successfully:', response);
             this.loadAvocatsByCabinetId(this.cabinetId); // Reload avocats list
+     
             this.closeModal();
           },
           (error) => {

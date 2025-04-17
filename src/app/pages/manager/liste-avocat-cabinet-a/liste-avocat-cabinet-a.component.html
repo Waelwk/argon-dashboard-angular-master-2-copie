@@ -55,11 +55,11 @@
               <div class="col-sm-5">
                 <h2>Liste des Avocats Archivee</h2>
               </div>
-              <div class="col-sm-7">
+              <!-- <div class="col-sm-7"> -->
        
-                      <a class="btn btn-success " data-toggle="modal" (click)="openAddModal() "> <i class="material-icons">&#xE147;</i> <span>ajouter un cabinet</span></a>
+                      <!-- <a class="btn btn-success " data-toggle="modal" (click)="openAddModal() "> <i class="material-icons">&#xE147;</i> <span>ajouter un cabinet</span></a> -->
         
-              </div>
+              <!-- </div> -->
             </div>
           </div>
   
@@ -76,7 +76,7 @@
                 <th>Actions</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody *ngIf="avocatsA.length > 0; else noData">
               <tr *ngFor="let avocat of avocatsA">
                 <td>{{ avocat.id }}</td>
                 <td>{{ avocat.firstname }} <br /> {{ avocat.lastname }}</td>
@@ -84,14 +84,17 @@
                 <td>{{ avocat.diplome }}</td>
                 <td>{{ avocat.specialitee }}</td>
                 <td>
-                  <span *ngIf="avocat?.enabled; else notActive" class="status text-success">
-                    &bull; 
+                  <span *ngIf="avocat?.enabled; else notActive" class="badge bg-success px-3 py-2 d-inline-flex align-items-center gap-2">
+                    <i class="fas fa-check-circle"></i>
+                    Activé
                   </span>
                   <ng-template #notActive>
-                    <span class="status text-danger">
-                      &bull; 
+                    <span class="badge bg-danger px-3 py-2 d-inline-flex align-items-center gap-2">
+                      <i class="fas fa-times-circle"></i>
+                      Non activé
                     </span>
                   </ng-template>
+                  
                 </td>
                 <!-- <td> -->
                   <!-- <strong>Nom :</strong> {{ avocat.cabinet?.nom }}<br /> -->
@@ -104,6 +107,14 @@
                 </td>
               </tr>
             </tbody>
+            <ng-template #noData>
+              <tr>
+                <td colspan="7" class="text-center">
+                  <img src="./assets/img/3024051.jpg" alt="Aucune donnée disponible" style="width: 200px; height: auto; margin-top: 20px;">
+                  <p>Aucune donnée disponible</p>
+                </td>
+              </tr>
+            </ng-template>
           </table>
         </div>
       </div>

@@ -124,7 +124,7 @@ const routes: Routes = [
 
       { path: 'Dossier/:id', component: ListeDossierAvocatAssistantComponent},
       { path: 'dj/:id', component: DossierUpdateAssistantComponent},
-      { path: 'agenda', component:AgendaCabinetAssistantComponent},
+      { path: 'agendaa', component:AgendaCabinetAssistantComponent},
       { path: 'Avocat', component: LissteAvocatCabinetComponent },
     
     ]

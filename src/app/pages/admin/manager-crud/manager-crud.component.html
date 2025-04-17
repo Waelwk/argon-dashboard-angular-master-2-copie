@@ -69,9 +69,9 @@
               <th>ID</th>
               <th>Nom complet</th>
               <th>Email</th>
-              <th>status</th>
+            
               <th>Cabinet</th>
-
+              <th>status</th>
               <th>Actions</th>
             </tr>
           </thead>
@@ -80,21 +80,24 @@
               <td>{{ manager.id }}</td>
               <td>{{ manager.firstname }} {{ manager.lastname }}</td>
               <td>{{ manager.email }}</td>
-              <td>
-                <span *ngIf="manager?.enabled; else notActive" class="status text-success">
-                  &bull; 
-                </span>
-                <ng-template #notActive>
-                  <span class="status text-danger">
-                    &bull;
-                  </span>
-                </ng-template>
-                
-              </td>
+             
               <td>
                 <strong>Nom :</strong> {{ manager.cabinet?.nom }}<br />
                 <strong>Adresse :</strong> {{ manager.cabinet?.adresse }}<br />
                 <strong>Téléphone :</strong> {{ manager.cabinet?.numTel }}
+              </td>
+              <td>
+                <span *ngIf="manager?.enabled; else notActive" class="badge bg-success px-3 py-2 d-inline-flex align-items-center gap-2">
+                  <i class="fas fa-check-circle"></i>
+                  Activé
+                </span>
+                <ng-template #notActive>
+                  <span class="badge bg-danger px-3 py-2 d-inline-flex align-items-center gap-2">
+                    <i class="fas fa-times-circle"></i>
+                    Non activé
+                  </span>
+                </ng-template>
+                
               </td>
               <td>
                 <a class="btn btn-secondary" (click)="openUpdateModal(manager)"  class="settings" title="Settings" data-toggle="tooltip"><i class="material-icons">&#xE8B8;</i></a>

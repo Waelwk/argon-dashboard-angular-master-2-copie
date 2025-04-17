@@ -1,10 +1,25 @@
 <mat-toolbar color="primary">
-    <span>Agenda</span>
-  </mat-toolbar>
-  
-  <!-- FullCalendar -->
-  <full-calendar [options]="calendarOptions"></full-calendar>
-  
+  <span>Agenda</span>
+</mat-toolbar>
+
+<!-- Légende avec Cards -->
+
+
+<!-- FullCalendar -->
+<full-calendar [options]="calendarOptions"></full-calendar>
+<div class="color-legend">
+  <h4>Signification des couleurs</h4>
+  <div class="legend-container">
+    <mat-card class="legend-card" *ngFor="let item of legendItems">
+      <mat-card-content>
+        <div class="legend-item">
+          <span class="color-box" [ngStyle]="{'background-color': item.color}"></span>
+          <span>{{ item.label }}</span>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>
   <!-- Formulaire d'ajout de rendez-vous -->
   <div *ngIf="isRendezVousModalOpen" class="modal fade show" [ngClass]="{'d-block': isRendezVousModalOpen}">
     <div class="modal-dialog modal-lg">
@@ -51,7 +66,10 @@
             <th>Motif</th>
             <th>Date et Heure</th>
             <th>Statut</th>
+            <th>Demandé par</th>
             <th>Actions</th>
+        
+
           </tr>
         </thead>
         <tbody>
@@ -86,17 +104,31 @@
                 </span>
               </ng-template>
             </td>
-          
+            <td>
+              <ng-container [ngSwitch]="rendezvous.demandePar">
+                <span *ngSwitchCase="'CLIENT'">
+                  Client  {{ rendezvous.client?.firstname }} {{ rendezvous.client?.lastname }}
+                </span>
+                <span *ngSwitchCase="'AVOCAT'">
+                  Avocat  {{ rendezvous.avocat?.firstname }} {{ rendezvous.avocat?.lastname }}
+                </span>
+                <span *ngSwitchCase="'DOSSIER_JURIDIQUE'">
+                  Dossier Juridique
+                </span>
+                <span *ngSwitchDefault>Inconnu</span>
+              </ng-container>
+            </td>
+            
             <!-- Boutons Modifier et Supprimer (toujours visibles) -->
-            <td class="action-buttons" *ngIf="!(rendezvous.demandeParClient === true && rendezvous.client)">
+            <td class="action-buttons" *ngIf="rendezvous.demandePar === 'AVOCAT'">
               <button mat-button color="accent" (click)="openEditRendezVousModal(i)" class="btn btn-sm">
                 <mat-icon>edit</mat-icon> Modifier
               </button>
-          
               <button mat-button color="warn" (click)="deleteRendezVous(rendezvous.id)" class="btn btn-sm">
                 <mat-icon>delete</mat-icon> Supprimer
               </button>
             </td>
+            
           </tr>
           
           

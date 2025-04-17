@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { Avocat } from 'src/app/Models/avocat';
 import { AvocatService } from 'src/app/service/Avocat/avocat.service';
 
@@ -36,7 +37,7 @@ avocats: Avocat[] = [];
 
  
 
-  constructor(private route: ActivatedRoute,private avocatService: AvocatService) {}
+  constructor( private toastr: ToastrService,private route: ActivatedRoute,private avocatService: AvocatService) {}
 
   ngOnInit(): void {
     this.loadAvocatsByCabinetId(this.cabinetId);

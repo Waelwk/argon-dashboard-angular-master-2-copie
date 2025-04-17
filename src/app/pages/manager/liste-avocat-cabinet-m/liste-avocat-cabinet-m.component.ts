@@ -17,12 +17,7 @@ avocats: Avocat[] = [];
     email: '',
     password: '',
     role: 'AVOCAT',
-    cabinet: {
-      nom: '',
-      adresse: '',
-      numTel: '',
-      email: '',
-    },
+    
   };
 
   selectedAvocat: Avocat | null = null;

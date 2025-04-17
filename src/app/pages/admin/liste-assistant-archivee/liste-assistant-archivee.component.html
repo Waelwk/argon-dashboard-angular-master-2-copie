@@ -87,15 +87,19 @@
                 <td>{{ Assistant.email }}</td>
                 <!-- <td>{{ Assistant.diplome }}</td> -->
                 <td>{{ Assistant.domaine }}</td>
+                 
                 <td>
-                  <span *ngIf="Assistant?.enabled; else notActive" class="status text-success">
-                    &bull; 
+                  <span *ngIf=" Assistant?.enabled; else notActive" class="badge bg-success px-3 py-2 d-inline-flex align-items-center gap-2">
+                    <i class="fas fa-check-circle"></i>
+                    Activé
                   </span>
                   <ng-template #notActive>
-                    <span class="status text-danger">
-                      &bull; 
+                    <span class="badge bg-danger px-3 py-2 d-inline-flex align-items-center gap-2">
+                      <i class="fas fa-times-circle"></i>
+                      Non activé
                     </span>
                   </ng-template>
+                  
                 </td>
                 <td>
                   <strong>Nom :</strong> {{ Assistant.cabinet?.nom }}<br />

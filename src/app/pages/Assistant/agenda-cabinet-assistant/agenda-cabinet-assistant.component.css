@@ -8,6 +8,38 @@
 .mwl-calendar-month-view {
   margin-top: 20px;
 }
+.color-legend {
+  margin-bottom: 20px;
+  padding: 10px;
+}
+
+.legend-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.legend-card {
+  width: 120px;
+  height: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  border-radius: 8px;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+}
+
+.color-box {
+  width: 30px;
+  height: 30px;
+  margin-right: 10px;
+}
 
 ::ng-deep .fc {
   font-size: 12px;

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 import { Manager } from 'src/app/Models/manager';
 import { ManagerService } from 'src/app/service/user/manager.service';
 
@@ -32,7 +33,7 @@ export class ManagerCrudComponent implements OnInit {
   managerToArchiveId: number | null = null; // Nouvelle variable pour stocker l'ID du manager à archiver
   managersA: Manager[];
 
-  constructor(private managerService: ManagerService) {}
+  constructor(private toastr: ToastrService,private managerService: ManagerService) {}
 
   ngOnInit(): void {
     this.loadManagers();  this.loadManagersA();
@@ -74,13 +75,13 @@ export class ManagerCrudComponent implements OnInit {
     if (this.managerToArchiveId) {
       this.managerService.archiveUser(this.managerToArchiveId).subscribe(
         (response) => {
-          console.log('Manager archivé avec succès:', response);
+          this.toastr.success('Manager archivé avec succès:', response);
           this.loadManagers();
           this.loadManagersA(); // Recharger la liste des managers
           this.closeModal();
         },
         (error) => {
-          console.error('Erreur lors de l\'archivage du manager:', error);
+          this.toastr.error('Erreur lors de l\'archivage du manager:', error);
         }
       );
     }
@@ -105,14 +106,14 @@ export class ManagerCrudComponent implements OnInit {
   addManager(): void {
     this.managerService.registerManager(this.newManager).subscribe(
       (response) => {
-        console.log('Manager ajouté avec succès:', response);
+        this.toastr.success('Manager ajouté avec succès:', response);
         this.loadManagers();
         this.loadManagersA();
         this.closeModal();
         this.resetForm();
       },
       (error) => {
-        console.error('Erreur lors de l\'ajout du manager:', error);
+        this.toastr.error('Erreur lors de l\'ajout du manager:', error);
       }
     );
   }
@@ -126,13 +127,13 @@ export class ManagerCrudComponent implements OnInit {
     if (this.selectedManager) {
       this.managerService.updateUser(this.selectedManager.id, this.selectedManager).subscribe(
         (response) => {
-          console.log('Manager mis à jour avec succès:', response);
+          this.toastr.success('Manager mis à jour avec succès:', response);
           this.loadManagers();
           this.loadManagersA();
           this.closeModal();
         },
         (error) => {
-          console.error('Erreur lors de la mise à jour du manager:', error);
+          this.toastr.error('Erreur lors de la mise à jour du manager:', error);
         }
       );
     }

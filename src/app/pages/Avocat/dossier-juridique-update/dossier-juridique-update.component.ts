@@ -119,7 +119,7 @@ documents: any[] = [];
         this.toastr.success('Mise à jour réussie', 'Succès');
         this.closeModall();
        // this.errorMessage = '';  // Reset en cas de succès
-      
+       this.closeUpdateModal()
         this.loadUpdates(); // Recharger les mises à jour après modification
      
       },
@@ -169,6 +169,7 @@ openAllDocumentsModal(): void {
 
           this.toastr.success('Document ajouté avec succès !', 'Succès');
           this.closeAddDocumentModal(); // Fermer le modal
+          this.closeAddModal()
     this.loadUpdates();
           // Mettre à jour l'état de demandeDocuments pour masquer le bouton
           this.selectedUpdateForDocument.demandeDocuments = false;
@@ -267,14 +268,15 @@ updateUpdate(): void {
   this.dossierUpdateService.updateDossierUpdate(this.selectedUpdate.id, this.selectedUpdate).subscribe(
     (response) => {
       this.showSuccess('Mise à jour réussie');
-      this.errorMessage = ''; // Réinitialiser les erreurs
+
+      this.closeUpdateModal()
       this.closeModall();
      
       // Fermer le modal après mise à jour
       this.loadUpdates(); // Rafraîchir la liste des mises à jour
       
      
-      this.isUpdateModalOpen = true;
+      
     },
     (error) => {
       this.showError('Erreur lors de la mise à jour');
@@ -314,7 +316,7 @@ updateDossier(): void {
         this.closeModale();
         this.showSuccess('Dossier mis à jour avec succès!');
      
-        
+        this.closeUpdateModal()
         this.loadDossier(this.DossierId); // Recharger le dossier mis à jour
         
       },

@@ -14,7 +14,23 @@ body{margin-top:20px;
     }
     .card {
         box-shadow: 0 0.15rem 1.75rem 0 rgb(33 40 50 / 15%);
-    }
+    }/* Dans ton fichier CSS global ou dans styles.scss */
+.card {
+    border-radius: 1rem;
+  }
+  
+  .card-header {
+    font-size: 1.25rem;
+  }
+  
+  .fs-5 {
+    font-size: 1.1rem;
+  }
+  
+  .text-muted.small {
+    font-size: 0.85rem;
+  }
+  
     .card .card-header {
         font-weight: 500;
     }

@@ -4,7 +4,7 @@ import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from '@fullcalendar/interaction';
 import { ToastrService } from 'ngx-toastr';
 import { Client } from 'src/app/Models/client';
-import { RendezVous } from 'src/app/Models/RendezVous';
+import { DemandePar, RendezVous } from 'src/app/Models/RendezVous';
 import { StatutRendezVous } from 'src/app/Models/StatutRendezVous';
 import { ClientService } from 'src/app/service/client/client.service';
 import { RendezVousService } from 'src/app/service/RendezVous/rendezvous.service';
@@ -24,7 +24,12 @@ export class AgendaComponent implements OnInit {
   rendezVousList: RendezVous[] = []; // Liste des rendez-vous récupérés
 
   avocatId: number;
-
+  legendItems = [
+    { color: '#007bff', label: 'Demande par Client' },
+    { color: '#28a745', label: 'Demande par Avocat' },
+    { color: '#dc3545', label: 'Demande par Dossier Juridique' },
+    { color: '#625859', label: 'Inconnu' }
+  ];
   calendarOptions: CalendarOptions = {
     initialView: 'dayGridMonth',
     plugins: [dayGridPlugin, interactionPlugin],
@@ -52,7 +57,7 @@ export class AgendaComponent implements OnInit {
           this.updateCalendar();
           this.getRendezVous();
           this.toastr.success('Rendez-vous accepté avec succès');
-        }
+        } 
       },
       (error) => {
         this.toastr.success('Erreur lors de l\'acceptation du rendez-vous', error);
@@ -146,18 +151,42 @@ export class AgendaComponent implements OnInit {
   }
 
   // Mettre à jour les événements du calendrier
-  updateCalendar() {
-    this.calendarOptions.events = this.rendezVousList.map(rdv => ({
+  updateCalendar()  {
+    this.calendarOptions.events = this.rendezVousList.map((rdv: RendezVous) => ({
       title: rdv.motif,
-      start: rdv.dateHeure,  // Assurez-vous que ce champ est bien au format ISO
-      id: rdv.id.toString()
-    
+      start: rdv.dateHeure,
+      id: rdv.id.toString(),
+      color: this.getColorByDemandePar(rdv.demandePar),
+      extendedProps: {
+        demandePar: rdv.demandePar
+      }
     }));
+  
     
     this.cdr.detectChanges();
   // Forcer la mise à jour du calendrier
   }
-
+  getColorByDemandePar(demandePar?: DemandePar | string): string {
+    // Si c'est une chaîne comme 'CLIENT', on convertit en enum
+    if (typeof demandePar === 'string') {
+      const enumValue = DemandePar[demandePar as keyof typeof DemandePar];
+      if (enumValue !== undefined) {
+        demandePar = enumValue;
+      }
+    }
+  
+    switch (demandePar) {
+      case DemandePar.CLIENT:
+        return '#007bff'; // Bleu
+      case DemandePar.AVOCAT:
+        return '#28a745'; // Vert
+      case DemandePar.DOSSIER_JURIDIQUE:
+        return '#dc3545'; // Rouge
+      default:
+        return '#6c757d'; // Gris si indéfini
+    }
+  }
+  
   // Gérer le clic sur une date
   onDateClick(info: any) {
     this.newRendezVous.dateHeure = info.dateStr;
@@ -165,10 +194,21 @@ export class AgendaComponent implements OnInit {
 
   // Gérer le clic sur un événement
   onEventClick(info: any) {
-    if (confirm('Supprimer ce rendez-vous ?')) {
-      this.deleteRendezVous(info.event.id);
-    }
+
+    const event = info.event;
+  const demandePar = event.extendedProps.demandePar;
+    const details = `
+ ID           : ${event.id}
+ Motif        : ${event.title}
+Demande par  : ${demandePar}
+ Date & Heure : ${event.start?.toLocaleString()}
+
+  
+  `;
+  
+    alert(details);
   }
+  
 
   // Supprimer un rendez-vous
   deleteRendezVous(id: number) {

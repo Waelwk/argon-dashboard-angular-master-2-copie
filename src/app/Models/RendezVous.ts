@@ -10,6 +10,12 @@ export interface RendezVous {
     demandeParClient: boolean;
     avocat?: Avocat;
     client?: Client;
+    demandePar?:DemandePar;
     dossierJuridiqueUpdate?: DossierJuridiqueUpdate;
+  }
+  export enum DemandePar{
+    CLIENT,
+	    AVOCAT,
+	    DOSSIER_JURIDIQUE
   }
   
