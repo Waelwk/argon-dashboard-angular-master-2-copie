@@ -49,8 +49,10 @@
 
                                 <!-- Lien vers la page d'inscription -->
                                 <p class="text-center">
-                                    Vous n'avez pas de compte ? <a routerLink="/auth/register" >Register</a>
-                                </p>
+                                    Vous n'avez pas de compte ? <a routerLink="/auth/register">S'inscrire</a><br>
+                                    Mot de passe oublié ? <a routerLink="/auth/resetPasword">Cliquez ici</a>
+                                  </p>
+                                  
                             </form>
                             <div *ngIf="errorMessage" class="alert alert-danger text-center mt-3">
                                 {{ errorMessage }}

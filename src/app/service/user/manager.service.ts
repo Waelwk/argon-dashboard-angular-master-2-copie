@@ -52,5 +52,12 @@ export class ManagerService {
     return this.http.put(`${this.apiUrl}/${userId}`, request);
 
   }
-  
+  // Récupérer un manager par ID
+getUserById(id: number): Observable<Manager> {
+  const token = this.getAuthToken();  // Récupération du token
+  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`); // Ajout du token aux headers
+  const url = `${this.apiUrl2}/${id}`; // URL : /api/v1/managers/{id}
+  return this.http.get<Manager>(url, { headers }); // Requête GET
+}
+
 }

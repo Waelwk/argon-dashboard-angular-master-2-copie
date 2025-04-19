@@ -54,6 +54,10 @@ import { AgendaCabinetAssistantComponent } from './pages/Assistant/agenda-cabine
 import { ClientComponent } from './pages/admin/client/client.component';
 import { ClientArchiveeComponent } from './pages/admin/client-archivee/client-archivee.component';
 import { ChatbotComponent } from './pages/chatbot/chatbot.component';
+import { EditProfileManagerComponent } from './pages/manager/edit-profile-manager/edit-profile-manager.component';
+import { EditProfilClientComponent } from './pages/Client/edit-profil-client/edit-profil-client.component';
+import { EditProfilAvocatComponent } from './pages/Avocat/edit-profil-avocat/edit-profil-avocat.component';
+import { EditProfilAssistantComponent } from './pages/Assistant/edit-profil-assistant/edit-profil-assistant.component';
 
 
 
@@ -81,6 +85,7 @@ const routes: Routes = [
       { path: 'AssistantArchivee/:id', component:  ListeAssistatnCabinetAComponent},
       { path: 'AvocatArchivee/:id', component: ListeAvocatCabinetAComponent},
       { path: 'DossierJuridique/:id',  component: ListedossierMComponent },
+      { path: 'EditProfile', component: EditProfileManagerComponent},
     ]
   },
   {
@@ -112,6 +117,7 @@ const routes: Routes = [
       { path: 'Dossier', component: ListedossierAvocatComponent },
       { path: 'dj/:id', component: DossierJuridiqueUpdateComponent },
       { path: 'agenda', component:AgendaComponent },
+      { path: 'EditProfil', component:  EditProfilAvocatComponent},
     
     ]
   },
@@ -126,7 +132,7 @@ const routes: Routes = [
       { path: 'dj/:id', component: DossierUpdateAssistantComponent},
       { path: 'agendaa', component:AgendaCabinetAssistantComponent},
       { path: 'Avocat', component: LissteAvocatCabinetComponent },
-    
+      { path: 'EditProfil', component: EditProfilAssistantComponent},
     ]
   },
   {
@@ -138,6 +144,7 @@ const routes: Routes = [
       { path: 'Dossier', component: ListeDossierClientComponent },
       { path: 'dj/:id', component: DossierUpdateClientComponent },
       { path: 'agenda', component: AgendaClientComponent},
+      { path: 'EditProfil', component: EditProfilClientComponent},
     
     
     ]

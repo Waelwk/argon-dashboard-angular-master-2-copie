@@ -1,0 +1,98 @@
+/* Global Styles */
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f7fc;
+    padding-top: 40px;
+}
+
+.container {
+    margin-top: 20px;
+}
+
+.card-body .row.gutters {
+    margin-top: 40px; /* Décalage supplémentaire pour les champs du formulaire */
+  }
+.card {
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.card-body {
+    padding: 20px;
+}
+
+.account-settings {
+    margin-bottom: 20px;
+}
+
+.user-profile .user-avatar {
+    width: 100px;
+    height: 100px;
+    margin: 0 auto;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.user-profile .user-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.user-profile .user-name {
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.user-profile .user-email {
+    font-size: 14px;
+    color: #8c8c8c;
+}
+
+.badge.bg-primary {
+    background-color: #007bff;
+    color: white;
+}
+
+.about h6 {
+    color: #007bff;
+    font-weight: bold;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-control {
+    font-size: 14px;
+    border-radius: 5px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    margin-bottom: 10px;
+}
+
+button.btn {
+    font-size: 14px;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button.btn-secondary {
+    background-color: #6c757d;
+    color: white;
+    border: none;
+}
+
+button.btn-primary {
+    background-color: #007bff;
+    color: white;
+    border: none;
+}
+
+.text-right {
+    text-align: right;
+}

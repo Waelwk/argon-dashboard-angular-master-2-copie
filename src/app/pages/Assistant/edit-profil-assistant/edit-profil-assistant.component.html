@@ -1,0 +1,92 @@
+
+<div class="container" *ngIf="assistant">
+    <div class="row gutters">
+      <!-- Sidebar (optionnel, ici pour afficher l'image et autres infos de l'assistant) -->
+      <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12">
+        <div class="card h-100">
+          <div class="card-body text-center">
+            <div class="user-profile">
+              <div class="user-avatar mb-3">
+                <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Assistant Avatar" class="img-fluid rounded-circle" style="width: 100px;">
+              </div>
+              <h5 class="user-name mb-1">{{ assistant.firstname }} {{ assistant.lastname }}</h5>
+              <p class="text-muted small mb-2"><i class="fa fa-envelope me-1"></i> {{ assistant.email }}</p>
+              <span class="badge bg-primary">{{ assistant.role }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+      <!-- Edit Form -->
+      <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
+        <form (ngSubmit)="updateAssistant()">
+          <div class="card h-100">
+            <div class="card-body">
+              <div class="row gutters">
+                <div class="col-12">
+                  <h6 class="mb-3 text-primary">Modifier le profil</h6>
+                </div>
+  
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="firstname">Nom</label>
+                    <input type="text" class="form-control" id="firstname" [(ngModel)]="assistant.firstname" name="firstname" required />
+                  </div>
+                </div>
+  
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="lastname">Prénom</label>
+                    <input type="text" class="form-control" id="lastname" [(ngModel)]="assistant.lastname" name="lastname" required />
+                  </div>
+                </div>
+  
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" class="form-control" id="email" [(ngModel)]="assistant.email" name="email" required readonly />
+                  </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="Domaine">Domaine</label>
+                      <input type="text" class="form-control" id="domaine" [(ngModel)]="assistant.domaine" name="domaine" required  />
+                    </div>
+                  </div>
+                <div class="col-12">
+                    <h6 class="mb-3 text-primary">Modifier Mot de passe</h6>
+                  </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="password">Mot de passe</label>
+                    <input type="password" class="form-control" id="password" [(ngModel)]="assistant.password" name="password" minlength="8" placeholder="Laisser vide pour ne pas changer" #password="ngModel" />
+                  </div>
+                </div>
+  
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="confirmPassword">Confirmer mot de passe</label>
+                    <input type="password" class="form-control" id="confirmPassword" [(ngModel)]="confirmPassword" name="confirmPassword" minlength="8" placeholder="Confirmer mot de passe" #confirmPasswordModel="ngModel" />
+                    <div *ngIf="confirmPasswordModel.touched && confirmPassword !== assistant.password" class="text-danger">
+                      Les mots de passe ne correspondent pas.
+                    </div>
+                  </div>
+                </div>
+  
+              </div>
+  
+              <div class="row gutters">
+                <div class="col-12 text-right">
+                  <button type="button" class="btn btn-secondary" (click)="cancel()">Annuler</button>
+                  <button type="submit" class="btn btn-primary">Mettre à jour</button>
+                </div>
+              </div>
+  
+            </div>
+          </div>
+        </form>
+      </div>
+  
+    </div>
+  </div>
+  

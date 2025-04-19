@@ -1,0 +1,108 @@
+
+<div class="container" *ngIf="avocat">
+    <div class="row gutters">
+      <!-- Sidebar -->
+      <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12">
+        <div class="card h-100">
+          <div class="card-body text-center">
+            <div class="user-profile">
+              <div class="user-avatar mb-3">
+                <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="User Avatar" class="img-fluid rounded-circle" style="width: 100px;">
+              </div>
+              <h5 class="user-name mb-1">{{ avocat.firstname }} {{ avocat.lastname }}</h5>
+              <p class="text-muted small mb-2"><i class="fa fa-envelope me-1"></i> {{ avocat.email }}</p>
+              <span class="badge bg-primary">{{ avocat.role }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+      <!-- Edit Form -->
+      <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
+        <form (ngSubmit)="updateAvocat()">
+          <div class="card h-100">
+            <div class="card-body">
+              <div class="row gutters">
+                <div class="col-12">
+                  <h6 class="mb-3 text-primary">Modifier les informations</h6>
+                </div>
+  
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="firstname">Nom</label>
+                    <input type="text" class="form-control" id="firstname" [(ngModel)]="avocat.firstname" name="firstname" required />
+                  </div>
+                </div>
+  
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="lastname">Prénom</label>
+                    <input type="text" class="form-control" id="lastname" [(ngModel)]="avocat.lastname" name="lastname" required />
+                  </div>
+                </div>
+  
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" class="form-control" id="email" [(ngModel)]="avocat.email" name="email" required readonly />
+                  </div>
+                </div>
+                <div class="col-12">
+                    <h6 class="mb-3 text-primary">.</h6>
+                  </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                      <label for=" specialitee">  Specialitee</label>
+                      <input type="text" class="form-control" id="specialitee" [(ngModel)]="avocat.  specialitee" name="  specialitee" required  />
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="diplome"> Diplome</label>
+                      <input type="text" class="form-control" id="diplome" [(ngModel)]="avocat. diplome" name="diplome" required />
+                    </div>
+                  </div>
+             
+                <div class="col-12">
+                    <h6 class="mb-3 text-primary">Modifier Mot de passe</h6>
+                  </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="password">Mot de passe</label>
+                    <input type="password" class="form-control" id="password" [(ngModel)]="avocat.password" name="password" minlength="8" placeholder="Laisser vide pour ne pas changer" #password="ngModel" />
+                    <div *ngIf="password.invalid && password.touched" class="text-danger">
+                      Le mot de passe doit comporter au moins 8 caractères.
+                    </div>
+                  </div>
+                </div>
+  
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="confirmPassword">Confirmer mot de passe</label>
+                    <input type="password" class="form-control" id="confirmPassword" [(ngModel)]="confirmPassword" name="confirmPassword" minlength="8" placeholder="Confirmer mot de passe" #confirmPasswordModel="ngModel" />
+                    <div *ngIf="confirmPasswordModel.invalid && confirmPasswordModel.touched" class="text-danger">
+                      La confirmation du mot de passe doit comporter au moins 8 caractères.
+                    </div>
+                    <div *ngIf="confirmPasswordModel.touched && confirmPassword !== avocat.password" class="text-danger">
+                      Les mots de passe ne correspondent pas.
+                    </div>
+                  </div>
+                </div>
+  
+              </div>
+  
+              <div class="row gutters">
+                <div class="col-12 text-right">
+                  <button type="button" class="btn btn-secondary" (click)="cancel()">Annuler</button>
+                  <button type="submit" class="btn btn-primary">Mettre à jour</button>
+                </div>
+              </div>
+  
+            </div>
+          </div>
+        </form>
+      </div>
+  
+    </div>
+  </div>
+  

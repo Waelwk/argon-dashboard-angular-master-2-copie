@@ -83,7 +83,10 @@ import { AgendaCabinetAssistantComponent } from './pages/Assistant/agenda-cabine
 import { ClientComponent } from './pages/admin/client/client.component';
 import { ClientArchiveeComponent } from './pages/admin/client-archivee/client-archivee.component';
 import { EditerProfilComponent } from './pages/admin/editer-profil/editer-profil.component';
-
+import { EditProfileManagerComponent } from './pages/manager/edit-profile-manager/edit-profile-manager.component';
+import { EditProfilClientComponent } from './pages/Client/edit-profil-client/edit-profil-client.component';
+import { EditProfilAvocatComponent } from './pages/Avocat/edit-profil-avocat/edit-profil-avocat.component';
+import { EditProfilAssistantComponent } from './pages/Assistant/edit-profil-assistant/edit-profil-assistant.component';
 
 registerLocaleData(localeFr); 
 
@@ -172,7 +175,11 @@ registerLocaleData(localeFr);
   ManagerCrudComponent,
   ClientComponent,
   ClientArchiveeComponent,
-  EditerProfilComponent 
+  EditerProfilComponent,
+  EditProfileManagerComponent,
+  EditProfilClientComponent,
+  EditProfilAvocatComponent,
+  EditProfilAssistantComponent 
   ],
   providers: [ { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },],
   bootstrap: [AppComponent]

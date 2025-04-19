@@ -24,6 +24,8 @@ export class ClientService {
   }
   // Récupérer un client par son ID
   getClientById(id: number): Observable<Client> {
+    const token = this.getAuthToken();
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
     return this.http.get<Client>(`${this.apiUrl}/${id}`, { headers: this.getHeaders() });
   }
  // 🔹 Enregistrer un nouveau client

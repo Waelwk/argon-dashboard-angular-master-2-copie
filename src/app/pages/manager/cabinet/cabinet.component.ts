@@ -36,6 +36,7 @@ export class CabinetMComponent implements OnInit {
   ngOnInit(): void {
     this.loadCabinetAndAssociates();
     this.cabinet;
+    const managerId = this.getManagerIdFromLocalStorage();
   }
   
   // Charger le cabinet du gestionnaire et ses assistants/avocats
