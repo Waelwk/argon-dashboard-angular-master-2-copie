@@ -87,6 +87,10 @@ import { EditProfileManagerComponent } from './pages/manager/edit-profile-manage
 import { EditProfilClientComponent } from './pages/Client/edit-profil-client/edit-profil-client.component';
 import { EditProfilAvocatComponent } from './pages/Avocat/edit-profil-avocat/edit-profil-avocat.component';
 import { EditProfilAssistantComponent } from './pages/Assistant/edit-profil-assistant/edit-profil-assistant.component';
+import { ChatComponent } from './pages/Avocat/messaging/chat/chat.component';
+import { ChatAComponent } from './pages/Assistant/chat-a/chat-a.component';
+import { ChatMComponent } from './pages/manager/chat-m/chat-m.component';
+
 
 registerLocaleData(localeFr); 
 
@@ -179,7 +183,10 @@ registerLocaleData(localeFr);
   EditProfileManagerComponent,
   EditProfilClientComponent,
   EditProfilAvocatComponent,
-  EditProfilAssistantComponent 
+  EditProfilAssistantComponent,
+  ChatComponent,
+  ChatAComponent,
+  ChatMComponent 
   ],
   providers: [ { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },],
   bootstrap: [AppComponent]

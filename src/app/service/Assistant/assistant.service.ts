@@ -25,6 +25,12 @@ export class AssistantService {
     return this.http.post(`${this.apiUrl}/register`, request, { headers });
   }
 
+  getAssistantsByCabinetId(cabinetId: number): Observable<Assistant[]> {
+    const token = this.getAuthToken();
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    console.log('Appel à l’API pour cabinetId:', cabinetId); 
+    return this.http.get<Assistant[]>(`${this.apiUrl}/byCabinet/${cabinetId}`, { headers, withCredentials: true });
+  }
   // Mettre à jour un avocat
   updateAssistant(assistantId: number, request: any): Observable<any> {
     const token = this.getAuthToken();

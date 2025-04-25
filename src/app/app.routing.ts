@@ -58,6 +58,9 @@ import { EditProfileManagerComponent } from './pages/manager/edit-profile-manage
 import { EditProfilClientComponent } from './pages/Client/edit-profil-client/edit-profil-client.component';
 import { EditProfilAvocatComponent } from './pages/Avocat/edit-profil-avocat/edit-profil-avocat.component';
 import { EditProfilAssistantComponent } from './pages/Assistant/edit-profil-assistant/edit-profil-assistant.component';
+import { ChatComponent } from './pages/Avocat/messaging/chat/chat.component';
+import { ChatAComponent } from './pages/Assistant/chat-a/chat-a.component';
+import { ChatMComponent } from './pages/manager/chat-m/chat-m.component';
 
 
 
@@ -86,6 +89,7 @@ const routes: Routes = [
       { path: 'AvocatArchivee/:id', component: ListeAvocatCabinetAComponent},
       { path: 'DossierJuridique/:id',  component: ListedossierMComponent },
       { path: 'EditProfile', component: EditProfileManagerComponent},
+      { path: 'chat', component:   ChatMComponent},
     ]
   },
   {
@@ -106,6 +110,7 @@ const routes: Routes = [
       { path: 'AvocatArchivee/:id', component: ListeAvocatArchiveeComponent},
       { path: 'ManagerArchivee', component: ManagerArchiveeComponent},
       { path: 'DossierJuridique/:id',  component: ListedossierMComponent },
+ 
     ]
   },
   {
@@ -118,6 +123,7 @@ const routes: Routes = [
       { path: 'dj/:id', component: DossierJuridiqueUpdateComponent },
       { path: 'agenda', component:AgendaComponent },
       { path: 'EditProfil', component:  EditProfilAvocatComponent},
+      { path: 'chat', component:  ChatComponent},
     
     ]
   },
@@ -133,6 +139,7 @@ const routes: Routes = [
       { path: 'agendaa', component:AgendaCabinetAssistantComponent},
       { path: 'Avocat', component: LissteAvocatCabinetComponent },
       { path: 'EditProfil', component: EditProfilAssistantComponent},
+      { path: 'chat', component:   ChatAComponent},
     ]
   },
   {
