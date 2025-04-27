@@ -56,12 +56,15 @@
                     <!-- end of dropdown menu -->
 
                     <li class="nav-item">
-                        <a class="nav-link page-scroll" href="#pricing">PRICING</a>
+                        <a class="nav-link page-scroll" href="/Chatboot"> Consultation juridique </a>
                     </li>
                 </ul>
                 <span class="nav-item">
-                    <a class="btn-outline-sm"routerLink="/auth/login" routerLinkActive="active">LOG IN</a>
-                </span>
+                    <a *ngIf="!isLoggedIn" class="btn-outline-sm" routerLink="/auth/login" routerLinkActive="active">LOG IN</a>
+                  
+                    <a *ngIf="isLoggedIn" class="btn-outline-sm" (click)="redirectToDashboard()">DASHBOARD</a>
+                  </span>
+                  
             </div>
         </div> <!-- end of container -->
     </nav> <!-- end of navbar -->

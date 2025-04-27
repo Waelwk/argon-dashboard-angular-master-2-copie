@@ -22,7 +22,10 @@ export class DossierJuridiqueService {
     const token = this.getAuthToken();
     return new HttpHeaders().set('Authorization', `Bearer ${token}`);
   }
-
+  cloturerDossier(id: number, contenuJugement: string): Observable<any> {
+    const headers = this.getAuthHeaders(); // Ajout des en-têtes d'authentification
+    return this.http.put(`${this.apiUrl}/${id}/cloturer`, { contenuJugement }, { headers });
+  }
   // Get all dossiers
   getAllDossiers(): Observable<DossierJuridique[]> {
     return this.http.get<DossierJuridique[]>(this.apiUrl, { headers: this.getAuthHeaders() });

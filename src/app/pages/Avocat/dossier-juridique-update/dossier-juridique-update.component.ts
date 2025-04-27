@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { DossierJuridiqueUpdate } from 'src/app/Models/DossierJuridiqueUpdate';
 import { RendezVous } from 'src/app/Models/RendezVous';
 import { DossierJuridiqueUpdateService } from 'src/app/service/Dossier_juridique_update/dossier-juridique-update.service';
@@ -19,6 +19,8 @@ import { DocumentService } from 'src/app/service/Document/document.service';
   styleUrls: ['./dossier-juridique-update.component.css']
 })
 export class DossierJuridiqueUpdateComponent implements OnInit {
+  isClotureModalOpen: boolean = false;  // Contrôle l'ouverture du modal
+  contenuJugement: string = '';  
   modalVisible: boolean = false;
    selectedDossier?: DossierJuridique;
   successMessage: string = '';
@@ -50,6 +52,7 @@ errorMessage: string = '';
   isAllDocumentsModalOpen = false; // Pour contrôler l'affichage du modal
 documents: any[] = [];
   dossierid: number = 123;  // L'ID du dossier que vous voulez mettre à jour
+   // Contenu du jugement pour clôturer le dossier
   dossierUpdate: DossierJuridiqueUpdate = {
     evaluation: "L'affaire est en cours d'investigation.",
     demandeDocuments: true,
@@ -65,7 +68,7 @@ documents: any[] = [];
   };
   avocatId: number;
   isClicked: boolean = false;
-  constructor(  private documentService: DocumentService ,private toastr: ToastrService, private dossierUpdateService: DossierJuridiqueUpdateService,private route: ActivatedRoute, private DossierJuridiqueService : DossierJuridiqueService,private modalService: NgbModal,) { }
+  constructor(  private documentService: DocumentService ,private toastr: ToastrService, private dossierUpdateService: DossierJuridiqueUpdateService,private route: ActivatedRoute, private router: Router, private DossierJuridiqueService : DossierJuridiqueService,private modalService: NgbModal,) { }
 
   ngOnInit(): void {
     this.avocatId = Number(localStorage.getItem('id'));
@@ -82,7 +85,35 @@ documents: any[] = [];
       console.error('ID non trouvé dans l\'URL');
     }
   }
-  
+  cloturerDossier() {
+    if (this.contenuJugement.trim()) {
+      this.DossierJuridiqueService.cloturerDossier(this.dossierId, this.contenuJugement).subscribe(
+        (response) => {
+          console.log('Dossier clôturé avec succès!', response);
+          this.toastr.success('Dossier clôturé avec succès!', 'Succès');
+          this.isClotureModalOpen = false;  // Ferme le modal après clôture
+          this.loadDossier(this.DossierId);
+
+        },
+        (error) => {
+          this.toastr.error('Erreur lors de la clôture du dossier', 'Erreur');
+          console.error('Erreur lors de la clôture du dossier', error);
+        }
+      );
+    } else {
+      console.error('Le contenu du jugement est requis.');
+    }
+  }
+
+  openClotureModal(dossierId: number) {
+    this.dossierId = dossierId;  // Enregistre l'ID du dossier
+    this.isClotureModalOpen = true;  // Ouvre le modal
+  }
+
+  // Méthode pour fermer le modal
+  closeClotureModal() {
+    this.isClotureModalOpen = false;
+  }
   closeModal(modal: any): void {
     modal.close();  // Ferme ce modal spécifique
   }

@@ -90,7 +90,8 @@ import { EditProfilAssistantComponent } from './pages/Assistant/edit-profil-assi
 import { ChatComponent } from './pages/Avocat/messaging/chat/chat.component';
 import { ChatAComponent } from './pages/Assistant/chat-a/chat-a.component';
 import { ChatMComponent } from './pages/manager/chat-m/chat-m.component';
-
+import { ChatAdComponent } from './pages/admin/chat-ad/chat-ad.component';
+import { ChatCComponent } from './pages/Client/chat-c/chat-c.component';
 
 registerLocaleData(localeFr); 
 
@@ -186,7 +187,9 @@ registerLocaleData(localeFr);
   EditProfilAssistantComponent,
   ChatComponent,
   ChatAComponent,
-  ChatMComponent 
+  ChatMComponent,
+  ChatAdComponent,
+  ChatCComponent 
   ],
   providers: [ { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },],
   bootstrap: [AppComponent]

@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Manager } from 'src/app/Models/manager';
 import { AuthService } from '../auth/auth.service';
+import { User } from 'src/app/Models/user';
 
 
 @Injectable({
@@ -26,6 +27,17 @@ export class ManagerService {
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`); // Add the token to the header
     const url = `${this.apiUrl2}/all`; // The URL to fetch all users (managers)
     return this.http.get<Manager[]>(url, { headers }); // Send GET request with headers
+  }
+  getUserByIdd(id: number): Observable<User> {
+    
+    return this.http.get<User>(`http://localhost:8080/api/v1/auth/users/${id}`);
+  }
+  
+  getAllManagers(): Observable<Manager[]> {
+    const token = this.getAuthToken();  // Récupération du token
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`); // Ajout du token aux headers
+    const url = `${this.apiUrl2}/all`; // URL : /api/v1/managers/{id}
+    return this.http.get<Manager[]>(url);
   }
 
   // Ajouter un manager avec un cabinet

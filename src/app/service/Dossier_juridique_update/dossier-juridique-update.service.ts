@@ -23,6 +23,7 @@ export class DossierJuridiqueUpdateService {
     return new HttpHeaders().set('Authorization', `Bearer ${token}`);
   }
 
+
   // Méthode pour créer une mise à jour
   createUpdate(dossierId: number, update: DossierJuridiqueUpdate): Observable<DossierJuridiqueUpdate> {
     const url = `${this.apiUrl}/${dossierId}/update`;

@@ -215,13 +215,14 @@ export class DossierUpdateClientComponent implements OnInit {
       }
     
       const qrData = {
-        id: this.dossier.id,
-        reference: this.dossier.reference,
-        clientNom: this.dossier.client.firstname,
-        clientPrenom: this.dossier.client.lastname,
-        clientEmail: this.dossier.emailClient,
-        dateCreation: this.dossier.dateCreation,
-      };
+        id: this.dossier?.id ?? null,
+        reference: this.dossier?.reference ?? null,
+        clientNom: this.dossier?.client?.firstname ?? null,
+        clientPrenom: this.dossier?.client?.lastname ?? null,
+        clientEmail: this.dossier?.emailClient ?? null,
+        dateCreation: this.dossier?.dateCreation ?? null,
+      }
+      ;
     
       QRCode.toDataURL(JSON.stringify(qrData), { errorCorrectionLevel: 'H' })
         .then(url => this.qrCodeImageUrl = url)

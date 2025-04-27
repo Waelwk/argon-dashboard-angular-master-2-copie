@@ -166,4 +166,17 @@ body {
 .chat-message-left,
 .chat-message-right {
     animation: fadeIn 0.3s ease-out;
-}
+}#manager-select {
+    width: 250px; /* Fixe la largeur */
+    height: 40px; /* Fixe la hauteur */
+   
+    font-size: 16px; /* Taille de la police pour mieux voir le texte */
+  }
+  
+  @media (max-width: 768px) {
+    #manager-select {
+      width: 100%; /* Pour que le select soit responsive sur les petits écrans */
+      height: 35px; /* Ajuste la hauteur pour les petits écrans */
+    }
+  }
+  

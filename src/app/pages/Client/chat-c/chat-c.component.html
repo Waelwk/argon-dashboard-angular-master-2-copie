@@ -1,0 +1,110 @@
+<main class="content" style="position: relative; top: 25px;">
+    <div class="container p-0" style="margin-left: 5%;">
+      <h1 class="h3 mb-3">Messages</h1>
+  
+      <div class="card">
+        <div class="row g-0">
+  
+          <!-- Sidebar gauche : liste des avocats et messages récents -->
+          <div class="col-12 col-lg-5 col-xl-3 border-right">
+            <div class="px-4 d-none d-md-block">
+              <div class="d-flex align-items-center"></div>
+            </div>
+  
+            <!-- Sélectionner un avocat uniquement -->
+            <label for="avocat-select" class="form-label mt-3">Contacter un avocat :</label>
+            <div class="px-4">
+              <select id="avocat-select" class="form-select" (change)="selectUserById($event)">
+                <option value="">-- Sélectionner un avocat --</option>
+                <option *ngFor="let avocat of avocatsDossier" [value]="avocat.id">
+                  {{ avocat.firstname }} {{ avocat.lastname }} -- {{ avocat.cabinet?.nom || 'Nom du cabinet non disponible' }}
+                </option>
+              </select>
+            </div>
+  
+            <!-- Messages récents -->
+            <label for="recent-messages" class="form-label mt-3">Messages récents :</label>
+            <div *ngFor="let user of users"
+                 class="list-group-item list-group-item-action border-0"
+                 (click)="selectUser(user)"
+                 [class.active]="user.id === selectedUser?.id">
+              <div class="d-flex align-items-start">
+                <img [src]="user.avatar || 'https://bootdey.com/img/Content/avatar/avatar3.png'"
+                     class="rounded-circle mr-1"
+                     [alt]="user.firstname + ' ' + user.lastname"
+                     width="40" height="40">
+                <div class="flex-grow-1 ml-3">
+                  {{ user.firstname }} {{ user.lastname }} ({{ user.role }})
+                  <div class="small">
+                    <span class="fas fa-circle"
+                          [class.chat-online]="user.isOnline"
+                          [class.chat-offline]="!user.isOnline"></span>
+                    {{ user.isOnline ? 'Online' : 'Offline' }}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+  
+          <!-- Boîte de chat -->
+          <div class="col-12 col-lg-7 col-xl-9" *ngIf="selectedUser">
+            <div class="py-2 px-4 border-bottom d-none d-lg-block">
+              <div class="d-flex align-items-center py-1">
+                <div class="position-relative">
+                  <img [src]="selectedUser.avatar || 'https://bootdey.com/img/Content/avatar/avatar3.png'"
+                       class="rounded-circle mr-1"
+                       [alt]="selectedUser.firstname + ' ' + selectedUser.lastname + ' ' + selectedUser.cabinet?.nom"
+                       width="40" height="40">
+                </div>
+                <div class="flex-grow-1 pl-3">
+                  <strong>{{ selectedUser.firstname }} {{ selectedUser.lastname }} - cabinet : {{ selectedUser.cabinet?.nom || 'Cabinet non disponible' }}</strong>
+                  <div class="text-muted small"><em>{{ selectedUser.isOnline ? 'Online' : 'Offline' }}</em></div>
+                </div>
+              </div>
+            </div>
+  
+            <!-- Messages -->
+            <div class="position-relative" style="height: 400px;">
+              <div class="chat-messages p-4">
+                <div *ngFor="let message of messages"
+                     [class.chat-message-right]="message.senderId === currentUserId"
+                     [class.chat-message-left]="message.receiverId === currentUserId"
+                     class="pb-4">
+                  <div>
+                    <img [src]="message.senderId === currentUserId ?
+                                (currentUserAvatar || 'https://bootdey.com/img/Content/avatar/avatar1.png') :
+                                (selectedUser?.avatar || 'https://bootdey.com/img/Content/avatar/avatar3.png')"
+                         class="rounded-circle mr-1"
+                         [alt]="message.senderId === currentUserId ? 'Moi' : selectedUser?.firstname"
+                         width="40" height="40">
+                    <div class="text-muted small text-nowrap mt-2">{{ message.timestamp | date:'shortTime' }}</div>
+                  </div>
+                  <div class="flex-shrink-1 bg-light rounded py-2 px-3"
+                       [class.mr-3]="message.senderId === currentUserId"
+                       [class.ml-3]="message.senderId !== currentUserId">
+                    <div class="font-weight-bold mb-1">
+                      {{ message.senderId === currentUserId? 'Moi' : selectedUser?.firstname }}
+                    </div>
+                    {{ message.content }}
+                  </div>
+                </div>
+              </div>
+            </div>
+  
+            <!-- Saisie message -->
+            <div class="flex-grow-0 py-3 px-4 border-top">
+              <div class="input-group">
+                <input type="text"
+                       class="form-control"
+                       placeholder="Écrire un message..."
+                       [(ngModel)]="newMessage">
+                <button class="btn btn-primary" (click)="send()">Envoyer</button>
+              </div>
+            </div>
+          </div>
+  
+        </div>
+      </div>
+    </div>
+  </main>
+  

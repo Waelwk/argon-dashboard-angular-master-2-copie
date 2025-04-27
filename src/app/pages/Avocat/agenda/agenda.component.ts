@@ -107,22 +107,27 @@ export class AgendaComponent implements OnInit {
   // Sauvegarder ou mettre à jour un rendez-vous
   saveRendezVous() {
     if (this.isEditMode) {
+      console.log('Formulaire envoyé :', this.rendezVousForm);
+
       this.rendezVousService.updateRendezVous(this.rendezVousForm.id, this.rendezVousForm).subscribe(
         (data) => {
           const index = this.rendezVousList.findIndex(rdv => rdv.id === this.rendezVousForm.id);
-          this.rendezVousList[index] = data;  // Mettre à jour le rendez-vous modifié
-          this.updateCalendar();  // Mettre à jour le calendrier
+          if (index !== -1) {
+            this.rendezVousList[index] = data;  // Met à jour le RDV existant
+          }
+          this.updateCalendar();  // Rafraîchit l'affichage du calendrier
           this.closeRendezVousModal();
           this.toastr.success('Rendez-vous mis à jour avec succès');
         },
         (error) => {
-          this.toastr.success('Erreur lors de la mise à jour du rendez-vous', error);
+          this.toastr.error('Erreur lors de la mise à jour du rendez-vous', error.message || '');
         }
       );
     } else {
       this.createRendezVous();
     }
   }
+  
 
   createRendezVous(): void {
     // Assurez-vous que les données sont valides
