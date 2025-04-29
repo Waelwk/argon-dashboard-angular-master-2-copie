@@ -43,7 +43,7 @@ errorMessage: string = '';
   id: number;
   isAddModalOpen: boolean = false;
   DossierId: number;
-  dossier: import("/Users/wael/Desktop/argon-dashboard-angular-master 2 copie/src/app/Models/ DossierJuridique").DossierJuridique;
+  dossier: DossierJuridique;
   qrCodeImageUrl: string = '';
   isUpdateModalOpen = false; //
   isAllDocumentsModalOpen = false; // Pour contrôler l'affichage du modal

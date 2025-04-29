@@ -5,6 +5,7 @@ import { User } from 'src/app/Models/user';
 import { AvocatService } from 'src/app/service/Avocat/avocat.service'; // au cas où tu en as encore besoin
 import { AssistantService } from 'src/app/service/Assistant/assistant.service';
 import { ManagerService } from 'src/app/service/user/manager.service';
+import { Assistant } from 'src/app/Models/assistant';
 
 @Component({
   selector: 'app-chat-m',
@@ -24,7 +25,7 @@ assistants: User[] = []; // Add this property to store assistants
   currentUserAvatar?: string; // Ajoutez cette propriété si nécessaire
   cabinetId: number;
   isLoading: boolean;
-  assistant: import("/Users/wael/Desktop/dosssieretude/pfe master/project/argon-dashboard-angular-master-2-copie/src/app/Models/assistant").Assistant;
+  assistant:Assistant;
   error: string;
   avocats: any[];
 

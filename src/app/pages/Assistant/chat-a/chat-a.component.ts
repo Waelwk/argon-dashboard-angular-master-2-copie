@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Assistant } from 'src/app/Models/assistant';
 import { Message } from 'src/app/Models/message';
 import { User } from 'src/app/Models/user';
 import { AssistantService } from 'src/app/service/Assistant/assistant.service';
@@ -23,9 +24,10 @@ export class ChatAComponent implements OnInit {
   currentUserAvatar?: string; // Ajoutez cette propriété si nécessaire
   cabinetId: number;
   isLoading: boolean;
-  assistant: import("/Users/wael/Desktop/dosssieretude/pfe master/project/argon-dashboard-angular-master-2-copie/src/app/Models/assistant").Assistant;
+
   error: string;
   avocats: any[];
+  assistant: Assistant;
 
   constructor(private messageService: MessageService,private avocatService :AvocatService, private assistantService: AssistantService) {}
   
