@@ -1,16 +1,13 @@
-import 'zone.js/dist/zone-testing';
+import 'zone.js';
+import 'zone.js/testing';
 import { getTestBed } from '@angular/core/testing';
-import {
-  BrowserDynamicTestingModule,
-  platformBrowserDynamicTesting
-} from '@angular/platform-browser-dynamic/testing';
+import { BrowserDynamicTestingModule, platformBrowserDynamicTesting } from '@angular/platform-browser-dynamic/testing';
 
-// First initialize the Angular testing environment
+// Ceci est nécessaire pour initialiser le test Angular
 getTestBed().initTestEnvironment(
   BrowserDynamicTestingModule,
-  
-  platformBrowserDynamicTesting(),
-  { 
-    teardown: { destroyAfterEach: false } // Add this line
-  }
+  platformBrowserDynamicTesting()
 );
+
+// Les fichiers de tests
+import './app/app.component.spec.ts'; // Assure-toi que ce fichier existe
