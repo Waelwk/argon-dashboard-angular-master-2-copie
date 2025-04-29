@@ -6,9 +6,10 @@ import { DossierJuridiqueUpdateService } from 'src/app/service/Dossier_juridique
 import { DossierJuridiqueService } from 'src/app/service/DossierJuridiques/dossier-juridique.service';
 import * as QRCode from 'qrcode';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { DossierJuridique } from '/Users/wael/Desktop/argon-dashboard-angular-master 2 copie/src/app/Models/ DossierJuridique';
+
 import { ToastrService } from 'ngx-toastr';
 import { DocumentService } from 'src/app/service/Document/document.service';
+import { DossierJuridique } from 'src/app/Models/DossierJuridique';
 
 
 
