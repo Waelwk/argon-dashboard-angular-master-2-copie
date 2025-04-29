@@ -26,7 +26,7 @@ jobs:
       run: npm ci # Utilise npm ci pour une installation plus fiable que npm install
 
     - name: Run tests
-      # //run: |
+      run: |
       #   npm run test -- --watch=false --browsers=ChromeHeadless
       #   npm run lint
 
