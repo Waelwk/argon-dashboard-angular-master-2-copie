@@ -4,9 +4,12 @@ on:
   push:
     branches:
       - main
+  pull_request:
+    branches:
+      - main
 
 jobs:
-  build:
+  build-and-test:
     runs-on: ubuntu-latest
 
     steps:
@@ -17,15 +20,31 @@ jobs:
       uses: actions/setup-node@v3
       with:
         node-version: '18'
+        cache: 'npm'
 
-    - name: Install and Build
+    - name: Install dependencies
+      run: npm ci # Utilise npm ci pour une installation plus fiable que npm install
+
+    - name: Run tests
       run: |
-        npm install
-        ng build --prod
+        npm run test -- --watch=false --browsers=ChromeHeadless
+        npm run lint
+
+    - name: Build production
+      run: npm run build -- --prod
 
     - name: Upload Build Artifacts
-      uses: actions/upload-artifact@v3.1.0
-
+      uses: actions/upload-artifact@v3
       with:
         name: angular-dist
         path: dist/
+        retention-days: 5
+
+    # Optionnel : Déploiement vers un environnement de test
+    - name: Deploy to Test Environment
+      if: github.ref == 'refs/heads/main'
+      uses: JamesIves/github-pages-deploy-action@v4
+      with:
+        branch: gh-pages
+        folder: dist
+        token: ${{ secrets.GITHUB_TOKEN }}
