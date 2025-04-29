@@ -23,24 +23,25 @@ jobs:
         cache: 'npm'
 
     - name: Install dependencies
-      run: npm ci # Utilise npm ci pour une installation plus fiable que npm install
+      run: npm ci # Reliable installation over npm install
 
     - name: Run tests
       run: |
-      #   npm run test -- --watch=false --browsers=ChromeHeadless
-      #   npm run lint
+        # Uncomment these lines if you want to run tests and lint checks
+        # npm run test -- --watch=false --browsers=ChromeHeadless
+        # npm run lint
 
     - name: Build production
-      run: npm run build -- --prod
+      run: npm run build -- --configuration=production # Updated flag for production
 
     - name: Upload Build Artifacts
-      uses:  actions/upload-artifact@v4
+      uses: actions/upload-artifact@v4
       with:
         name: angular-dist
         path: dist/
         retention-days: 5
 
-    # Optionnel : Déploiement vers un environnement de test
+    # Optional: Deploy to GitHub Pages for testing
     - name: Deploy to Test Environment
       if: github.ref == 'refs/heads/main'
       uses: JamesIves/github-pages-deploy-action@v4
