@@ -1,0 +1,765 @@
+{
+  "Cour de cassation": [
+    "Cour de cassation de Tunis"
+  ],
+  "Cours d'appel": [
+    "Cour d'appel de Tunis",
+    "Cour d'appel de Nabeul",
+    "Cour d'appel de Bizerte",
+    "Cour d'appel de Béja",
+    "Cour d'appel du Kef",
+    "Cour d'appel de Jendouba",
+    "Cour d'appel de Sousse",
+    "Cour d'appel de Monastir",
+    "Cour d'appel de Kairouan",
+    "Cour d'appel de Sfax",
+    "Cour d'appel de Gafsa",
+    "Cour d'appel de Gabès",
+    "Cour d'appel de Médenine",
+    "Cour d'appel de Kasserine",
+    "Cour d'appel de Sidi Bouzid"
+  ],
+  "Tribunaux de première instance": [
+    "Tribunal de première instance de Tunis",
+    "Tribunal de première instance de Tunis 2",
+    "Tribunal de première instance de l'Ariana",
+    "Tribunal de première instance de Ben Arous",
+    "Tribunal de première instance de Manouba",
+    "Tribunal de première instance de Bizerte",
+    "Tribunal de première instance de Béja",
+    "Tribunal de première instance du Kef",
+    "Tribunal de première instance de Jendouba",
+    "Tribunal de première instance de Siliana",
+    "Tribunal de première instance du Kasserine",
+    "Tribunal de première instance de Sousse",
+    "Tribunal de première instance de Sousse 2",
+    "Tribunal de première instance de Kairouan",
+    "Tribunal de première instance de Monastir",
+    "Tribunal de première instance de Mahdia",
+    "Tribunal de première instance de Sfax",
+    "Tribunal de première instance de Sfax 2",
+    "Tribunal de première instance de Gafsa",
+    "Tribunal de première instance de Tozeur",
+    "Tribunal de première instance de Sidi Bouzid",
+    "Tribunal de première instance de Gabès",
+    "Tribunal de première instance de Kébili",
+    "Tribunal de première instance de Médenine",
+    "Tribunal de première instance de Tataouine"
+  ],
+  "Tribunal immobilier": [
+    "Le tribunal immobilier",
+    "Le siège auxiliaire du tribunal immobilier à Bizerte",
+    "Le siège auxiliaire du tribunal immobilier à Béja",
+    "Le siège auxiliaire du tribunal immobilier au Kef",
+    "Le siège auxiliaire du tribunal immobilier à Siliana",
+    "Le siège auxiliaire du tribunal immobilier au Kasserine",
+    "Le siège auxiliaire du tribunal immobilier à Sousse",
+    "Le siège auxiliaire du tribunal immobilier au Kairouan",
+    "Le siège auxiliaire du tribunal immobilier à Monastir",
+    "Le siège auxiliaire du tribunal immobilier au Mahdia",
+    "Le siège auxiliaire du tribunal immobilier à Sfax",
+    "Le siège auxiliaire du tribunal immobilier à Gafsa",
+    "Le siège auxiliaire du tribunal immobilier au Sidi Bouzid",
+    "Le siège auxiliaire du tribunal immobilier à Gabes",
+    "Le siège auxiliaire du tribunal immobilier à Kébili",
+    "Le siège auxiliaire du tribunal immobilier à Médenine",
+    "Le siège auxiliaire du tribunal immobilier à Tataouine"
+  ]
+}
+{
+    "tpi": [
+      {
+        "nom": "TPI de Tunis",
+        "justices_cantonales": [
+          {
+            "nom": "Justice cantonale de Tunis",
+            "date_creation": "Décret n°64-83 du 16 mars 1964",
+            "circonscription": "Médina, Bab El Bhar, Bab Souika, El Omrane, Cité El Khadra, El Menzah, Sidi El Béchir",
+            "adresse": "Boulevard 9 avril, Immeuble de la municipalité, 1019 Tunis",
+            "telephone": "71 566546",
+            "fax": "71 566545"
+          },
+          {
+            "nom": "Justice cantonale de Carthage",
+            "date_creation": "Décret n°76-287 du 29 mars 1976",
+            "circonscription": "Carthage, La Goulette, Kram, La Marsa",
+            "adresse": "22 avenue Habib Bourguiba, Carthage Byrsa 2016",
+            "telephone": "71 730400",
+            "fax": "71 730400"
+          },
+          {
+            "nom": "Justice cantonale de Bardo",
+            "date_creation": "Décret n°76-289 du 29 mars 1976",
+            "circonscription": "Bardo, El Omrane Supérieur, Ettahrir",
+            "adresse": "34 avenue Tayeb Mhiri, Bardo 2000",
+            "telephone": "71 515500",
+            "fax": "71 515500"
+          }
+        ]
+      },
+      {
+        "nom": "TPI de Tunis 2",
+        "justices_cantonales": [
+          {
+            "nom": "Justice cantonale de Tunis 2 Ezzouhour",
+            "date_creation": "Décret n°94-373 du 7 février 1994",
+            "circonscription": "Ezzouhour, Sidjoumi, El Hraïria, Sidi Hassine",
+            "adresse": "6 rue 4501, Cité Ezzouhour Essomrane 2052",
+            "telephone": "71 509516",
+            "fax": "71 509516"
+          },
+          {
+            "nom": "Justice cantonale d'El Ouardia",
+            "date_creation": "Décret n°94-374 du 7 février 1994",
+            "circonscription": "El Ouardia, El Kabaria, Djebel Djeloud",
+            "adresse": "Rue Bellevue, El Ouardia 1009 Tunis",
+            "telephone": "71 496652",
+            "fax": "71 496652"
+          }
+        ]
+      },
+      {
+        "nom": "TPI de Ben Arous",
+        "justices_cantonales": [
+          {
+            "nom": "Justice cantonale de Ben Arous",
+            "date_creation": "Décret n°89-446 du 22 avril 1989",
+            "circonscription": "Ben Arous, Nouvelle Médina, El Mourouj, Radès, Megrine, Mohamedia, Fouchana, Mornag",
+            "adresse": "Route nationale n°1 km 5, Chouchet-Rades 2013",
+            "telephone": "71 385007",
+            "fax": "71 386113"
+          },
+          {
+            "nom": "Justice cantonale de Hammam-Lif",
+            "date_creation": "Décret n°99-909 du 19 avril 1999",
+            "circonscription": "Hammam-Lif, Hammam Chott, Bou Mhel El Bassatine, Ez-Zahra",
+            "adresse": "Rue Salambo, Hammam-Lif 2050",
+            "telephone": "71 910211",
+            "fax": "71 910211"
+          }
+        ]
+      },
+      {
+        "nom": "TPI de Manouba",
+        "justices_cantonales": [
+          {
+            "nom": "Justice cantonale de Manouba",
+            "date_creation": "Décret n°93-1726 du 16 août 1993",
+            "circonscription": "Manouba, Douar Hicher, Oued Ellil",
+            "adresse": "16 rue Abou Jihed, Manouba 2010",
+            "telephone": "70 615523",
+            "fax": "70 615523"
+          },
+          {
+            "nom": "Justice cantonale de Tébourba",
+            "date_creation": "Décret du 3 août 1956 (supprimée en 1960, recréée en 1999)",
+            "circonscription": "Tébourba, Djedaïda, Mornaguia, Borj El Amri, Battane",
+            "adresse": "Route Echouigui, Tébourba 1130",
+            "telephone": "71 530388",
+            "fax": "71 530388"
+          }
+        ]
+      },
+      {
+        "nom": "TPI de Grombalia",
+        "justices_cantonales": [
+          {
+            "nom": "Justice cantonale de Grombalia",
+            "date_creation": "Décret n°62-319 du 29 septembre 1962",
+            "circonscription": "Grombalia, Bou Argoub",
+            "adresse": "Avenue Habib Bourguiba, Grombalia 8030",
+            "telephone": "72 256148",
+            "fax": "72 256148"
+          },
+          {
+            "nom": "Justice cantonale de Menzel Bouzelfa",
+            "date_creation": "Décret n°90-722 du 25 avril 1990",
+            "circonscription": "Menzel Bouzelfa, Takelsa, Solimane, Beni Khalled",
+            "adresse": "Boulevard de l'environnement, 8080 Menzel Bouzelfa",
+            "telephone": "72 292071",
+            "fax": "72 292071"
+          },
+          {
+            "nom": "Justice cantonale de Hammamet",
+            "date_creation": "Décret n°76-422 du 19 mai 1976",
+            "circonscription": "Hammamet",
+            "adresse": "40 Avenue Habib Bourguiba, 8050 Hammamet",
+            "telephone": "72 280792",
+            "fax": "72 280792"
+          }
+        ]
+      },
+      {
+        "nom": "TPI de Nabeul",
+        "justices_cantonales": [
+          {
+            "nom": "Justice cantonale de Nabeul",
+            "date_creation": "Décret du 23 juillet 1938",
+            "circonscription": "Nabeul, Dar Chaâbane El Fehri, Béni Khiar, Korba",
+            "adresse": "4 rue Mar Plat, Nabeul 8000",
+            "telephone": "72 285264",
+            "fax": "72 285064"
+          },
+          {
+            "nom": "Justice cantonale de Menzel Temime",
+            "date_creation": "Décret du 24 juillet 1957",
+            "circonscription": "Menzel Temime, El Mida, Kélibia, Hammam El Guezaz, El Haouaria",
+            "adresse": "Boulevard de l'environnement, 8080 Menzel Temime",
+            "telephone": "72 346236",
+            "fax": "72 346236"
+          }
+        ]
+      },
+      {
+        "nom": "TPI de Zaghouan",
+        "justices_cantonales": [
+          {
+            "nom": "Justice cantonale de Zaghouan",
+            "date_creation": "Décret du 15 mai 1952",
+            "circonscription": "Zaghouan, Ez-Zériba, Bir M'chergua",
+            "adresse": "Rue 20 mars, 1100 Zaghouan",
+            "telephone": "72 675038",
+            "fax": "72 675038"
+          },
+          {
+            "nom": "Justice cantonale d'El Fahs",
+            "date_creation": "Décret n°79-731 du 14 août 1979",
+            "circonscription": "El Fahs, En-Nadhour, Saouaf",
+            "adresse": "Rue Slaheddine Bouchoucha, 1140 El Fahs",
+            "telephone": "72 770670",
+            "fax": "72 770670"
+          }
+        ]
+      },
+      {
+        "nom": "TPI de Bizerte",
+        "justices_cantonales": [
+          {
+            "nom": "Justice cantonale de Bizerte",
+            "date_creation": "Décret du 23 juillet 1938 (supprimée en 1956, recréée en 1957)",
+            "circonscription": "Bizerte Nord, Zarzouna, Bizerte Sud, Menzel Djemil, El Alia",
+            "adresse": "Boulevard 7 Novembre, 7000 Bizerte",
+            "telephone": "72 433080",
+            "fax": "72 433080"
+          },
+          {
+            "nom": "Justice cantonale de Menzel Bourguiba",
+            "date_creation": "Décret n°59-98 du 15 avril 1959",
+            "circonscription": "Menzel Bourguiba, Tinja",
+            "adresse": "10 Rue Hamadi Essid, Menzel Bourguiba 7050",
+            "telephone": "72 464116",
+            "fax": "72 464116"
+          },
+          {
+            "nom": "Justice cantonale de Mateur",
+            "date_creation": "Décret du 15 mai 1952",
+            "circonscription": "Mateur, Sedjnane, Djoumine, Ghézala",
+            "adresse": "Route de Tabarka, 7030 Mateur",
+            "telephone": "72 466170",
+            "fax": "72 466170"
+          },
+          {
+            "nom": "Justice cantonale de Ras El Djebel",
+            "date_creation": "Décret du 24 juillet 1957 (supprimée en 1961, recréée en 1976)",
+            "circonscription": "Ras El Djebel, Utique, Ghar El Meleh",
+            "adresse": "Rue Habib Bougatfa, 7070 Ras El Djebel",
+            "telephone": "72 447944",
+            "fax": "72 447944"
+          }
+        ]
+      },
+      {
+        "nom": "TPI de Béja",
+        "justices_cantonales": [
+          {
+            "nom": "Justice cantonale de Béja",
+            "date_creation": "Loi n°57-42 du 27 septembre 1957",
+            "circonscription": "Béja Nord, Béja Sud, Amdoun",
+            "adresse": "Rue Okba Ibn Nafah, 9000 Béja",
+            "telephone": "78 456660",
+            "fax": "78 456660"
+          },
+          {
+            "nom": "Justice cantonale de Téboursouk",
+            "date_creation": "Décret du 15 mai 1952",
+            "circonscription": "Téboursouk, Thibar",
+            "adresse": "Avenue de la République (Bâb Jebli), Téboursouk 9040",
+            "telephone": "78 465037",
+            "fax": "78 465037"
+          },
+          {
+            "nom": "Justice cantonale de Medjez El Bab",
+            "date_creation": "Décret du 2 septembre 1948",
+            "circonscription": "Medjez El Bab, Testour, Goubellat",
+            "adresse": "Avenue Habib Bourguiba, Medjez El Bab 9070",
+            "telephone": "78 321780",
+            "fax": "78 321780"
+          },
+          {
+            "nom": "Justice cantonale de Nefza",
+            "date_creation": "Décret n°99-907 du 19 avril 1999",
+            "circonscription": "Nefza",
+            "adresse": "Cité El Maoued, 9010 Nefza",
+            "telephone": "78 470211",
+            "fax": "78 470211"
+          }
+        ]
+      },
+      {
+        "nom": "TPI du Kef",
+        "justices_cantonales": [
+          {
+            "nom": "Justice cantonale du Kef",
+            "date_creation": "Loi n°57-42 du 27 septembre 1957",
+            "circonscription": "Kef Ouest, Kef Est, Nebeur, Sakiet Sidi Youssef",
+            "adresse": "Rue Heidi Cheker, 7100 Kef",
+            "telephone": "78 200467",
+            "fax": "78 200467"
+          },
+          {
+            "nom": "Justice cantonale de Tajerouine",
+            "date_creation": "Décret du 17 novembre 1949",
+            "circonscription": "Tajerouine, Kalâat Snan, Kalâat Khasba, Djerissa",
+            "adresse": "Avenue Habib Bourguiba, 7150 Tajerouine",
+            "telephone": "78 277322",
+            "fax": "78 277322"
+          },
+          {
+            "nom": "Justice cantonale de Dahmani",
+            "date_creation": "Décret n°75-480 du 23 juillet 1975",
+            "circonscription": "Dahmani, El Ksour, Sers",
+            "adresse": "Cité Essanabel, 7010 Dahmani",
+            "telephone": "78 282254",
+            "fax": "78 282254"
+          }
+        ]
+      },
+      {
+        "nom": "TPI de Jendouba",
+        "justices_cantonales": [
+          {
+            "nom": "Justice cantonale de Jendouba",
+            "date_creation": "Décret du 17 novembre 1949",
+            "circonscription": "Jendouba, Jendouba Nord",
+            "adresse": "Avenue Habib Bourguiba, 8100 Jendouba",
+            "telephone": "78 601436",
+            "fax": "78 601436"
+          },
+          {
+            "nom": "Justice cantonale de Ghardimaou",
+            "date_creation": "Décret du 3 août 1956",
+            "circonscription": "Ghardimaou, Oued Meliz",
+            "adresse": "50 Avenue Habib Bourguiba, 8160 Ghardimaou",
+            "telephone": "78 655488",
+            "fax": "78 655488"
+          },
+          {
+            "nom": "Justice cantonale de Bou Salem",
+            "date_creation": "Décret n°58-240 du 20 octobre 1958",
+            "circonscription": "Bou Salem, Balta-Bou Aouen",
+            "adresse": "Place de la République, 8170 Bou Salem",
+            "telephone": "78 639222",
+            "fax": "78 639222"
+          },
+          {
+            "nom": "Justice cantonale d'Aïn Draham",
+            "date_creation": "Décret du 11 août 1956",
+            "circonscription": "Aïn Draham, Fernana",
+            "adresse": "Rue Ali Balhouene, 8130 Aïn Draham",
+            "telephone": "78 655049",
+            "fax": "Non disponible"
+          },
+          {
+            "nom": "Justice cantonale de Tabarka",
+            "date_creation": "Décret n°93-908 du 26 avril 1993",
+            "circonscription": "Tabarka",
+            "adresse": "Avenue Habib Bourguiba n°1 et 2, Tabarka 8110",
+            "telephone": "71 673331",
+            "fax": "71 673331"
+          }
+        ]
+      },
+      {
+        "nom": "TPI de Siliana",
+        "justices_cantonales": [
+          {
+            "nom": "Justice cantonale de Siliana",
+            "date_creation": "Décret du 3 août 1956",
+            "circonscription": "Siliana Nord, Siliana Sud, Bargou",
+            "adresse": "Avenue de l'environnement, Route de Gafour, 6100 Siliana",
+            "telephone": "78 870011",
+            "fax": "78 870011"
+          },
+          {
+            "nom": "Justice cantonale de Makthar",
+            "date_creation": "Décret du 17 novembre 1949",
+            "circonscription": "Makthar, Er-Rouhia, Kesra",
+            "adresse": "Avenue Habib Bourguiba, 6110 Makthar",
+            "telephone": "78 826533",
+            "fax": "78 826533"
+          },
+          {
+            "nom": "Justice cantonale de Gaâfour",
+            "date_creation": "Décret du 3 août 1956",
+            "circonscription": "Gaâfour, Bou Arada, El-Aroussa",
+            "adresse": "Avenue Tayeb Mhiri, 6110 Gaâfour",
+            "telephone": "78 817119",
+            "fax": "78 817119"
+          },
+          {
+            "nom": "Justice cantonale d'El Krib",
+            "date_creation": "Décret n°91-1756 du 11 novembre 1991",
+            "circonscription": "El Krib, Bou Rouis",
+            "adresse": "Boulevard de l'environnement, 6120 El Krib",
+            "telephone": "78 891288",
+            "fax": "78 891288"
+          }
+        ]
+      },
+      {
+        "nom": "TPI de Kasserine",
+        "justices_cantonales": [
+          {
+            "nom": "Justice cantonale de Kasserine",
+            "date_creation": "Décret du 17 novembre 1949",
+            "circonscription": "Kasserine Nord, Kasserine Sud, Ezzouhour, Hassi El-Ferid",
+            "adresse": "Rue El Anssar – Cité Ediouana, 1200 Kasserine",
+            "telephone": "77 474804",
+            "fax": "77 474804"
+          },
+          {
+            "nom": "Justice cantonale de Thala",
+            "date_creation": "Décret du 3 août 1956",
+            "circonscription": "Thala, Hidra",
+            "adresse": "Avenue Habib Bourguiba, 1210 Thala",
+            "telephone": "78 480015",
+            "fax": "78 480015"
+          },
+          {
+            "nom": "Justice cantonale de Sbeïtla",
+            "date_creation": "Décret du 3 août 1956",
+            "circonscription": "Sbeïtla",
+            "adresse": "Coin de la Rue Tayeb Mhiri et de Rue de la République n°16, 1250 Sbeïtla",
+            "telephone": "77 465002",
+            "fax": "77 465002"
+          },
+          {
+            "nom": "Justice cantonale de Sbiba",
+            "date_creation": "Décret n°76-282 du 29 mars 1976",
+            "circonscription": "Sbiba, Djedliane",
+            "adresse": "Rue Bou Baker El Fourati – cité Bougera, 1270 Sbiba",
+            "telephone": "73 488035",
+            "fax": "73 488035"
+          },
+          {
+            "nom": "Justice cantonale de Feriana",
+            "date_creation": "Décret n°79-377 du 27 avril 1979",
+            "circonscription": "Feriana, Majel Bel Abbès",
+            "adresse": "Avenue Habib Bourguiba - face poste de police, 1240 Feriana",
+            "telephone": "77 440522",
+            "fax": "77 440522"
+          },
+          {
+            "nom": "Justice cantonale de Foussana",
+            "date_creation": "Décret n°92-97 du 13 juin 1992",
+            "circonscription": "Foussana, El Ayoun",
+            "adresse": "Avenue 7 novembre – Cité administrative, 1220 Foussana",
+            "telephone": "77 420617",
+            "fax": "77 420617"
+          }
+        ]
+      },
+      {
+        "nom": "TPI de Sousse",
+        "justices_cantonales": [
+          {
+            "nom": "Justice cantonale de Sousse",
+            "date_creation": "Loi n°57-42 du 27 septembre 1957",
+            "circonscription": "Sousse Ville, Sousse Riadh, Sousse Jawhara, Sousse Sidi Abdelhamid, Zaouiet-Ksibet-Thrayet",
+            "adresse": "Rue Tahar Sfar, 4000 Sousse",
+            "telephone": "73 223258",
+            "fax": "73 225834"
+          },
+          {
+            "nom": "Justice cantonale de M'saken",
+            "date_creation": "Décret n°60-242 du 12 juillet 1960",
+            "circonscription": "M'Saken, Sidi El Han",
+            "adresse": "Rue Tayeb Hchicha, 4070 M'saken",
+            "telephone": "73 259226",
+            "fax": "73 259226"
+          }
+        ]
+      },
+      {
+        "nom": "TPI de Sousse 2",
+        "justices_cantonales": [
+          {
+            "nom": "Justice cantonale de Sousse 2",
+            "date_creation": "Décret n°1806 du 13 mai 2008",
+            "circonscription": "Hammam Sousse, Kalâa Kebira, Kalâa Seghira, Sidi Bou Ali, Akouda, Hergla",
+            "adresse": "Non précisée",
+            "telephone": "73 822042",
+            "fax": "73 822042"
+          },
+          {
+            "nom": "Justice cantonale d'Enfidha",
+            "date_creation": "Décret du 24 juillet 1957",
+            "circonscription": "Enfidha, Bouficha, Kondar",
+            "adresse": "Avenue de la République, 4030 Enfidha",
+            "telephone": "73 250126",
+            "fax": "73 250126"
+          }
+        ]
+      },
+      {
+        "nom": "TPI de Kairouan",
+        "justices_cantonales": [
+          {
+            "nom": "Justice cantonale de Kairouan",
+            "date_creation": "Loi n°57-42 du 27 septembre 1957",
+            "circonscription": "Kairouan Nord, Kairouan Sud, Hajeb El Ayoun, Echbika",
+            "adresse": "Coin Rue Hassan Ibn Nomen et rue El Kehia, 3100 Kairouan",
+            "telephone": "73 235345",
+            "fax": "73 235345"
+          },
+          {
+            "nom": "Justice cantonale de Haffouz",
+            "date_creation": "Décret du 15 mai 1952",
+            "circonscription": "Haffouz, El Alâa",
+            "adresse": "Avenue de l'Ere Nouvel, 3130 Hafouz",
+            "telephone": "73 355018",
+            "fax": "73 355018"
+          },
+          {
+            "nom": "Justice cantonale de Bouhajla",
+            "date_creation": "Décret du 3 août 1956",
+            "circonscription": "Bouhajla, Nasrallah, Echrarda",
+            "adresse": "Rue Ali Ben Amara Ettriki n°1323, 3180 Bouhajla",
+            "telephone": "77 266064",
+            "fax": "77 266064"
+          },
+          {
+            "nom": "Justice cantonale d'El Oueslatia",
+            "date_creation": "Décret n°75-495 du 28 juillet 1975",
+            "circonscription": "El Oueslatia",
+            "adresse": "Avenue Habib Bourguiba, 3120 El Oueslatia",
+            "telephone": "73 350049",
+            "fax": "73 350049"
+          },
+          {
+            "nom": "Justice cantonale de Sbikha",
+            "date_creation": "Décret n°84-215 du 1 mars 1984",
+            "circonscription": "Sbikha",
+            "adresse": "Rue 2 mars – Cité Ennour, 3110 Sbikha",
+            "telephone": "73 365024",
+            "fax": "73 365024"
+          }
+        ]
+      },
+      {
+        "nom": "TPI de Monastir",
+        "justices_cantonales": [
+          {
+            "nom": "Justice cantonale de Monastir",
+            "date_creation": "Décret du 3 août 1956",
+            "circonscription": "Monastir, Bembla, Ouerdanine, Sahline",
+            "adresse": "Rue Chaben Bhouri, 5000 Monastir",
+            "telephone": "73 460898",
+            "fax": "73 460898"
+          },
+          {
+            "nom": "Justice cantonale de Jammel",
+            "date_creation": "Décret du 25 septembre 1956",
+            "circonscription": "Jammel, Zéramdine, Beni Hassen",
+            "adresse": "Cité Administratif, 5020 Jammel",
+            "telephone": "73 486114",
+            "fax": "73 486114"
+          },
+          {
+            "nom": "Justice cantonale de Moknine",
+            "date_creation": "Décret du 23 juillet 1938",
+            "circonscription": "Moknine, Téboulba, Ksar Hellal, Sayada-Lamta-Bou Hjar, Bekalta",
+            "adresse": "3 Avenue Habib Bourguiba, Ksar Hellel 5050",
+            "telephone": "73 475281",
+            "fax": "73 475281"
+          }
+        ]
+      },
+      {
+        "nom": "TPI de Mahdia",
+        "justices_cantonales": [
+          {
+            "nom": "Justice cantonale de Mahdia",
+            "date_creation": "Décret du 13 novembre 1947",
+            "circonscription": "Mahdia",
+            "adresse": "Avenue Habib Bourguiba – place Kairouan, 5100 Mahdia",
+            "telephone": "73 680402",
+            "fax": "73 680402"
+          },
+          {
+            "nom": "Justice cantonale d'Essouassi",
+            "date_creation": "Décret du 25 septembre 1956",
+            "circonscription": "Essouassi, Ouled Chamekh, Chorbane, Hébira",
+            "adresse": "1 Avenue de l'Environnement, 5140 Essouassi",
+            "telephone": "73 610011",
+            "fax": "73 610011"
+          },
+          {
+            "nom": "Justice cantonale d'El Djem",
+            "date_creation": "Décret n°75-479 du 23 juillet 1975",
+            "circonscription": "El Djem, Bou Merdès",
+            "adresse": "Avenue Tayeb Mhery, 5160 El Djem",
+            "telephone": "73 630930",
+            "fax": "73 630930"
+          },
+          {
+            "nom": "Justice cantonale de Ksour Essaf",
+            "date_creation": "Décret n°73-67 du 19 février 1973",
+            "circonscription": "Ksour Essaf, Sidi Alouane",
+            "adresse": "Avenue de l'Environnement, Route de Mahdia, 5180 Ksour Essaf",
+            "telephone": "73 665013",
+            "fax": "73 665013"
+          },
+          {
+            "nom": "Justice cantonale de Chebba",
+            "date_creation": "Décret n°74-832 du 4 septembre 1974",
+            "circonscription": "Chebba, Melloulech",
+            "adresse": "Rue de l'Arabie Saoudite, 5170 Chebba",
+            "telephone": "73 643033",
+            "fax": "73 643033"
+          }
+        ]
+      },
+      {
+        "nom": "TPI de Sfax",
+        "justices_cantonales": [
+          {
+            "nom": "Justice cantonale de Sfax",
+            "date_creation": "Loi n°42-57 du 27 septembre 1957",
+            "circonscription": "Sfax Ville, Kerkennah",
+            "adresse": "Route de Gabes km 5,3 – Cité El Habib, 3050 Sfax",
+            "telephone": "74 453999",
+            "fax": "74 453999"
+          },
+          {
+            "nom": "Justice cantonale de Djebeniana",
+            "date_creation": "Décret du 15 mai 1952",
+            "circonscription": "Djebeniana, El Amra, El Hancha",
+            "adresse": "Avenue Farhat Hached, 3080 Djebeniana",
+            "telephone": "74 880039",
+            "fax": "74 880039"
+          },
+          {
+            "nom": "Justice cantonale de Sakiet Ezzit",
+            "date_creation": "Décret n°99-908 du 19 avril 1999",
+            "circonscription": "Sakiet Ezzit, Sakiet Eddaïer",
+            "adresse": "Avenue Hedi Cheker, 3021 Sakiet Ezzit",
+            "telephone": "74 255707",
+            "fax": "74 255707"
+          }
+        ]
+      },
+      {
+        "nom": "TPI de Sfax 2",
+        "justices_cantonales": [
+          {
+            "nom": "Justice cantonale de Sfax 2",
+            "date_creation": "Décret n°1806 du 13 mai 2008",
+            "circonscription": "Sfax Ouest, Sfax Sud, Thina",
+            "adresse": "Route de Gabés Km 2.5, Sfax 3000",
+            "telephone": "Non précisé",
+            "fax": "Non précisé"
+          },
+          {
+            "nom": "Justice cantonale de Mahres",
+            "date_creation": "Décret du 3 août 1956",
+            "circonscription": "Mahrès, Skhira, El Ghraïba",
+            "adresse": "Cité Administratif, 3060 Mahres",
+            "telephone": "74 290102",
+            "fax": "74 290102"
+          },
+          {
+            "nom": "Justice cantonale d'Agareb",
+            "date_creation": "Décret n°76-283 du 29 mars 1976",
+            "circonscription": "Agareb, Menzel Chaker",
+            "adresse": "El Ariche, 3030 Agareb",
+            "telephone": "74 271260",
+            "fax": "74 271260"
+          },
+          {
+            "nom": "Justice cantonale de Bir Ali Ben Khelifa",
+            "date_creation": "Décret n°1297 du 26 février 2013",
+            "circonscription": "Bir Ali Ben Khelifa",
+            "adresse": "El Ariche, 3030 Bir Ali Ben Khlifa",
+            "telephone": "74 271260",
+            "fax": "74 271260"
+          }
+        ]
+      },
+      {
+        "nom": "TPI de Gafsa",
+        "justices_cantonales": [
+          {
+            "nom": "Justice cantonale de Gafsa",
+            "date_creation": "Loi n°42-57 du 27 septembre 1957",
+            "circonscription": "Gafsa nord, Gafsa Sud, Sidi Aïch, El Ksar, Mdhila, El Guetar, Belkhi, Sned",
+            "adresse": "Rue d'Hongrie -Cité Ennour-Imeubles Aouled Yahya, 2100 Gafsa",
+            "telephone": "76 224809",
+            "fax": "76 224809"
+          },
+          {
+            "nom": "Justice cantonale de Metlaoui",
+            "date_creation": "Décret n°99-59 du 15 avril 1959",
+            "circonscription": "Metlaoui, Om El Ariîes, Redeyef",
+            "adresse": "Avenue Habib Bourguiba, Metlaoui",
+            "telephone": "76 241527",
+            "fax": "76 241527"
+          }
+        ]
+      },
+      {
+        "nom": "TPI de Tozeur",
+        "justices_cantonales": [
+          {
+            "nom": "Justice cantonale de Tozeur",
+            "date_creation": "Décret du 14 juillet 1949",
+            "circonscription": "Tozeur, Dégach, Tamegza, Nefta, Hazoua",
+            "adresse": "Avenue Habib Bourguiba, 2200 Tozeur",
+            "telephone": "76 462736",
+            "fax": "76 462736"
+          }
+        ]
+      },
+      {
+        "nom": "TPI de Sidi Bouzid",
+        "justices_cantonales": [
+          {
+            "nom": "Justice cantonale de Sidi Bouzid",
+            "date_creation": "Décret du 13 octobre 1949",
+            "circonscription": "Sidi Bouzid Ouest, Sidi Bouzid Est",
+            "adresse": "Avenue Habib Bourguiba, 9100 Sidi Bouzid",
+            "telephone": "76 632744",
+            "fax": "76 632744"
+          },
+          {
+            "nom": "Justice cantonale de Jilma",
+            "date_creation": "Décret n°90-882 du 30 mai 1990",
+            "circonscription": "Jilma, Sébalat Ouled Asker",
+            "adresse": "Rue Mehrez Ben Khlaf, 9110 Jilma",
+            "telephone": "76 657110",
+            "fax": "76 657110"
+          },
+          {
+            "nom": "Justice cantonale de Ben Aoun",
+            "date_creation": "Décret n°75-481 du 23 juillet 1975",
+            "circonscription": "Sidi Ali Ben Aoun, Bir El Hafey",
+            "adresse": "20 Avenue 7 Novembre, 9120 Ben Aoun",
+            "telephone": "76 660272",
+            "fax": "76 660272"
+          },
+          {
+            "nom": "Justice cantonale de Meknassy",
+            "date_creation": "Décret n°76-281 du 29 mars 1976",
+            "circonscription": "Mesknassy, Menzel Bouzaïene, Souk Jedid, Mezzouna",
+            "adresse": "Avenue Habib Bourguiba, 9140 Meknassy",
+            "telephone": "73 645058",}
