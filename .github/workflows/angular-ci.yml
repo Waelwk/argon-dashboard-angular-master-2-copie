@@ -24,7 +24,8 @@ jobs:
         ng build --prod
 
     - name: Upload Build Artifacts
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v3.1.0
+
       with:
         name: angular-dist
         path: dist/
