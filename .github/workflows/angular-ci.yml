@@ -40,6 +40,9 @@ jobs:
         name: angular-dist
         path: dist/
         retention-days: 5
+    - name: Clean temporary deployment folder
+      run: |
+        rm -rf github-pages-deploy-action-temp-deployment-folder
 
     # Optional: Deploy to GitHub Pages for testing
     - name: Deploy to Test Environment
@@ -49,3 +52,6 @@ jobs:
         branch: gh-pages
         folder: dist
         token: ${{ secrets.GITHUB_TOKEN }}
+        clean: true # Removes old deployment files
+        force: true # Overrides conflicts
+
