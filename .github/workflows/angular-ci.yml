@@ -3,10 +3,10 @@ name: Angular CI
 on:
   push:
     paths:
-      - 'frontend/**'  # Cette partie surveille tous les changements dans le dossier frontend
+      -  main  # Cette partie surveille tous les changements dans le dossier frontend
   pull_request:
     paths:
-      - 'frontend/**'
+      -  main
 
 jobs:
   build:
