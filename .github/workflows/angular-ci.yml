@@ -1,31 +1,29 @@
-name: Angular CI
+name: Frontend CI/CD
 
 on:
   push:
-    paths:
-      -  main  # Cette partie surveille tous les changements dans le dossier frontend
-  pull_request:
-    paths:
-      -  main
+    branches:
+      - main
 
 jobs:
   build:
-    runs-on: ubuntu-latest  # Le workflow se déroulera sur une machine virtuelle Ubuntu
-    defaults:
-      run:
-        working-directory: frontend  # Change de répertoire de travail pour le frontend
-
+    runs-on: ubuntu-latest
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v3  # Cette étape récupère ton code source
+      - name: Checkout code
+        uses: actions/checkout@v3
 
-    - name: Setup Node
-      uses: actions/setup-node@v3
-      with:
-        node-version: '18'  # Utilise la version de Node.js 18
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
 
-    - name: Install dependencies
-      run: npm install  # Installe les dépendances du projet Angular
+      - name: Install and Build
+        run: |
+          npm install
+          ng build --prod
 
-    - name: Build Angular project
-      run: npm run build  # Lance la commande pour construire le projet Angular
+      - name: Upload Build Artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: angular-dist
+          path: dist/
