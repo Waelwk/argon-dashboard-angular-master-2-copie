@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { DossierJuridique } from 'src/app/Models/ DossierJuridique';
+import { DossierJuridique } from 'src/app/Models/DossierJuridique';
 import { AvocatService } from 'src/app/service/Avocat/avocat.service';
 import { DossierJuridiqueService } from 'src/app/service/DossierJuridiques/dossier-juridique.service';
 

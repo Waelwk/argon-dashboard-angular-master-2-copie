@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
-import { DossierJuridique } from 'src/app/Models/ DossierJuridique';
+import { DossierJuridique } from 'src/app/Models/DossierJuridique';
 import { DossierJuridiqueUpdate } from 'src/app/Models/DossierJuridiqueUpdate';
 import { RendezVous } from 'src/app/Models/RendezVous';
 import { DocumentService } from 'src/app/service/Document/document.service';

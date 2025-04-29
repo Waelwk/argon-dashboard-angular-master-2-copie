@@ -6,7 +6,7 @@ import { StatutRendezVous } from "src/app/Models/StatutRendezVous";
 
 import { RendezVousService } from "src/app/service/RendezVous/rendezvous.service";
 import { ToastrService } from "ngx-toastr";
-import { DossierJuridique } from "src/app/Models/ DossierJuridique";
+import { DossierJuridique } from "src/app/Models/DossierJuridique";
 import { AccessCodeService } from "src/app/service/access-code /access-code.service";
 import { co } from "@fullcalendar/core/internal-common";
 

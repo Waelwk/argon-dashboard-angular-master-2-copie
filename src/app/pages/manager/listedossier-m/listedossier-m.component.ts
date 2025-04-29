@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { DossierJuridique } from 'src/app/Models/ DossierJuridique';
+import { DossierJuridique } from 'src/app/Models/DossierJuridique';
 import { Assistant } from 'src/app/Models/assistant';
 import { AvocatService } from 'src/app/service/Avocat/avocat.service';
 

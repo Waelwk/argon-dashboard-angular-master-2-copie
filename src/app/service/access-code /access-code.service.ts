@@ -4,7 +4,7 @@ import { Observable, throwError, switchMap, map, catchError } from 'rxjs';
 import { AuthService } from '../auth/auth.service';
 
 import { AccessCode } from 'src/app/Models/AccessCode';
-import { DossierJuridique } from 'src/app/Models/ DossierJuridique';
+import { DossierJuridique } from 'src/app/Models/DossierJuridique';
 
 @Injectable({
   providedIn: 'root'

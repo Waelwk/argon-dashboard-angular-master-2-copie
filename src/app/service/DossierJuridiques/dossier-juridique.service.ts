@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment'; // Adjust if needed
-import { DossierJuridique } from 'src/app/Models/ DossierJuridique';
+import { DossierJuridique } from 'src/app/Models/DossierJuridique';
 import { AuthService } from '../auth/auth.service';
 
 

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DossierJuridique } from 'src/app/Models/ DossierJuridique';
+import { DossierJuridique } from 'src/app/Models/DossierJuridique';
 
 import { DossierJuridiqueService } from 'src/app/service/DossierJuridiques/dossier-juridique.service';
 

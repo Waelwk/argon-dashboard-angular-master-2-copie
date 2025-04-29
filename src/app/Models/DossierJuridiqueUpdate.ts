@@ -1,4 +1,4 @@
-import { DossierJuridique } from "./ DossierJuridique";
+import { DossierJuridique } from "./DossierJuridique";
 import { RendezVous } from "./RendezVous";
 import { Document } from "./Document";
 export class DossierJuridiqueUpdate {
