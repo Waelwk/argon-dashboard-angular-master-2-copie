@@ -71,16 +71,14 @@ app-navbar {
 }
 
 @media (max-width: 768px) { /* Mobiles */
-    .container-fluid {
-        height: calc(100vh - 90px); /* Ajuste encore plus pour les petits écrans */
-        padding: 1px; /* Moins de padding pour optimiser l'espace */
-    }
+  
     app-sidebarm {
         width: 90px; /* Cacher la sidebar */
     }
 
     #content-wrapper {
-        margin-left: 70px;
+        margin-left: 90px;
+        width: calc(100% - 90px);
     }
 
     app-navbar {

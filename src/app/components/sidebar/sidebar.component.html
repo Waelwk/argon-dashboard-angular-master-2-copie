@@ -41,42 +41,58 @@
           <span>Gestion Managers</span>
       </a>
       <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-          <div class="py-2 collapse-inner rounded">
-              <!-- <h6 class="collapse-header">Custom Components:</h6> -->
-             
-            <a class="nav-link" routerLink="/dashboard/Manager">
-                <i class="fas fa-user-tie"></i>
-                <span> Managers Actif </span>
-            </a>
-            <a class="nav-link" routerLink="/dashboard/ManagerArchivee">
-                <i class="fas fa-archive"></i>
-                <span>Managers Archivés</span>
-            </a>
-          </div>
+        <div class="collapse-inner bg-white p-1 rounded"> <!-- bg-white pour fond opaque -->
+            <div class="grid-menu">
+                <a class="grid-item bg-light" routerLink="/dashboard/Manager">
+                    <div class="grid-icon bg-primary text-white rounded-circle"> <!-- Fond coloré -->
+                        <i class="fas fa-user-tie"></i>
+                    </div>
+                        <span class="grid-text"> Managers Actif </span>
+                </a>
+    
+                <!-- Item 2 - Complètement opaque -->
+                <a class="grid-item bg-light" routerLink="/dashboard/ManagerArchivee">
+                    <div class="grid-icon bg-secondary text-white rounded-circle">
+                        <i class="fas fa-archive"></i>
+                    </div>
+                    <span class="grid-text">Managers Archivés</span>
+                </a>
+            </div>
       </div>
+        </div>
+            
   </li> 
  
   <li class="nav-item">
+
     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwoo"
         aria-expanded="true" aria-controls="collapseTwo">
         <i class="fas fa-users"></i>
         <span>Gestion Clients</span>
     </a>
     <div id="collapseTwoo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-        <div class="py-2 collapse-inner rounded">
-            <!-- <h6 class="collapse-header">Custom Components:</h6> -->
-           
-            <a class="nav-link" routerLink="/dashboard/Client">
-                <i class="fas fa-users"></i>
-                <span> Clients Actif</span>
-            </a>
-            <a class="nav-link" routerLink="/dashboard/ClientArchivee">
-                <i class="fas fa-archive"></i>
-                <span>Clients Archivés</span>
-            </a>
+        <div class="collapse-inner bg-white p-3 rounded"> <!-- bg-white pour fond opaque -->
+            <div class="grid-menu"> <!-- Nouveau conteneur grid -->
+                <!-- Item 1 - Complètement opaque -->
+                <a class="grid-item bg-light" routerLink="/dashboard/Client">
+                    <div class="grid-icon bg-primary text-white rounded-circle"> <!-- Fond coloré -->
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <span class="grid-text">Clients Actifs</span>
+                </a>
+    
+                <!-- Item 2 - Complètement opaque -->
+                <a class="grid-item bg-light" routerLink="/dashboard/ClientArchivee">
+                    <div class="grid-icon bg-secondary text-white rounded-circle">
+                        <i class="fas fa-archive"></i>
+                    </div>
+                    <span class="grid-text">Clients Archivés</span>
+                </a>
+            </div>
         </div>
     </div>
 </li>
+
   <!-- Nav Item - Utilities Collapse Menu -->
   <li class="nav-item">
       <!-- <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" -->

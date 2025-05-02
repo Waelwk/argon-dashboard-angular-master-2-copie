@@ -69,22 +69,54 @@ app-navbar {
         left: 225px;
     }
 }
-
-@media (max-width: 768px) { /* Mobiles */
-    .container-fluid {
-        height: calc(100vh - 90px); /* Ajuste encore plus pour les petits écrans */
-        padding: 1px; /* Moins de padding pour optimiser l'espace */
+@media (max-width: 768px) {
+    /* Layout principal */
+    #wrapper {
+      display: flex;
     }
-    app-sidebar{
-        width: 90px; /* Cacher la sidebar */
+  
+    /* Sidebar compacte */
+    app-sidebar {
+      width: 90px;
+      min-width: 90px;
+      background: #2c3e50; /* Fond sombre pour les icônes */
+      overflow: visible; /* Permet aux menus de déborder */
     }
-
+  
+    /* Cache les textes, garde les icônes */
+    .nav-link span {
+      display: none;
+    }
+  
+    /* Centrage des icônes */
+    .nav-link i {
+      display: block;
+      text-align: center;
+      padding: 12px 0;
+      color: #ecf0f1;
+      font-size: 1.3rem;
+    }
+  
+    /* Menus déroulants */
+    .collapse {
+      position: absolute;
+      left: 90px; /* Aligné à droite de la sidebar */
+      min-width: 200px;
+      background: white;
+      box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+    z-index: 1100; 
+      border: 1px solid #eee;
+    }
+  
+    /* Ajustement du contenu */
     #content-wrapper {
-        margin-left: 70px;
+      margin-left: 90px;
+      width: calc(100% - 90px);
     }
-
+  
+    /* Navbar ajustée */
     app-navbar {
-        width: calc(100% - 90px);
-        left: 90px;
+      width: calc(100% - 90px);
+      left: 104px;
     }
-}
+  }

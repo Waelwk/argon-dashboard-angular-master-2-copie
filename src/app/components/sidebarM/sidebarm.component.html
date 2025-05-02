@@ -40,50 +40,62 @@
         <span>Les Dossiers de cabinet </span>
     </a>
 </li>
-    <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-            aria-expanded="true" aria-controls="collapseTwo">
-            <i class="fas fa-user-tie"></i>
-            <span>Gestion Avocats </span>
-        </a>
-        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-            <div class="py-2 collapse-inner rounded">
-                <!-- <h6 class="collapse-header">Custom Components:</h6> -->
+<li class="nav-item">
+    <a class="nav-link"  [routerLink]="['/dashboardm/listeAvocatM', cabinetId]">
+        <i class="fas fa-user-tie"></i>
+                  <span>  Liste des Avocats  </span>
+    </a>
+</li>
+<li class="nav-item">
+    <a class="nav-link" [routerLink]="['/dashboardm/listeAssistant', cabinetId]">
+        <i class="fas fa-users"></i>
+        <span>   Liste des Assistants</span>
+    </a>
+</li>
+    <!-- <li class="nav-item"> -->
+        <!-- <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" -->
+            <!-- aria-expanded="true" aria-controls="collapseTwo"> -->
+            <!-- <i class="fas fa-user-tie"></i> -->
+            <!-- <span>Gestion Avocats </span> -->
+        <!-- </a> -->
+        <!-- <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar"> -->
+            <!-- <div class="py-2 collapse-inner rounded"> -->
+                <!-- <!~~ <h6 class="collapse-header">Custom Components:</h6> ~~> -->
                
-              <a class="nav-link" [routerLink]="['/dashboardm/listeAvocatM', cabinetId]">
-                  <i class="fas fa-user-tie"></i>
-                  <span> Avocats Actif </span>
-              </a>
-              <a class="nav-link" [routerLink]="['/dashboardm/AvocatArchivee', cabinetId]">
+              <!-- <a class="nav-link" [routerLink]="['/dashboardm/listeAvocatM', cabinetId]"> -->
+                  <!-- <i class="fas fa-user-tie"></i> -->
+                  <!-- <span> Avocats Actif </span> -->
+              <!-- </a> -->
+              <!-- <a class="nav-link" [routerLink]="['/dashboardm/AvocatArchivee', cabinetId]"> -->
           
-                  <i class="fas fa-archive"></i>
-                  <span>Avocats  Archivés</span>
-              </a>
-            </div>
-        </div>
-    </li> 
+                  <!-- <i class="fas fa-archive"></i> -->
+                  <!-- <span>Avocats  Archivés</span> -->
+              <!-- </a> -->
+            <!-- </div> -->
+        <!-- </div> -->
+    <!-- </li>  -->
    
-    <li class="nav-item">
-      <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwoo"
-          aria-expanded="true" aria-controls="collapseTwo">
-          <i class="fas fa-users"></i>
-          <span>Gestion  Assistants</span>
-      </a>
-      <div id="collapseTwoo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-          <div class="py-2 collapse-inner rounded">
-              <!-- <h6 class="collapse-header">Custom Components:</h6> -->
+    <!-- <li class="nav-item"> -->
+      <!-- <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwoo" -->
+          <!-- aria-expanded="true" aria-controls="collapseTwo"> -->
+          <!-- <i class="fas fa-users"></i> -->
+          <!-- <span>Gestion  Assistants</span> -->
+      <!-- </a> -->
+      <!-- <div id="collapseTwoo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar"> -->
+          <!-- <div class="py-2 collapse-inner rounded"> -->
+              <!-- <!~~ <h6 class="collapse-header">Custom Components:</h6> ~~> -->
              
-              <a class="nav-link" [routerLink]="['/dashboardm/listeAssistant', cabinetId]">
-                  <i class="fas fa-users"></i>
-                  <span>  AssistantsActif</span>
-              </a>
-              <a class="nav-link"  [routerLink]="['/dashboardm/AssistantArchivee', cabinetId]">
-                  <i class="fas fa-archive"></i>
-                  <span> Assistants Archivés</span>
-              </a>
-          </div>
-      </div>
-  </li>
+              <!-- <a class="nav-link" [routerLink]="['/dashboardm/listeAssistant', cabinetId]"> -->
+                  <!-- <i class="fas fa-users"></i> -->
+                  <!-- <span>  AssistantsActif</span> -->
+              <!-- </a> -->
+              <!-- <a class="nav-link"  [routerLink]="['/dashboardm/AssistantArchivee', cabinetId]"> -->
+                  <!-- <i class="fas fa-archive"></i> -->
+                  <!-- <span> Assistants Archivés</span> -->
+              <!-- </a> -->
+          <!-- </div> -->
+      <!-- </div> -->
+  <!-- </li> -->
     <!-- Nav Item - Utilities Collapse Menu -->
     <li class="nav-item">
         <!-- <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" -->

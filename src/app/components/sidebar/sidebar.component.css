@@ -11268,4 +11268,97 @@
   body.sidebar-toggled footer.sticky-footer {
     width: 100%;
   }
+  /* Activation des tooltips au survol */
+.nav-link:hover::after {
+  content: attr(title);
+  position: absolute;
+  left: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+  background: #333;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 3px;
+  font-size: 0.8rem;
+  white-space: nowrap;
+  margin-left: 10px;
+  z-index: 20;
+}/* Conteneur principal */
+.collapse-inner {
+  background-color: #4e73df !important; /* Force l'opacité */
+  opacity: 1 !important;
+  box-shadow: 0 0 15px rgba(0,0,0,0.1);
+  border: 1px solid #e0e0e0 !important;
+}
+
+/* Grille *//* Force tout le contenu du menu devant */
+.collapse * {
+  position: relative;
+  z-index: 1101 !important;
+}
+
+/* Crée un conteneur d'empilement */
+#main-container {
+  position: relative;
+  z-index: 0;
+}
+.grid-menu {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+
+/* Items */
+.grid-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 15px 10px;
+  border-radius: 8px;
+  background-color: #f8f9fa !important; /* Fond opaque */
+  text-decoration: none;
+  transition: all 0.2s;
+  border: 1px solid #dee2e6 !important; /* Bordure visible */
+}
+
+.grid-item:hover {
+  background-color: #e9ecef !important;
+  transform: translateY(-3px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+/* Icônes */
+.grid-icon {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 10px;
+  font-size: 1.1rem;
+}
+
+/* Texte */
+.grid-text {
+  color: #212529;
+  font-weight: 500;
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+/* Version mobile */
+@media (max-width: 768px) {
+  .grid-menu {
+      grid-template-columns: 1fr; /* 1 colonne en mobile */
+  }
   
+  .grid-item {
+      flex-direction: row;
+      gap: 15px;
+      padding: 12px 15px;
+  }
+  
+  .grid-icon {
+      margin-bottom: 0;
+  }
+}
