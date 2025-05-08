@@ -3,14 +3,17 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
 export interface Blog {
+  status?: string;
+  avocat: any;
   id?: number;
   title: string;
   description: string;
-  avocatId: number;
+  avocatId?: number;
   image?: File | Blob;
   name?: string;
   type?: string;
   createdBy?: any;
+
 }
 
 @Injectable({
@@ -46,7 +49,7 @@ export class BlogService {
     const formData = new FormData();
     formData.append('title', blog.title);
     formData.append('description', blog.description);
-    formData.append('avocatId', blog.avocatId.toString());
+
     if (blog.image) {
       formData.append('image', blog.image);
     }

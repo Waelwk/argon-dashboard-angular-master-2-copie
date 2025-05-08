@@ -81,9 +81,9 @@
    
 <!-- Bouton pour ouvrir le modal -->
 <div class="container d-flex justify-content-end my-3">
-    <!-- <button class="btn btn-primary" (click)="openAddBlogModal()"> -->
-      <!-- <i class="fa fa-plus"></i> Ajouter un Blog -->
-    <!-- </button> -->
+    <button class="btn btn-primary" (click)="openAddBlogModal()">
+      <i class="fa fa-plus"></i> Ajouter un Blog
+    </button>
   </div>
   <!-- Messages de succès ou d'erreur -->
 
@@ -97,105 +97,72 @@
     </div>
     
    <!-- Cart Item -->
-<div *ngIf="blogs.length > 0" class="container mt-4">
-    <div *ngFor="let blog of blogs" class="card shadow-sm mb-4">
-      <div class="row g-0">
-        
-        <!-- Image -->
-        <div class="col-md-3">
-          <img [src]="'data:' + blog.type + ';base64,' + blog.image"
-               alt="Blog Image"
-               class="img-fluid rounded-start h-100 w-100 object-fit-cover" />
-        </div>
-  
-        <!-- Contenu -->
-        <div class="col-md-9">
-          <div class="card-body d-flex flex-column justify-content-between h-100">
-            <div>
-              <!-- Titre -->
-              <div class="d-flex justify-content-between align-items-center flex-wrap">
-                <h5 class="card-title text-capitalize mb-0">
-                  <strong>Titre :</strong> {{ blog.title }}
-                </h5>
-                
-                <div class="mt-2 mt-md-0">
-                  <button class="btn btn-sm btn-outline-primary me-2"
-                          (click)="openEditModal(blog)" data-bs-toggle="modal" data-bs-target="#editModal">
-                    <i class="fa fa-pencil-alt"></i>
-                  </button>
-                  <button class="btn btn-sm btn-outline-danger" (click)="openDeleteModal(blog.id)">
-                    <i class="fa fa-trash"></i>
-                  </button>
-                </div>
-              </div>
-              
-              <!-- Description -->
-              <p class="card-text">
-                <strong>Description :</strong>
-                <span *ngIf="!blog.showFull">{{ blog.description | slice:0:60 }}...</span>
-                <span *ngIf="blog.showFull">{{ blog.description }}</span>
-                <a href="#" (click)="toggleDescription(blog, $event)">
-                  {{ blog.showFull ? 'Lire moins' : 'Lire plus' }}
-                </a>
-              </p>
-  
-              <!-- Badge de statut -->
-              <span class="badge mt-2 px-3 py-2 text-white rounded-pill"
-                [ngClass]="{
-                  'bg-success': blog.status === 'APPROVED',
-                  'bg-danger': blog.status === 'REJECTED',
-                  'bg-secondary': blog.status === 'enAttante'
-                }">
-                <i class="fa me-1"
-                  [ngClass]="{
-                    'fa-clock': blog.status === 'enAttante',
-                    'fa-check-circle': blog.status === 'APPROVED',
-                    'fa-times-circle': blog.status === 'REJECTED'
-                  }"></i>
-                {{ blog.status }}
-              </span>
-            </div>
-  
-            <!-- Pied de carte : Date + Actions -->
-            <div class="d-flex justify-content-between align-items-center mt-3 flex-wrap">
-  
-              <!-- Date -->
-              <div>
-                <small class="text-muted">Publié le : </small>
-                <strong class="text-primary">{{ blog.createdAt | date:'dd/MM/yyyy' }}</strong>
-                <small class="text-muted"> par Maître  : </small>
-                <strong class="text-primary"> {{ blog.avocat.firstname }} {{ blog.avocat.lastname }}</strong>
-              </div>
-  
-              <!-- Actions -->
-              <div class="d-flex align-items-center mt-2 mt-md-0">
-  
-                <!-- Boutons statut -->
-                <div *ngIf="blog.status === 'enAttante'" class="me-3">
-                  <button class="btn btn-sm btn-success me-2" (click)="updateStatus(blog.id, 'APPROVED')">
-                    <i class="fa fa-check"></i> Approuver
-                  </button>
-                  <button class="btn btn-sm btn-danger" (click)="updateStatus(blog.id, 'REJECTED')">
-                    <i class="fa fa-times"></i> Rejeter
-                  </button>
-                </div>
-  
-                <!-- Modifier / Supprimer -->
-                
-              </div>
-            </div>
-  
-          </div>
-        </div>
+   <div *ngIf="blogs.length > 0">
+    <div *ngFor="let blog of blogs" class="blog-grid">
+      
+      <!-- Image -->
+      <div class="blog-cell image-cell">
+        <img [src]="'data:' + blog.type + ';base64,' + blog.image"
+             alt="Blog Image"
+             class="blog-img">
       </div>
+  
+      <!-- Titre + Description -->
+      <div class="blog-cell content-cell">
+        <h5 class="mb-1">  <strong>titre:</strong>{{ blog.title }}</h5>
+        <p class="mb-0">
+          <strong>Titre :</strong>
+          <span *ngIf="!blog.showFull">{{ blog.description | slice:0:20 }}...</span>
+          <span *ngIf="blog.showFull">{{ blog.description }}</span>
+          <a href="#" (click)="toggleDescription(blog, $event)">
+            {{ blog.showFull ? 'Lire moins' : 'Lire plus' }}
+          </a>
+        </p>
+        <!-- ✅ Badge de statut -->
+<span class="badge mt-2 px-3 py-2 text-white rounded-pill"
+[ngClass]="{
+
+  'bg-success': blog.status === 'APPROVED',
+  'bg-danger': blog.status === 'REJECTED',
+  'bg-secondary': blog.status === 'enAttante',
+}">
+<i class="fa me-1"
+[ngClass]="{
+ '  fa-clock': blog.status === 'enAttante',
+ '  fa-check-circle': blog.status === 'APPROVED',
+ '  fa-times-circle': blog.status === 'REJECTED',
+}"></i>
+{{ blog.status }}
+</span>
+
+      </div>
+  
+      <!-- Date -->
+      <div class="blog-cell date-cell text-center">
+        <div class="fw-bold mb-1">Date</div>
+        <span class="text-primary fw-semibold">{{ blog.createdAt | date:'dd/MM/yyyy' }}</span>
+      </div>
+  
+      <!-- Actions -->
+      <div class="blog-cell actions-cell text-center">
+        <button class="btn btn-sm btn-outline-primary me-2"     (click)="openEditModal(blog)" data-bs-toggle="modal" data-bs-target="#editModal">
+          <i class="fa fa-pencil-alt"></i>
+        </button>
+        <button class="btn btn-sm btn-outline-danger" (click)="openDeleteModal(blog.id)">
+          <i class="fa fa-trash"></i>
+        </button>
+      </div>
+      
     </div>
   </div>
   
-  <!-- Message s'il n'y a aucun blog -->
-  <div *ngIf="blogs.length === 0" class="alert alert-warning text-center mt-4">
+<!-- Message lorsqu'il n'y a pas de blogs -->
+<div *ngIf="blogs.length === 0" class="alert alert-warning text-center">
     Aucun blog trouvé.
-  </div>
-  
+</div>
+</div>
+
+
 
 
   <div *ngIf="isBlogModalOpen ||isEditModalOpen || isDeleteModalOpen  " class="overlay"></div>

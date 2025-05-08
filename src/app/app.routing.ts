@@ -63,6 +63,9 @@ import { ChatAComponent } from './pages/Assistant/chat-a/chat-a.component';
 import { ChatMComponent } from './pages/manager/chat-m/chat-m.component';
 import { ChatAdComponent } from './pages/admin/chat-ad/chat-ad.component';
 import { ChatCComponent } from './pages/Client/chat-c/chat-c.component';
+import { BlogAComponent } from './pages/Avocat/blog-a/blog-a.component';
+import { BlogComponent } from './pages/admin/blog/blog.component';
+import { BlogPubComponent } from './pages/blog-pub/blog-pub.component';
 
 
 
@@ -73,7 +76,7 @@ const routes: Routes = [
     pathMatch: 'full',
   },
   { path: 'Chatboot', component: ChatbotComponent }, 
-
+  { path: 'Pub', component:BlogPubComponent},
   {
     path: 'dashboardm',
     component: ManagerLayoutComponent,
@@ -113,6 +116,7 @@ const routes: Routes = [
       { path: 'ManagerArchivee', component: ManagerArchiveeComponent},
       { path: 'DossierJuridique/:id',  component: ListedossierMComponent },
       { path: 'chat', component:  ChatAdComponent},
+      { path: 'Blog', component:  BlogComponent},
  
     ]
   },
@@ -127,7 +131,7 @@ const routes: Routes = [
       { path: 'agenda', component:AgendaComponent },
       { path: 'EditProfil', component:  EditProfilAvocatComponent},
       { path: 'chat', component:  ChatComponent},
-    
+         { path: 'Blog', component: BlogAComponent},
     ]
   },
   {
@@ -161,7 +165,7 @@ const routes: Routes = [
     ]
   },
   { path: 'index', component: IndexComponent },
-  
+  { path: 'Blog', component:BlogPubComponent},
   {
     path: 'auth',
     component: AuthLayoutComponent,

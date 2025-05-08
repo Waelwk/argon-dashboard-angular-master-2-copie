@@ -92,12 +92,19 @@ import { ChatAComponent } from './pages/Assistant/chat-a/chat-a.component';
 import { ChatMComponent } from './pages/manager/chat-m/chat-m.component';
 import { ChatAdComponent } from './pages/admin/chat-ad/chat-ad.component';
 import { ChatCComponent } from './pages/Client/chat-c/chat-c.component';
+import { BlogAComponent } from './pages/Avocat/blog-a/blog-a.component';
+
+import { BlogComponent } from './pages/admin/blog/blog.component';
+import { BlogPubComponent } from './pages/blog-pub/blog-pub.component';
+
 
 registerLocaleData(localeFr); 
 
 
 @NgModule({
   imports: [ 
+    FormsModule, 
+    NgbModule,
     // CalendarModule.forRoot({
     //   provide: DateAdapter,
     //   useFactory: adapterFactory,
@@ -130,7 +137,8 @@ registerLocaleData(localeFr);
     MatCardModule,
 
   ],
-  declarations: [ AppComponent, 
+  declarations: [ 
+    BlogAComponent,AppComponent, 
     AdminLayoutComponent,
     AuthLayoutComponent,
     DashboardComponent,
@@ -189,7 +197,11 @@ registerLocaleData(localeFr);
   ChatAComponent,
   ChatMComponent,
   ChatAdComponent,
-  ChatCComponent 
+  ChatCComponent,
+  BlogAComponent,
+  
+  BlogComponent,
+     BlogPubComponent
   ],
   providers: [ { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },],
   bootstrap: [AppComponent]

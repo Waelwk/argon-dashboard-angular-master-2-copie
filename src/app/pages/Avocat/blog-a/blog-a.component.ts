@@ -4,14 +4,13 @@ import { ToastrService } from 'ngx-toastr';
 
 import { NgForm } from '@angular/forms';
 import { Blog, BlogService } from 'src/app/service/blog/ blog.service';
-import { AvocatService } from 'src/app/service/Avocat/avocat.service';
 
 @Component({
-  selector: 'app-blog',
-  templateUrl: './blog.component.html',
-  styleUrls: ['./blog.component.css']
+  selector: 'app-blog-a',
+  templateUrl: './blog-a.component.html',
+  styleUrls: ['./blog-a.component.css']
 })
-export class BlogComponent {
+export class BlogAComponent {
   enAttenteCount: number = 0;
   approvedCount: number = 0;
   rejectedCount: number = 0;
@@ -39,10 +38,10 @@ isDeleteModalOpen: boolean = false;
     image: null,
     avocatId: 1602 // Ajuster selon l'utilisateur connecté
   };
-  constructor(private blogService: BlogService, private modalService: NgbModal, private toastr: ToastrService,private avocatService: AvocatService) {}
+  constructor(private blogService: BlogService, private modalService: NgbModal, private toastr: ToastrService) {}
 
   ngOnInit(): void {
-    // this.avocatId = Number(localStorage.getItem('id'));
+    this.avocatId = Number(localStorage.getItem('id'));
     this.getAllBlogs();
   }
 
@@ -97,21 +96,7 @@ isDeleteModalOpen: boolean = false;
       }
     });
   }
-  updateStatus(blogId: number, status: 'APPROVED' | 'REJECTED'): void {
-    const action = status === 'APPROVED' ? this.blogService.approve(blogId) : this.blogService.reject(blogId);
-  
-    action.subscribe({
-      next: () => {
-        this.toastr.success(`Blog ${status === 'APPROVED' ? 'approuvé' : 'rejeté'} avec succès`, 'Succès');
-        this.getAllBlogs(); // Recharge les blogs pour mettre à jour l'affichage
-      },
-      error: (err) => {
-        this.toastr.error(`Erreur lors de la mise à jour du blog`, 'Erreur');
-        console.error(err);
-      }
-    });
-  }
-  
+
   // Soumettre le formulaire pour modifier un blog
   onUpdateBlog(form: NgForm): void {
 
@@ -143,31 +128,18 @@ console.log(updatedBlog);
   }
   
 
+
   getAllBlogs(): void {
     this.blogService.getAll().subscribe({
       next: (data) => {
-        this.blogs = data;
-  
-        // Calcul des stats
+
+        this.blogs = data.filter(blog => blog.avocat ===  this.avocatId);
+      
         this.approvedCount = this.blogs.filter(blog => blog.status === 'APPROVED').length;
-        this.rejectedCount = this.blogs.filter(blog => blog.status === 'REJECTED').length;
+        this.rejectedCount = this.blogs.filter(blog => blog.status === 'REJECTED').length
         this.enAttenteCount = this.blogs.filter(blog => blog.status === 'enAttante').length;
+        console.log('Blogs en attente:', this.enAttenteCount);  
         this.totalBlogsCount = this.blogs.length;
-  
-        // Récupération des avocats pour chaque blog
-        this.blogs.forEach(blog => {
-          if (blog.avocat) {
-            this.avocatService.getAvocatById(blog.avocat).subscribe({
-              next: (avocat) => {
-                blog.avocat = avocat; // Ajoute l’objet avocat au blog
-              },
-              error: (err) => {
-                console.error(`Erreur lors de la récupération de l'avocat ID ${blog.avocat}`, err);
-              }
-            });
-          }
-        });
-  
       },
       error: (err) => {
         this.errorMessage = "Erreur lors de la récupération des blogs.";
@@ -175,7 +147,6 @@ console.log(updatedBlog);
       }
     });
   }
-  
   
 
   openDeleteModal(blogId: number): void {
