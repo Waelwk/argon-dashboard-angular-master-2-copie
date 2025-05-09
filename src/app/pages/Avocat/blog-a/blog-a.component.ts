@@ -42,6 +42,7 @@ isDeleteModalOpen: boolean = false;
 
   ngOnInit(): void {
     this.avocatId = Number(localStorage.getItem('id'));
+    console.log(this.avocatId);
     this.getAllBlogs();
   }
 
@@ -133,7 +134,11 @@ console.log(updatedBlog);
     this.blogService.getAll().subscribe({
       next: (data) => {
 
-        this.blogs = data.filter(blog => blog.avocat ===  this.avocatId);
+        this.blogs = data.filter(blog => 
+          blog.avocat === this.avocatId || 
+          (blog.avocat && blog.avocat.id === this.avocatId)
+        );
+        
       
         this.approvedCount = this.blogs.filter(blog => blog.status === 'APPROVED').length;
         this.rejectedCount = this.blogs.filter(blog => blog.status === 'REJECTED').length
