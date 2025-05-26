@@ -1,5 +1,5 @@
 <div class="container">
-    <h2>Liste des Dossiers Juridiques de Maitre  {{    this.premierAvocatFirstname}}</h2>
+    <h2>Liste des Dossiers Juridiques de Maitre  {{ this.premierAvocatFirstname}}</h2>
   <!-- Champ d'entrée avec bouton de recherche intégré -->
 <!-- Champ d'entrée avec bouton de recherche intégré -->
 <div class="input-group">
@@ -76,6 +76,9 @@
         </tr>
       </tbody>
     </table>
+    <div *ngIf="dossiers.length === 0" class="alert alert-info mt-3">
+      Aucuns dossiers existe  pour le moment.
+    </div>
     <div *ngIf="isAddModalOpen || isUpdateModalOpen || isArchiveModalOpen" class="overlay" (click)="closeModal()"></div>
    
     <!-- Modal de mise à jour -->

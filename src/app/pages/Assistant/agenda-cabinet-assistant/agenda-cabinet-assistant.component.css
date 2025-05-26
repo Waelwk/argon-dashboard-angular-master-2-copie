@@ -8,15 +8,11 @@
 .mwl-calendar-month-view {
   margin-top: 20px;
 }
-.color-legend {
-  margin-bottom: 20px;
-  padding: 10px;
-}
-
 .legend-container {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
+  justify-content: flex-end; /* ✅ Aligne les cartes vers la droite */
 }
 
 .legend-card {
@@ -28,6 +24,14 @@
   padding: 10px;
   box-shadow: 0 4px 6px rgba(0,0,0,0.1);
   border-radius: 8px;
+  background-color: #fff;
+  margin-left: auto;}
+.color-legend {
+  margin-bottom: 20px;
+  padding: 15px;
+  margin-left: auto; /* ✅ pousse vers la droite */
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 .legend-item {
@@ -39,7 +43,23 @@
   width: 30px;
   height: 30px;
   margin-right: 10px;
+  border-radius: 4px;
 }
+
+/* ✅ Responsive pour petits écrans */
+@media (max-width: 576px) {
+  .legend-container {
+    flex-direction: column;
+    align-items: flex-end; /* ✅ Aligne les cartes à droite en colonne */
+  }
+
+  .legend-card {
+    width: 100%; /* Prend toute la largeur disponible */
+    margin-left: 0;
+    margin-bottom: 10px;
+  }
+}
+
 
 ::ng-deep .fc {
   font-size: 12px;
@@ -197,4 +217,22 @@ h3.text-center {
 
 .table td button {
   margin: 5px 0; /* Espacement pour les boutons */
+}
+.responsive-button {
+  font-size: 16px;
+  padding: 8px 16px;
+  margin-left: 3%; /* ✅ décale légèrement vers la droite */
+  margin-bottom: 15px;
+}
+
+/* Sur petits écrans : bouton plein largeur mais toujours décalé à droite */
+@media (max-width: 576px) {
+  .responsive-button {
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    font-size: 14px;
+    padding: 10px;
+  }
 }

@@ -96,4 +96,10 @@ export class AccessCodeService {
     console.error(errorMessage);
     return throwError(() => new Error(errorMessage));
   }
+  deleteAccessCode(id: number): Observable<string> {
+    const url = `${this.apiUrl}/delete/${id}`;
+    const headers = this.getHeaders();
+    return this.http.delete<string>(url, { headers });
+  }
+  
 }

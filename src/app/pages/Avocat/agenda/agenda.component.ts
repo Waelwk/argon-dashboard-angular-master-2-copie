@@ -8,6 +8,7 @@ import { DemandePar, RendezVous } from 'src/app/Models/RendezVous';
 import { StatutRendezVous } from 'src/app/Models/StatutRendezVous';
 import { ClientService } from 'src/app/service/client/client.service';
 import { RendezVousService } from 'src/app/service/RendezVous/rendezvous.service';
+import frLocale from '@fullcalendar/core/locales/fr';
 
 @Component({
   selector: 'app-agenda',
@@ -35,10 +36,17 @@ export class AgendaComponent implements OnInit {
     plugins: [dayGridPlugin, interactionPlugin],
     editable: true,
     selectable: true,
-    events: [],  // Initialise avec un tableau vide
+    events: [],
     dateClick: this.onDateClick.bind(this),
-    eventClick: this.onEventClick.bind(this)
+    eventClick: this.onEventClick.bind(this),
+    locale: frLocale, // ✅ Cela suffit pour activer le français
+    headerToolbar: {
+      left: 'prev,next today',
+      center: 'title',
+      right: 'dayGridMonth,timeGridWeek,timeGridDay'
+    }
   };
+  
   clients: Client[] = [];
 
   constructor(private clientService :ClientService,private toastr: ToastrService,private rendezVousService: RendezVousService, private cdr: ChangeDetectorRef) {}

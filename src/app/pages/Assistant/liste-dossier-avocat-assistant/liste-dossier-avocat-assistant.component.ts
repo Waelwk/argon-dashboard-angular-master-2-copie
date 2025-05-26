@@ -28,7 +28,7 @@ export class ListeDossierAvocatAssistantComponent implements OnInit {
     isArchiveModalOpen: boolean;
   dossier: any;
   premierAvocatFirstname: any;
-    constructor(private route: ActivatedRoute,private dossierService: DossierJuridiqueService,private avocatService :AvocatService) {}
+    constructor(private route: ActivatedRoute,private dossierService: DossierJuridiqueService,private avocatService :AvocatService, private AvocatServic:AvocatService) {}
   
     ngOnInit(): void {
      
@@ -45,28 +45,35 @@ export class ListeDossierAvocatAssistantComponent implements OnInit {
       }
       
   
-    
-    getAllDossiers(): void {
-      this.dossierService.getAllDossiers().subscribe(
-        (data) => {
-          console.log('Dossiers:', data);
-          // Filtrer les dossiers en fonction de l'ID du cabinet
-          this.dossiers = data.filter(dossier => dossier.avocat.id ===  this.avocatId ||  dossier.avocat ===  this.avocatId 
-          
-          );
-
-          // Vérifier si le tableau n'est pas vide et récupérer le prénom du premier avocat
-          if (this.dossiers && this.dossiers.length > 0 && this.dossiers[0].avocat) {
-            this.premierAvocatFirstname = this.dossiers[0].avocat.firstname + ' '+ this.dossiers[0].avocat.lastname ;
-          } else {
-            this.premierAvocatFirstname = '';
+      getAllDossiers(): void {
+        // Récupérer les informations de l'avocat
+        this.AvocatServic.getAvocatById(this.avocatId).subscribe(
+          (avocatData) => {
+            console.log('Avocat:', avocatData);
+            
+            this.premierAvocatFirstname = avocatData.firstname + ' ' + avocatData.lastname;
+            // Une fois l'avocat récupéré, récupérer les dossiers
+            this.dossierService.getAllDossiers().subscribe(
+              (data) => {
+                console.log('Dossiers:', data);
+      
+                // Filtrer les dossiers en fonction de l'ID de l'avocat récupéré
+                this.dossiers = data.filter(dossier => dossier.avocat.id === avocatData.id);
+      
+                // Vérifier si le tableau n'est pas vide et récupérer le prénom du premier avocat
+               
+              },
+              (error) => {
+                this.errorMessage = 'Erreur lors du chargement des dossiers.';
+              }
+            );
+          },
+          (error) => {
+            this.errorMessage = 'Erreur lors de la récupération de l\'avocat.';
           }
-        },
-        (error) => {
-          this.errorMessage = 'Erreur lors du chargement des dossiers.';
-        }
-      );
-    }
+        );
+      }
+      
   
     getCabinetIdByAvocat(avocatId: number): void {
       this.avocatService.getAvocatById(avocatId).subscribe(

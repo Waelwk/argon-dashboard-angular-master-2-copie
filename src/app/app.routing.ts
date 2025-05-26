@@ -66,6 +66,7 @@ import { ChatCComponent } from './pages/Client/chat-c/chat-c.component';
 import { BlogAComponent } from './pages/Avocat/blog-a/blog-a.component';
 import { BlogComponent } from './pages/admin/blog/blog.component';
 import { BlogPubComponent } from './pages/blog-pub/blog-pub.component';
+import { DossierArchiverComponent } from './pages/Avocat/dossier-archiver/dossier-archiver.component';
 
 
 
@@ -132,6 +133,7 @@ const routes: Routes = [
       { path: 'EditProfil', component:  EditProfilAvocatComponent},
       { path: 'chat', component:  ChatComponent},
          { path: 'Blog', component: BlogAComponent},
+         { path: 'DossierCloture', component:      DossierArchiverComponent},
     ]
   },
   {

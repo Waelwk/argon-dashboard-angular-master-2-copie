@@ -9,12 +9,16 @@ import { AuthService } from 'src/app/service/auth/auth.service';
 })
 export class NavbarindexComponent implements OnInit {
   isLoggedIn = false;
+  isLoading = true;
   userRole: string | null = null;
   constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
     this.isLoggedIn = this.authService.isLoggedIn();
     this.userRole = this.authService.getRole();
+      setTimeout(() => {
+    this.isLoading = false;
+  }, 1000);
     
   }
 

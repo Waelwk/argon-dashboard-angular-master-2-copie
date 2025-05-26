@@ -58,8 +58,16 @@
     <h3 class="text-center">Rendez-vous ajoutés</h3>
   
     <div class="table-responsive">
-      <button mat-raised-button color="primary" (click)="openAddRendezVousModal()">Ajouter un rendez-vous</button>
-  
+      <button
+      mat-raised-button
+      color="primary"
+      class="responsive-button"
+      (click)="openAddRendezVousModal()"
+    >
+      Ajouter un rendez-vous
+    </button>
+    
+    
       <table class="table table-bordered table-striped">
         <thead style="background: azure;">
           <tr>

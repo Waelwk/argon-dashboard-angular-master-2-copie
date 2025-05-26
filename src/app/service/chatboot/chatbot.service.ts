@@ -1,21 +1,22 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 export interface ChatRequest {
-  question: string;
+  message: string;  // changer question -> message
 }
 
 export interface ChatResponse {
-  question: string;
-  answer: string;
+  response: string;      // texte de la réponse (tu peux ajuster selon backend)
+  explanation?: string;  // explication optionnelle
+  articles?: any[];      // liste d'articles optionnelle
 }
 
 @Injectable({
   providedIn: 'root'
 })
 export class ChatbotService {
-  private apiUrl = 'http://localhost:5000'; // URL du backend FastAPI
+  private apiUrl = 'http://localhost:8000'; // URL de ton backend FastAPI
 
   constructor(private http: HttpClient) {}
 

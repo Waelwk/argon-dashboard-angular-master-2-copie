@@ -1,5 +1,5 @@
 
-<body data-spy="scroll" data-target=".fixed-top">
+
     
     <app-navbarindex></app-navbarindex>
     <!-- end of preloader -->
@@ -8,13 +8,13 @@
     <!-- Navigation -->
 
 
-
+<div style="background-color: rgb(242, 242, 242);">
     <!-- Header -->
     <header id="header" class="ex-header">
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <h1>Longer Project Title Should Definitely Go Here</h1>
+                    <h1> Notre blog vous éclaire sur les grandes questions juridiques!!</h1>
                 </div> <!-- end of col -->
             </div> <!-- end of row -->
         </div> <!-- end of container -->
@@ -23,117 +23,79 @@
 
 
     <!-- Breadcrumbs -->
-    <div class="ex-basic-1">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="breadcrumbs">
-                        <a href="index.html">Home</a><i class="fa fa-angle-double-right"></i><span>Longer Project Title Should Go Here</span>
-                    </div> <!-- end of breadcrumbs -->
-                </div> <!-- end of col -->
-            </div> <!-- end of row -->
-        </div> <!-- end of container -->
-    </div> <!-- end of ex-basic-1 -->
-    <!-- end of breadcrumbs -->
+ 
 
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
     <div class="container bootstrap snippets bootdey">
+      <br>
         <div class="row">
-            <h2 class="text-muted">Welcome to our blog</h2>
+            <h2 class="text-muted">Bienvenue sur notre blog
+            </h2>
             <hr>
         </div>
+        <br>
         <div class="row">
             <!-- posts -->
         <div class="col-md-8">
+          <div  *ngFor="let blog of blogs" >
                 <div class="panel blog-container">
                   <div class="panel-body">
                     <div class="image-wrapper">
                       <a class="image-wrapper image-zoom cboxElement" href="#">
-                        <img src="https://www.bootdey.com/image/700x250/00CED1/000000" alt="Photo of Blog">
+                        <img
+  [src]="'data:' + blog.type + ';base64,' + blog.image"
+  alt="Blog Image"
+  class="img-fluid rounded-start w-100"
+  style="height: auto; max-height: 350px; object-fit: cover;" />
+
                         <div class="image-overlay"></div> 
                       </a>
                     </div>
                     
-                    <h4>Bootstrap 3.0</h4>
-                    <small class="text-muted">By <a href="#"><strong> John Doe</strong></a> |  Post on Jan 8, 2013  | 58 comments</small>
-                    
+                    <h4>{{ blog.title }}</h4>
+                
                     <p class="m-top-sm m-bottom-sm">
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam eros nibh, viverra a dui a, gravida varius velit. Nunc vel tempor nisi. Aenean id pellentesque mi, non placerat mi. Integer luctus accumsan tellus. Vivamus quis elit sit amet nibh lacinia suscipit eu quis purus. Vivamus tristique est non ipsum dapibus lacinia sed nec metus.
+                      {{ blog.description | slice:0:300 }}...
                     </p>
-                    <a href="#"><i class="fa fa-angle-double-right"></i> Continue reading</a>
+                    <small class="text-muted">
+                      Par <a href="#"><strong> Maitre :{{ blog.avocat?.firstname || 'Avocat inconnu' }} {{ blog.avocat?.lastname || 'Avocat inconnu' }} Le {{ blog.createdAt | date:'dd/MM/yyyy' }}</strong></a>
+                    </small>
                     <span class="post-like text-muted tooltip-test" data-toggle="tooltip" data-original-title="I like this post!">
                       <i class="fa fa-heart"></i> <span class="like-count">25</span>
                     </span>
                   </div>
                 </div>  
-                <div class="panel blog-container">
-                  <div class="panel-body">
-                    <div class="image-wrapper">
-                      <a class="image-wrapper image-zoom cboxElement" href="#">
-                        <img src="https://www.bootdey.com/image/700x250/FF69B4/000000" alt="Photo of Blog">
-                        <div class="image-overlay"></div> 
-                      </a>
-                    </div>
-                    
-                    <h4>Bootstrap 3.0</h4>
-                    <small class="text-muted">By <a href="#"><strong> John Doe</strong></a> |  Post on Jan 8, 2013  | 58 comments</small>
-                    
-                    <p class="m-top-sm m-bottom-sm">
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam eros nibh, viverra a dui a, gravida varius velit. Nunc vel tempor nisi. Aenean id pellentesque mi, non placerat mi. Integer luctus accumsan tellus. Vivamus quis elit sit amet nibh lacinia suscipit eu quis purus. Vivamus tristique est non ipsum dapibus lacinia sed nec metus.
-                    </p>
-                    <a href="#"><i class="fa fa-angle-double-right"></i> Continue reading</a>
-                    <span class="post-like text-muted tooltip-test" data-toggle="tooltip" data-original-title="I like this post!">
-                      <i class="fa fa-heart"></i> <span class="like-count">25</span>
-                    </span>
-                  </div>
-                </div>          
+              <br>
+            </div>   
+
         </div>
-            
-            <div class="col-md-4">
-                <h4 class="headline text-muted">
-                  POPULAR POST
-                  <span class="line"></span>
-                </h4>
-                <div class="media popular-post">
-                  <a class="pull-left" href="#">
-                    <img src="https://www.bootdey.com/image/60x60/9400D3/000000" alt="Popular Post">
-                  </a>
-                  <div class="media-body">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-                  </div>
-                </div>  
-                <div class="media popular-post">
-                  <a class="pull-left" href="#">
-                    <img src="https://www.bootdey.com/image/60x60/4B0082/000000" alt="Popular Post">
-                  </a>
-                  <div class="media-body">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-                  </div>
-                </div>  
-                <div class="media popular-post">
-                  <a class="pull-left" href="#">
-                    <img src="https://www.bootdey.com/image/60x60/E6E6FA/000000" alt="Popular Post">
-                  </a>
-                  <div class="media-body">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-                  </div>
-                </div>    
-                <div class="media popular-post">
-                  <a class="pull-left" href="#">
-                    <img src="https://www.bootdey.com/image/60x60/FFFACD/000000" alt="Popular Post">
-                  </a>
-                  <div class="media-body">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-                  </div>
-                </div>    
-                <div class="media popular-post">
-                  <a class="pull-left" href="#">
-                    <img src="https://www.bootdey.com/image/60x60/E0FFFF/000000" alt="Popular Post">
-                  </a>
-                  <div class="media-body">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-                  </div>
-                </div>            
+        <div class="col-md-4">
+          <h4 class="headline text-muted">
+          Les nouveau  POST
+            <span class="line"></span>
+          </h4>
+        
+          <div *ngFor="let blog of latestBlogs" class="media popular-post mb-3 p-2 bg-white rounded shadow-sm d-flex" style="height: 80px;">
+
+              <img 
+                [src]="'data:' + blog.type + ';base64,' + blog.image"
+                alt="Popular Post"
+                width="60"
+                height="60"
+                class="rounded"
+                style="object-fit: cover;" />
+    
+            <div class="media-body overflow-hidden">
+              <strong class="d-block text-truncate">{{ blog.title }}</strong>
+              <small class="d-block text-muted text-truncate">
+                {{ blog.description | slice:0:60 }}...
+              </small>
             </div>
+          </div>
+        </div>
+        
+            
+            
       </div>
     </div>
+  </div>

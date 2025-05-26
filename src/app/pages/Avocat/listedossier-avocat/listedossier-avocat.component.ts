@@ -1,10 +1,11 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { DossierJuridique } from 'src/app/Models/DossierJuridique';
 import { AvocatService } from 'src/app/service/Avocat/avocat.service';
 import { DossierJuridiqueService } from 'src/app/service/DossierJuridiques/dossier-juridique.service';
-
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-listedossier-avocat',
   templateUrl: './listedossier-avocat.component.html',
@@ -12,8 +13,11 @@ import { DossierJuridiqueService } from 'src/app/service/DossierJuridiques/dossi
 })
 export class ListedossierAvocatComponent implements OnInit {
   sortAsc: boolean = true; // Pour alterner ascendant / descendant
-
+  nbTotalDossiers: number = 0;
+  nbDossiersEnCours: number = 0;
+  nbDossiersClotures: number = 0;
 dossiers: DossierJuridique[] = [];
+dossierE : DossierJuridique[] = [];
   selectedDossier?: DossierJuridique;
   resultatRecherche: any = null;
   newDossier: DossierJuridique = {
@@ -43,10 +47,14 @@ dossiers: DossierJuridique[] = [];
   resultatRechercher: DossierJuridique;
   avocatId: number;
   CabinetId: void;
-  constructor(private toastr: ToastrService ,private route: ActivatedRoute,private dossierService: DossierJuridiqueService,private avocatService :AvocatService) {}
+  tribunauxGrouped: any = {};
+  constructor(private http: HttpClient,private toastr: ToastrService ,private route: ActivatedRoute,private dossierService: DossierJuridiqueService,private avocatService :AvocatService) {}
 
   ngOnInit(): void {
-   
+    this.http.get<any>('assets/tribunaux.json').subscribe(data => {
+      this.tribunauxGrouped = data;
+    });
+  
       // Récupérer l'ID de l'avocat depuis le local storage
       this.avocatId = Number(localStorage.getItem('id'));
      console.log('ID de l\'avocat :', this.avocatId);
@@ -57,21 +65,45 @@ dossiers: DossierJuridique[] = [];
       this.CabinetId==this.getCabinetIdByAvocat( this.avocatId);
       console.log('ID du cabinet :', this.CabinetId);
     }
-    
 
-  
-  getAllDossiers(): void {
-    this.dossierService.getAllDossiers().subscribe(
-      (data) => {
-        // Filtrer les dossiers en fonction de l'ID du cabinet
-        this.dossiers = data.filter(dossier => dossier.avocat.id ===  this.avocatId ||  dossier.avocat ===  this.avocatId );
-        console.log('Dossiers:', this.dossiers);
-      },
-      (error) => {
-        this.errorMessage = 'Erreur lors du chargement des dossiers.';
-      }
-    );
-  }
+    confirmDelete(dossierId: number): void {
+      Swal.fire({
+        title: 'Êtes-vous sûr ?',
+        text: 'Cette action supprimera définitivement le dossier.',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Oui, supprimer',
+        cancelButtonText: 'Annuler',
+      }).then((result) => {
+        if (result.isConfirmed) {
+          this.deleteDossier(dossierId);
+          Swal.fire('Supprimé!', 'Le dossier a été supprimé.', 'success');
+        }
+      });
+    }
+    deleteDossier(id: number): void {
+      this.dossierService.deleteDossier(id).subscribe(() => {
+        this.getAllDossiers(); // ou une mise à jour locale
+      });
+    }
+    
+    getAllDossiers(): void {
+      this.dossierService.getAllDossiers().subscribe(
+        (data) => {
+          this.dossiers = data.filter(dossier =>
+            dossier.avocat.id === this.avocatId || dossier.avocat === this.avocatId
+          );
+    
+          this.nbTotalDossiers = this.dossiers.length;
+          this.dossierE = this.dossiers.filter(d => d.statut === 'En cours');
+          this.nbDossiersEnCours = this.dossiers.filter(d => d.statut === 'En cours').length;
+          this.nbDossiersClotures = this.dossiers.filter(d => d.statut === 'Clôturé').length;
+        },
+        (error) => {
+          this.errorMessage = 'Erreur lors du chargement des dossiers.';
+        }
+      );
+    }
   sortByDateCreation() {
     this.dossiers.sort((a, b) => {
       const dateA = new Date(a.dateCreation || '');

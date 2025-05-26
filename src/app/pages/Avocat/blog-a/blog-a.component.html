@@ -98,64 +98,72 @@
     
    <!-- Cart Item -->
    <div *ngIf="blogs.length > 0">
-    <div *ngFor="let blog of blogs" class="blog-grid">
-      
-      <!-- Image -->
-      <div class="blog-cell image-cell">
-        <img [src]="'data:' + blog.type + ';base64,' + blog.image"
-             alt="Blog Image"
-             class="blog-img">
+    <div *ngFor="let blog of blogs" class="card mb-3 shadow-sm border-0">
+      <div class="row g-0">
+        
+        <!-- Image -->
+        <div class="col-md-3 text-center">
+          <img [src]="'data:' + blog.type + ';base64,' + blog.image"
+               alt="Blog Image"
+               class="img-fluid rounded-start h-90 w-90 object-fit-cover"
+               style="max-height: 180px;">
+        </div>
+    
+        <!-- Contenu -->
+        <div class="col-md-9">
+          <div class="card-body">
+            <h5 class="card-title"><strong>Titre :</strong> {{ blog.title }}</h5>
+            
+            <p class="card-text mb-2">
+              <strong>Description :</strong>
+              <span *ngIf="!blog.showFull">{{ blog.description | slice:0:50 }}...</span>
+              <span *ngIf="blog.showFull">{{ blog.description }}</span>
+              <a href="#" (click)="toggleDescription(blog, $event)">
+                {{ blog.showFull ? 'Lire moins' : 'Lire plus' }}
+              </a>
+            </p>
+    
+            <!-- Badge Statut -->
+            <span class="badge px-3 py-2 text-white rounded-pill"
+                  [ngClass]="{
+                    'bg-success': blog.status === 'APPROVED',
+                    'bg-danger': blog.status === 'REJECTED',
+                    'bg-secondary': blog.status === 'enAttante'
+                  }">
+              <i class="fa me-1"
+                 [ngClass]="{
+                   'fa-clock': blog.status === 'enAttante',
+                   'fa-check-circle': blog.status === 'APPROVED',
+                   'fa-times-circle': blog.status === 'REJECTED'
+                 }">
+              </i>
+              {{ blog.status }}
+            </span>
+    
+            <!-- Date + Actions -->
+            <div class="d-flex justify-content-between align-items-center mt-3 flex-wrap">
+              <small class="text-muted"><strong>Date :</strong> {{ blog.createdAt | date:'dd/MM/yyyy' }}</small>
+              
+              <div class="mt-2 mt-md-0">
+                <button class="btn btn-sm btn-outline-primary me-2"
+                        (click)="openEditModal(blog)"
+                        data-bs-toggle="modal"
+                        data-bs-target="#editModal">
+                  <i class="fa fa-pencil-alt"></i>
+                </button>
+                <button class="btn btn-sm btn-outline-danger"
+                        (click)="openDeleteModal(blog.id)">
+                  <i class="fa fa-trash"></i>
+                </button>
+              </div>
+            </div>
+    
+          </div>
+        </div>
       </div>
-  
-      <!-- Titre + Description -->
-      <div class="blog-cell content-cell">
-        <h5 class="mb-1">  <strong>titre:</strong>{{ blog.title }}</h5>
-        <p class="mb-0">
-          <strong>Titre :</strong>
-          <span *ngIf="!blog.showFull">{{ blog.description | slice:0:20 }}...</span>
-          <span *ngIf="blog.showFull">{{ blog.description }}</span>
-          <a href="#" (click)="toggleDescription(blog, $event)">
-            {{ blog.showFull ? 'Lire moins' : 'Lire plus' }}
-          </a>
-        </p>
-        <!-- ✅ Badge de statut -->
-<span class="badge mt-2 px-3 py-2 text-white rounded-pill"
-[ngClass]="{
-
-  'bg-success': blog.status === 'APPROVED',
-  'bg-danger': blog.status === 'REJECTED',
-  'bg-secondary': blog.status === 'enAttante',
-}">
-<i class="fa me-1"
-[ngClass]="{
- '  fa-clock': blog.status === 'enAttante',
- '  fa-check-circle': blog.status === 'APPROVED',
- '  fa-times-circle': blog.status === 'REJECTED',
-}"></i>
-{{ blog.status }}
-</span>
-
-      </div>
-  
-      <!-- Date -->
-      <div class="blog-cell date-cell text-center">
-        <div class="fw-bold mb-1">Date</div>
-        <span class="text-primary fw-semibold">{{ blog.createdAt | date:'dd/MM/yyyy' }}</span>
-      </div>
-  
-      <!-- Actions -->
-      <div class="blog-cell actions-cell text-center">
-        <button class="btn btn-sm btn-outline-primary me-2"     (click)="openEditModal(blog)" data-bs-toggle="modal" data-bs-target="#editModal">
-          <i class="fa fa-pencil-alt"></i>
-        </button>
-        <button class="btn btn-sm btn-outline-danger" (click)="openDeleteModal(blog.id)">
-          <i class="fa fa-trash"></i>
-        </button>
-      </div>
-      
     </div>
-  </div>
-  
+    
+    
 <!-- Message lorsqu'il n'y a pas de blogs -->
 <div *ngIf="blogs.length === 0" class="alert alert-warning text-center">
     Aucun blog trouvé.

@@ -9,6 +9,7 @@ import { ToastrService } from "ngx-toastr";
 import { DossierJuridique } from "src/app/Models/DossierJuridique";
 import { AccessCodeService } from "src/app/service/access-code /access-code.service";
 import { co } from "@fullcalendar/core/internal-common";
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-liste-dossier-client',
@@ -70,6 +71,34 @@ export class ListeDossierClientComponent implements OnInit {
   closeRendezVousModal() {
     this.isRendezVousModalOpen = false;
   }
+  
+  deleteCode(codeReference: string): void {
+    // Trouver l'objet code correspondant à la référence donnée
+    const code = this.codes.find(c => c.code === codeReference);
+    if (!code) return; // Si le code n'est pas trouvé, on arrête l'exécution
+  
+    Swal.fire({
+      title: 'Êtes-vous sûr de vouloir supprimer ce code ?',
+      text: 'Cette action est irréversible.',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Oui, supprimer',
+      cancelButtonText: 'Annuler'
+    }).then(result => {
+      if (result.isConfirmed) {
+        this.accessCodeService.deleteAccessCode(code.id).subscribe({
+          next: (response) => {
+            Swal.fire('Supprimé !', 'Le code d\'accès a été supprimé avec succès.', 'success');
+            this.loadData(); // Rechargement des données pour afficher la liste mise à jour
+          },
+          error: (error) => {
+            Swal.fire('Erreur', 'Il y a eu un problème avec la suppression du code.', 'error');
+          }
+        });
+      }
+    });
+  }
+  
   createRendezVous(): void {
     if (!this.rendezVousForm.motif || !this.rendezVousForm.dateHeure) {
       this.toastr.error("Veuillez remplir tous les champs du rendez-vous.");

@@ -96,6 +96,7 @@ import { BlogAComponent } from './pages/Avocat/blog-a/blog-a.component';
 
 import { BlogComponent } from './pages/admin/blog/blog.component';
 import { BlogPubComponent } from './pages/blog-pub/blog-pub.component';
+import { DossierArchiverComponent } from './pages/Avocat/dossier-archiver/dossier-archiver.component';
 
 
 registerLocaleData(localeFr); 
@@ -201,7 +202,8 @@ registerLocaleData(localeFr);
   BlogAComponent,
   
   BlogComponent,
-     BlogPubComponent
+     BlogPubComponent,
+     DossierArchiverComponent
   ],
   providers: [ { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },],
   bootstrap: [AppComponent]

@@ -7,7 +7,31 @@
 
   <div class="chat-messages">
     <div *ngFor="let msg of messages" class="message" [ngClass]="msg.type">
-      {{ msg.text }}
+
+      <!-- Messages simples -->
+      <ng-container *ngIf="msg.type !== 'explanation-message'">
+        {{ msg.text }}
+      </ng-container>
+
+      <!-- Explication avec bouton voir réponse -->
+<!-- Explication avec style identique aux réponses -->
+<ng-container *ngIf="msg.type === 'explanation-message'">
+  <div class="message bot-message">
+    {{ msg.text }}
+  </div>
+
+  <div *ngIf="!msg.showResponse" style="margin-top: 8px;">
+    <button (click)="toggleResponse(msg)">Voir réponse</button>
+  </div>
+
+  <div *ngIf="msg.showResponse" class="message bot-message">
+    <strong>Réponse :</strong> {{ msg.response }}
+    <br/>
+    <button (click)="toggleResponse(msg)">Voir moins</button>
+  </div>
+</ng-container>
+
+      
     </div>
 
     <div *ngIf="loading" class="message typing-indicator">
@@ -18,10 +42,10 @@
   <div class="chat-input">
     <input
       type="text"
-      [(ngModel)]="question"
+      [(ngModel)]="message"
       (keydown.enter)="sendQuestion()"
       placeholder="Posez une question juridique..."
     />
-    <button (click)="sendQuestion()" [disabled]="loading || !question.trim()">Envoyer</button>
+    <button (click)="sendQuestion()" [disabled]="loading || !message.trim()">Envoyer</button>
   </div>
 </div>

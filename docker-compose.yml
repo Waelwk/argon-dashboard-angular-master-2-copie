@@ -1,0 +1,10 @@
+version: "3.9"
+
+services:
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: mydockerusername/angular-app-nginx:latest
+    ports:
+      - "8080:80"

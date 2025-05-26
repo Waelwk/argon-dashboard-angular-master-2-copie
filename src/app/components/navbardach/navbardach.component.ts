@@ -42,22 +42,21 @@ export class NavbardachComponent implements OnInit {
   this.nom = localStorage.getItem('nom');
   switch (this.role) {
     case 'ADMIN':
-      this.editLink = '/dashboard/admin/edit';
+      this.editLink = '/dashboardA/EditProfil';
       break;
     case 'CLIENT':
-      this.editLink = '/dashboard/client/edit';
+      this.editLink = '/dashboardClient/EditProfile';
       break;
     case 'AVOCAT':
-      this.editLink = '/dashboard/avocat/edit';
+      this.editLink = '/dashboardA/EditProfil';
       break;
     case 'MANAGER':
-      this.editLink = '/dashboard/manager/edit';
+      this.editLink = '/dashboardm/EditProfile';
       break;
       case 'ASSISTANT':
-        this.editLink = '/dashboard/assistant/edit';
+        this.editLink = '/dashboardAssistant/EditProfile';
         break;
-    default:
-      this.editLink = '/dashboard/profile'; // fallback
+    
   }
 } 
 ngAfterViewInit() {

@@ -94,7 +94,7 @@ avocats: Avocat[] = [];
   
         if (data && Array.isArray(data)) {
           this.avocats = data.filter((avocat: Avocat) => 
-            avocat.cabinet && Number(avocat.cabinet.id) === Number(this.cabinetId) && avocat.archivee === false
+            avocat.cabinet && Number(avocat.cabinet.id) === Number(this.cabinetId) 
           );
   
           console.log('Résultat filtré:', this.avocats); // Vérifie le résultat filtré

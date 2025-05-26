@@ -9,6 +9,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 import { DocumentService } from 'src/app/service/Document/document.service';
 import { DossierJuridique } from 'src/app/Models/DossierJuridique';
+import { HttpClient } from '@angular/common/http';
 
 
 
@@ -68,9 +69,14 @@ documents: any[] = [];
   };
   avocatId: number;
   isClicked: boolean = false;
-  constructor(  private documentService: DocumentService ,private toastr: ToastrService, private dossierUpdateService: DossierJuridiqueUpdateService,private route: ActivatedRoute, private router: Router, private DossierJuridiqueService : DossierJuridiqueService,private modalService: NgbModal,) { }
+  tribunauxGrouped: any = {};
+  constructor(  private http: HttpClient,private documentService: DocumentService ,private toastr: ToastrService, private dossierUpdateService: DossierJuridiqueUpdateService,private route: ActivatedRoute, private router: Router, private DossierJuridiqueService : DossierJuridiqueService,private modalService: NgbModal,) { }
 
   ngOnInit(): void {
+    this.http.get<any>('assets/tribunaux.json').subscribe(data => {
+      this.tribunauxGrouped = data;
+    });
+  
     this.avocatId = Number(localStorage.getItem('id'));
      console.log('ID de l\'avocat :', this.avocatId);
     console.log("ngOnInit appelé"); // Vérifie si la méthode est appelée

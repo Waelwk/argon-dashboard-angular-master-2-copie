@@ -594,11 +594,11 @@ input[type='checkbox'] {
 
 .spinner {
 	position: absolute;
-	top: 50%; /* centers the loading animation vertically one the screen */
-	left: 50%; /* centers the loading animation horizontally one the screen */
+	top: 50%;
+	left: 50%;
 	width: 3.75rem;
 	height: 1.25rem;
-	margin: -0.625rem 0 0 -1.875rem; /* is width and height divided by two */ 
+	margin: -0.625rem 0 0 -1.875rem;
 	text-align: center;
 }
 
@@ -622,22 +622,29 @@ input[type='checkbox'] {
 	animation-delay: -0.16s;
 }
 
+.spinner .bounce3 {
+	-webkit-animation-delay: 0s;
+	animation-delay: 0s;
+}
+
 @-webkit-keyframes sk-bouncedelay {
 	0%, 80%, 100% { -webkit-transform: scale(0); }
 	40% { -webkit-transform: scale(1.0); }
 }
 
 @keyframes sk-bouncedelay {
-	0%, 80%, 100% { 
+	0%, 80%, 100% {
 		-webkit-transform: scale(0);
 		-ms-transform: scale(0);
 		transform: scale(0);
-	} 40% { 
+	}
+	40% {
 		-webkit-transform: scale(1.0);
 		-ms-transform: scale(1.0);
 		transform: scale(1.0);
 	}
 }
+
 
 
 /**************************/
