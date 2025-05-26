@@ -1497,10 +1497,12 @@ a:hover.back-to-top {
 .ex-header {
 	padding-top: 8rem;
 	padding-bottom: 5rem;
-	background-color: #5f4dee;
+	background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),  url('https://img.freepik.com/photos-gratuite/gros-plan-personne-ecrivant-dans-livre-marteau-table_181624-57173.jpg?semt=ais_hybrid&w=740') no-repeat center center;
+	background-size: cover;
 	text-align: center;
-}
-
+	color: white; /* facultatif : assure une bonne lisibilité */
+  }
+  
 .ex-header h1 {
 	color: #fff;
 }
