@@ -79,4 +79,4 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          tags: mydockerusername/angular-app-nginx:latest
+    tags: ${{ secrets.DOCKERHUB_USERNAME }}/angular-app-nginx:latest
