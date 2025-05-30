@@ -102,13 +102,13 @@ import { DossierArchiverComponent } from './pages/Avocat/dossier-archiver/dossie
 registerLocaleData(localeFr); 
 
 
-import { NgChartsModule } from 'ng2-charts';
-import { StatsChartComponent } from './stats-chart/stats-chart.component';
-import { MetricsChartComponent } from './metrics-chart/metrics-chart.component';
+
+
+
 
 @NgModule({
   imports: [ 
-    NgChartsModule,
+
     FormsModule, 
     NgbModule,
     // CalendarModule.forRoot({
@@ -209,8 +209,8 @@ import { MetricsChartComponent } from './metrics-chart/metrics-chart.component';
   BlogComponent,
      BlogPubComponent,
      DossierArchiverComponent,
-     StatsChartComponent,
-     MetricsChartComponent
+
+
   ],
   providers: [ { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },],
   bootstrap: [AppComponent]
