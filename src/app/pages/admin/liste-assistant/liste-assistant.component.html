@@ -260,7 +260,15 @@
               </div>
               <div class="form-group">
                 <label>Mot de passe :</label>
-                <input type="password" class="form-control" [(ngModel)]="selectedAssistant.password" name="password" required />
+              <input
+  [type]="isUpdateModalOpen ? 'text' : 'password'" 
+  class="form-control"
+  [(ngModel)]="selectedAssistant.password"
+  name="fake-password"
+  autocomplete="off"
+  placeholder="Laissez vide pour ne pas changer le mot de passe"
+/>
+
               </div>
               <div class="form-group">
                 <label>Domaine :</label>

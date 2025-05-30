@@ -154,8 +154,15 @@ loadAssistantsByCabinetIdA(cabinetId: number): void {
 
   // Open update modal
   openUpdateModal(Assistant: Assistant): void {
+   
     this.selectedAssistant = { ...Assistant };
+   this.selectedAssistant.password = '';
+   console.log(this.selectedAssistant)
     this.isUpdateModalOpen = true;
+      setTimeout(() => {
+    this.selectedAssistant.password = '';
+  }, 0);
+
   }
 
   // Update Assistant

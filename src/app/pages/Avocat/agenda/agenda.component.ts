@@ -244,11 +244,14 @@ Demande par  : ${demandePar}
         console.log('Rendez-vous récupérés avec succès :', data);
 
         // Récupérer les informations des clients
-        this.rendezVousList.forEach((rdv) => {
-          if (rdv.client) {
-            this.getClientById(rdv.client.id);
-          }
-        });
+      this.rendezVousList.forEach((rdv) => {
+  const clientId = typeof rdv.client === 'object' ? rdv.client.id : rdv.client;
+  if (clientId) {
+    this.getClientById(clientId);
+  }
+});
+
+        
 
         this.updateCalendar();
       },

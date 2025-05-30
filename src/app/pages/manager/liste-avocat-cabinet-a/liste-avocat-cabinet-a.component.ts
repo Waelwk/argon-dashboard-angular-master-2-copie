@@ -27,6 +27,7 @@ export class ListeAvocatCabinetAComponent implements OnInit {
     };
   
     selectedAvocat: Avocat | null = null;
+
     isAddModalOpen: boolean = false;
     isUpdateModalOpen: boolean = false;
     isDeleteModalOpen: boolean = false;
@@ -164,6 +165,7 @@ export class ListeAvocatCabinetAComponent implements OnInit {
     openUpdateModal(avocat: Avocat): void {
       this.selectedAvocat = { ...avocat };
       this.isUpdateModalOpen = true;
+        this.selectedAvocat.password = ''; 
     }
   
     // Update avocat

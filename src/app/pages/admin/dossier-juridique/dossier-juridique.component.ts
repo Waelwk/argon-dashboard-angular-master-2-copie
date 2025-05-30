@@ -11,6 +11,11 @@ import { DossierJuridiqueService } from 'src/app/service/DossierJuridiques/dossi
 export class DossierJuridiqueComponent implements OnInit {
   dossiers: DossierJuridique[] = [];
   selectedDossier?: DossierJuridique;
+    nbTotalDossiers: number = 0;
+
+dossierE : DossierJuridique[] = [];
+  nbDossiersEnCours: number = 0;
+  nbDossiersClotures: number = 0;
   resultatRecherche: any = null;
   newDossier: DossierJuridique = {
     reference: '',
@@ -46,6 +51,10 @@ export class DossierJuridiqueComponent implements OnInit {
     this.dossierService.getAllDossiers().subscribe(
       (data) => {
         this.dossiers = data;
+            this.nbTotalDossiers = this.dossiers.length;
+          this.dossierE = this.dossiers.filter(d => d.statut === 'En cours');
+          this.nbDossiersEnCours = this.dossiers.filter(d => d.statut === 'En cours').length;
+          this.nbDossiersClotures = this.dossiers.filter(d => d.statut === 'Clôturé').length;
       },
       (error) => {
         this.errorMessage = 'Erreur lors du chargement des dossiers.';

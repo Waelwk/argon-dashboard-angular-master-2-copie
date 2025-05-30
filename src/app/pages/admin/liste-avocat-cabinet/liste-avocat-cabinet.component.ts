@@ -165,7 +165,9 @@ export class ListeAvocatCabinetComponent implements OnInit {
 
   // Open update modal
   openUpdateModal(avocat: Avocat): void {
+
     this.selectedAvocat = { ...avocat };
+        this.selectedAvocat.password = ''; // Clear password field for update
     this.isUpdateModalOpen = true;
   }
 

@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
@@ -15,7 +16,11 @@ import { DossierJuridiqueService } from 'src/app/service/DossierJuridiques/dossi
 export class ListedossierMComponent implements OnInit {
  dossiers: DossierJuridique[] = [];
  sortAsc: boolean = true; // Pour alterner ascendant / descendant
-
+  nbTotalDossiers: number = 0;
+  nbDossiersEnCours: number = 0;
+  nbDossiersClotures: number = 0;
+  tribunauxGrouped: any = {};
+dossierE : DossierJuridique[] = [];
   selectedDossier?: DossierJuridique;
   resultatRecherche: any = null;
   newDossier: DossierJuridique = {
@@ -42,9 +47,13 @@ export class ListedossierMComponent implements OnInit {
   isArchiveModalOpen: boolean = false;
   resultatRechercher: DossierJuridique;
   avocats: any[];
-  constructor( private toastr: ToastrService ,private route: ActivatedRoute,private dossierService: DossierJuridiqueService,private avocatService: AvocatService) {}
+  constructor( private http: HttpClient,private toastr: ToastrService ,private route: ActivatedRoute,private dossierService: DossierJuridiqueService,private avocatService: AvocatService) {}
 
   ngOnInit(): void {
+        this.http.get<any>('assets/tribunaux.json').subscribe(data => {
+      this.tribunauxGrouped = data;
+    });
+  
     this.cabinetId = +this.route.snapshot.paramMap.get('id');
     console.log('ID du cabinet :', this.cabinetId);
     this.getAllDossiers();
@@ -77,7 +86,10 @@ export class ListedossierMComponent implements OnInit {
       (data) => {
         // Filtrer les dossiers en fonction de l'ID du cabinet
         this.dossiers = data.filter(dossier => dossier.cabinet.id === this.cabinetId);
-  
+     this.nbTotalDossiers = this.dossiers.length;
+          this.dossierE = this.dossiers.filter(d => d.statut === 'En cours');
+          this.nbDossiersEnCours = this.dossiers.filter(d => d.statut === 'En cours').length;
+          this.nbDossiersClotures = this.dossiers.filter(d => d.statut === 'Clôturé').length;
         // Pour chaque dossier, charger les infos de l'avocat si besoin
         this.dossiers.forEach(dossier => {
           if (typeof dossier.avocat === 'number') {

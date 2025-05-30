@@ -57,7 +57,7 @@ export class EditProfilAssistantComponent implements OnInit {
     this.assistantService.updateAssistant(this.assistant.id, updatedAssistant).subscribe(
       () => {
         this.toastr.success('Profil de l\'assistant mis à jour avec succès');
-        this.router.navigate(['/assistants']);  // Rediriger vers la liste des assistants après la mise à jour
+
       },
       (error) => {
         this.toastr.error('Erreur lors de la mise à jour de l\'assistant');
@@ -65,8 +65,6 @@ export class EditProfilAssistantComponent implements OnInit {
     );
   }
 
-  // Méthode pour annuler les modifications et revenir à la liste des assistants
-  cancel(): void {
-    this.router.navigate(['/assistants']);
-  }
+  
+  
 }

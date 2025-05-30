@@ -120,7 +120,8 @@ addClient() {
   openUpdateModal(client: Client): void {
     if (client) {
       console.log('Ouverture du modal de mise à jour pour :', client); // Vérification en console
-      this.selectedClient = { ...client }; // Copie des données
+      this.selectedClient = { ...client }; 
+       this.selectedClient.password='';// Copie des données
       this.isUpdateModalOpen = true;
     } else {
       this.toastr.error("Erreur : Client invalide");

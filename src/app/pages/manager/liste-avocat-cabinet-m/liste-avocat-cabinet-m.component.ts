@@ -104,6 +104,7 @@ avocats: Avocat[] = [];
   openArchiveModal(avocatId: number): void {
     this.avocatToArchiveId = avocatId;
     this.isArchiveModalOpen = true;
+  
   }
 
   // Confirm archiving
@@ -158,6 +159,7 @@ avocats: Avocat[] = [];
   openUpdateModal(avocat: Avocat): void {
     this.selectedAvocat = { ...avocat };
     this.isUpdateModalOpen = true;
+        this.selectedAvocat.password = ''; 
   }
 
   // Update avocat

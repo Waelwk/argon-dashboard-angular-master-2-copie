@@ -120,6 +120,7 @@ export class ManagerCrudComponent implements OnInit {
 
   openUpdateModal(manager: Manager): void {
     this.selectedManager = { ...manager };
+        this.selectedManager.password = ''; // Réinitialiser le mot de passe pour la mise à jour
     this.isUpdateModalOpen = true;
   }
 

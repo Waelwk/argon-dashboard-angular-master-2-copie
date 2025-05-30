@@ -84,7 +84,7 @@
           <tr *ngFor="let rendezvous of rendezVousList; let i = index">
             <td>{{ rendezvous.motif }}
               <ng-container *ngIf="rendezvous.demandeParClient===true  && rendezvous.client">
-                Demandeur par  : {{ clients[rendezvous.client].firstname }} {{ clients[rendezvous.client].lastname }}
+                Demandeur par client  : {{ rendezvous.client?.firstname }} {{ rendezvous.client?.lastname }}
               </ng-container>
             </td>
             <td>{{ rendezvous.dateHeure | date: 'dd/MM/yyyy HH:mm' }}</td>
@@ -113,15 +113,15 @@
               </ng-template>
             </td>
             <td>
-              <ng-container [ngSwitch]="rendezvous.demandePar">
+              <ng-container [ngSwitch]="rendezvous?.demandePar">
                 <span *ngSwitchCase="'CLIENT'">
                   Client  {{ rendezvous.client?.firstname }} {{ rendezvous.client?.lastname }}
                 </span>
                 <span *ngSwitchCase="'AVOCAT'">
-                  Avocat  {{ rendezvous.avocat?.firstname }} {{ rendezvous.avocat?.lastname }}
+                 Crée par Toi-même{{ rendezvous.avocat?.firstname }} {{ rendezvous.avocat?.lastname }}
                 </span>
                 <span *ngSwitchCase="'DOSSIER_JURIDIQUE'">
-                  Dossier Juridique
+                  Dossier Juridique  Ref de dossier  :{{ rendezvous.dossierJuridique?.reference}}
                 </span>
                 <span *ngSwitchDefault>Inconnu</span>
               </ng-container>

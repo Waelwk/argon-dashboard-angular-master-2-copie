@@ -86,15 +86,21 @@ export class ListeDossierClientComponent implements OnInit {
       cancelButtonText: 'Annuler'
     }).then(result => {
       if (result.isConfirmed) {
-        this.accessCodeService.deleteAccessCode(code.id).subscribe({
-          next: (response) => {
-            Swal.fire('Supprimé !', 'Le code d\'accès a été supprimé avec succès.', 'success');
-            this.loadData(); // Rechargement des données pour afficher la liste mise à jour
-          },
-          error: (error) => {
-            Swal.fire('Erreur', 'Il y a eu un problème avec la suppression du code.', 'error');
-          }
-        });
+    this.accessCodeService.deleteAccessCode(code.id).subscribe({
+  next: () => {
+    Swal.fire('Supprimé !', 'Le code d\'accès a été supprimé avec succès.', 'success');
+    this.loadData();
+  },
+  error: (error) => {
+    if (error.status === 204 || error.status === 200) {
+      Swal.fire('Supprimé !', 'Le code d\'accès a été supprimé avec succès.', 'success');
+      this.loadData();
+    } else {
+      Swal.fire('Erreur', 'Il y a eu un problème avec la suppression du code.', 'error');
+    }
+  }
+});
+
       }
     });
   }

@@ -157,10 +157,16 @@ loadAssistantsByCabinetIdA(cabinetId: number): void {
   }
 
   // Open update modal
-  openUpdateModal(Assistant: Assistant): void {
-    this.selectedAssistant = { ...Assistant };
-    this.isUpdateModalOpen = true;
-  }
+openUpdateModal(assistant: Assistant): void {
+  this.selectedAssistant = { ...assistant };
+  this.isUpdateModalOpen = true;
+
+  // Attendre le rendu du modal, puis vider le champ manuellement
+  setTimeout(() => {
+    this.selectedAssistant.password = '';
+  }, 0);
+}
+
 
   // Update Assistant
   updateAssistant(): void {

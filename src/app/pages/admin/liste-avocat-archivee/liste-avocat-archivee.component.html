@@ -32,7 +32,7 @@
               <div class="col-lg-4 mb-4">
                   <div class="card h-100 border-start-lg border-start-primary">
                     <div class="card-body">
-                      <div class="small text-muted"><i class="fas fa-user-tie"></i> Nombre d'assistants archivee</div>
+                      <div class="small text-muted"><i class="fas fa-user-tie"></i> Nombre d'Avocat archivee</div>
                       <div class="h3">{{avocatsA.length}}</div>
                       
                     </div>
@@ -103,7 +103,7 @@
                   <strong>Téléphone :</strong> {{ avocat.cabinet?.numTel }}
                 </td>
                 <td>
-                  <a class="btn btn-secondary" (click)="openUpdateModal(avocat)"  class="settings" title="Settings" data-toggle="tooltip"><i class="material-icons">&#xE8B8;</i></a>
+                  <!-- <a class="btn btn-secondary" (click)="openUpdateModal(avocat)"  class="settings" title="Settings" data-toggle="tooltip"><i class="material-icons">&#xE8B8;</i></a> -->
                   <a class="btn btn-secondary" (click)="openArchiveModal(avocat.id)"   class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE5C9;</i></a>
                 </td>
               </tr>

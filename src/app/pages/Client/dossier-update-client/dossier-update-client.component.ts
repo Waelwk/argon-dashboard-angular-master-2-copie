@@ -209,7 +209,7 @@ export class DossierUpdateClientComponent implements OnInit {
       this.isUpdateModalOpen = true;
     }
     generateQRCode() {
-      if (!this.dossier || !this.dossier.client) {
+      if (!this.dossier ) {
         console.error('Dossier ou informations client indisponibles.');
         return;
       }
@@ -217,6 +217,7 @@ export class DossierUpdateClientComponent implements OnInit {
       const qrData = {
         id: this.dossier?.id ?? null,
         reference: this.dossier?.reference ?? null,
+      avocat: this.dossier?.avocat?.firstname   ?? null,
         clientNom: this.dossier?.client?.firstname ?? null,
         clientPrenom: this.dossier?.client?.lastname ?? null,
         clientEmail: this.dossier?.emailClient ?? null,
