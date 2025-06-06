@@ -1,0 +1,13 @@
+<h2>Graphique de toutes les métriques</h2>
+
+<div *ngIf="chartData.datasets.length > 0">
+  <canvas baseChart
+          [data]="chartData"
+          [options]="chartOptions"
+          [chartType]="chartType">
+  </canvas>
+</div>
+
+<div *ngIf="chartData.datasets.length === 0">
+  Chargement des métriques...
+</div>

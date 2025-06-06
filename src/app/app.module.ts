@@ -97,7 +97,11 @@ import { BlogAComponent } from './pages/Avocat/blog-a/blog-a.component';
 import { BlogComponent } from './pages/admin/blog/blog.component';
 import { BlogPubComponent } from './pages/blog-pub/blog-pub.component';
 import { DossierArchiverComponent } from './pages/Avocat/dossier-archiver/dossier-archiver.component';
+import { NgChartsModule } from 'ng2-charts';
+import { StatistiquesMetierComponent } from './pages/admin/statistiques-metier/statistiques-metier.component';
 
+import { MetricsListComponent } from './pages/admin/metrics-list/metrics-list.component';
+import { MetricDetailsComponent } from './pages/admin/metric-details/metric-details.component';
 
 registerLocaleData(localeFr); 
 
@@ -108,7 +112,7 @@ registerLocaleData(localeFr);
 
 @NgModule({
   imports: [ 
-
+  NgChartsModule,
     FormsModule, 
     NgbModule,
     // CalendarModule.forRoot({
@@ -209,6 +213,10 @@ registerLocaleData(localeFr);
   BlogComponent,
      BlogPubComponent,
      DossierArchiverComponent,
+     StatistiquesMetierComponent,
+    
+     MetricsListComponent,
+     MetricDetailsComponent,
 
 
   ],
