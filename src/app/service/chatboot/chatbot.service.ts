@@ -3,34 +3,45 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 export interface ChatRequest {
-  message: string;  // changer question -> message
+  message: string;
 }
 
 export interface ChatResponse {
-  response: string;      // texte de la réponse (tu peux ajuster selon backend)
-  explanation?: string;  // explication optionnelle
-  articles?: any[];      // liste d'articles optionnelle
+  response: string;
+  explanation?: string;
+  articles?: any[];
 }
 
 @Injectable({
   providedIn: 'root'
 })
 export class ChatbotService {
-  private apiUrl = 'http://localhost:8000'; // URL de ton backend FastAPI
+  private apiUrl = 'http://localhost:8000'; // Remplace par ton IP si besoin
 
   constructor(private http: HttpClient) {}
 
+  /** Envoyer une question au chatbot */
   askQuestion(request: ChatRequest): Observable<ChatResponse> {
     return this.http.post<ChatResponse>(`${this.apiUrl}/chat`, request);
   }
 
-  uploadPdf(files: File[]): Observable<any> {
-    const formData = new FormData();
-    files.forEach(file => formData.append('files', file));
-    return this.http.post(`${this.apiUrl}/upload`, formData);
+  /** Upload d’un ou plusieurs fichiers PDF */
+uploadPdf(files: File[]): Observable<any> {
+  const formData = new FormData();
+  if (files.length > 0) {
+    formData.append('file', files[0]); // 'file' correspond au paramètre FastAPI
+  }
+  return this.http.post(`${this.apiUrl}/pdfs/upload`, formData);
+}
+
+
+  /** Liste des fichiers PDF disponibles */
+  listPdfs(): Observable<string[]> {
+    return this.http.get<string[]>(`${this.apiUrl}/pdfs`);
   }
 
-  listPdfs(): Observable<string[]> {
-    return this.http.get<string[]>(`${this.apiUrl}/pdfs/list`);
+  /** Supprimer un fichier PDF par son nom */
+  deletePdf(pdfName: string): Observable<{ message: string }> {
+    return this.http.delete<{ message: string }>(`${this.apiUrl}/pdfs/${encodeURIComponent(pdfName)}`);
   }
 }

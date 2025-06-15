@@ -1,0 +1,41 @@
+
+ <app-navbarindex></app-navbarindex>
+
+<div style="background-color: rgb(242, 242, 242);">
+<header id="header" class="ex-header">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1> Notre blog vous éclaire sur les grandes questions juridiques!!</h1>
+                </div> <!-- end of col -->
+            </div> <!-- end of row -->
+        </div> <!-- end of container -->
+    </header> <!-- end of ex-header -->
+
+<div class="cabinet-container">
+  <h2>🧾 Cabinets Juridiques</h2>
+
+  <div *ngIf="errorMessage" class="error-message">
+    {{ errorMessage }}
+  </div>
+
+  <div class="cabinets-wrapper" *ngIf="cabinets.length > 0; else noData">
+    <div *ngFor="let cab of cabinets" class="cabinet-card">
+      <div class="card-header">
+        <h3>{{ cab.nom }}</h3>
+        <span class="created-date">{{ cab.date_creation | date:'longDate' }}</span>
+      </div>
+      <div class="card-body">
+        <p><i class="fas fa-map-marker-alt"></i> {{ cab.adresse }}</p>
+        <p><i class="fas fa-phone-alt"></i> {{ cab.num_tel }}</p>
+        <p><i class="fas fa-envelope"></i> {{ cab.email }}</p>
+        <p><i class="fas fa-user-tie"></i> Gérant ID: {{ cab.manager_id }}</p>
+      </div>
+    </div>
+  </div>
+
+  <ng-template #noData>
+    <p class="no-data">Aucun cabinet disponible pour le moment.</p>
+  </ng-template>
+</div>
+</div>

@@ -1,0 +1,138 @@
+.pdf-manager {
+  max-width: 700px;
+  margin: auto;
+  padding: 20px;
+  font-family: 'Segoe UI', sans-serif;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  background-color: #f9f9f9;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+.pdf-manager {
+  max-width: 700px;
+  margin: 60px auto 40px; /* augmente la marge haute, garde centrage horizontal */
+  padding: 20px;
+  font-family: 'Segoe UI', sans-serif;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  background-color: #f9f9f9;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 24px;
+  color: #34495e;
+}
+
+.upload-section {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.upload-label {
+  cursor: pointer;
+}
+
+.upload-button {
+  background-color: #3498db;
+  color: white;
+  padding: 10px 16px;
+  border-radius: 5px;
+  display: inline-block;
+  transition: background 0.3s;
+}
+
+.upload-button:hover {
+  background-color: #2980b9;
+}
+
+.btn {
+  background-color: #2ecc71;
+  color: white;
+  padding: 10px 14px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.btn:disabled {
+  background-color: #bdc3c7;
+  cursor: not-allowed;
+}
+
+.upload-btn {
+  background-color: #27ae60;
+}
+
+.upload-btn:hover {
+  background-color: #219150;
+}
+
+.btn-delete {
+  background-color: #e74c3c;
+  margin-left: 10px;
+}
+
+.btn-delete:hover {
+  background-color: #c0392b;
+}
+
+.pdf-list ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.pdf-item {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #ecf0f1;
+  margin-bottom: 10px;
+  padding: 12px;
+  border-radius: 6px;
+}
+
+.pdf-name {
+  flex: 1 1 60%;
+  word-break: break-word;
+  font-weight: 500;
+}
+
+.error {
+  color: red;
+  text-align: center;
+  margin-top: 15px;
+  font-size: 14px;
+}
+
+/* -------- Responsive Design -------- */
+
+@media (max-width: 600px) {
+  .upload-section {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .pdf-item {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .btn-delete {
+    margin-top: 8px;
+    margin-left: 0;
+    width: 100%;
+  }
+
+  .upload-button,
+  .btn {
+    width: 100%;
+    text-align: center;
+  }
+}

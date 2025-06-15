@@ -13,6 +13,7 @@ import { SidebarClientComponent } from './sidebar-client/sidebar-client.componen
 import { SidebarAssistantComponent } from './sidebar-assistant/sidebar-assistant.component';
 import { ChatbotComponent } from '../pages/chatbot/chatbot.component';
 import { FormsModule } from '@angular/forms';
+import { ChatbotPdfManagerComponent } from '../pages/admin/chatbot-pdf-manager/chatbot-pdf-manager.component';
 
 
 
@@ -33,7 +34,8 @@ sidebarm,
 SideBarAComponent,
   SidebarClientComponent,
   SidebarAssistantComponent,
-  ChatbotComponent
+  ChatbotComponent,
+
 ],
 exports: [
   FooterComponent,

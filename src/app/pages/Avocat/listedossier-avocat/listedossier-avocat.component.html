@@ -112,7 +112,8 @@
           <th>Actions</th> <!-- Ajout d'une colonne pour l'action -->
         </tr>
       </thead>
-      <tbody>
+
+    <tbody *ngIf="dossierE.length > 0; else noData">
         <tr *ngFor="let dossier of dossierE">
           <td>{{ dossier.id }}</td>
           <td>{{ dossier.reference }}</td>
@@ -142,8 +143,20 @@
               
           </td>
         </tr>
+
       </tbody>
+      <ng-template #noData>
+                <tr>
+                  <td colspan="7" class="text-center">
+                    <img src="./assets/img/3024051.jpg" alt="Aucune donnée disponible" style="width: 200px; height: auto; margin-top: 20px;">
+                    <p>Aucune donnée disponible</p>
+                  </td>
+                </tr>
+              </ng-template>
     </table>
+
+
+
     <div *ngIf="isAddModalOpen || isUpdateModalOpen || isArchiveModalOpen" class="overlay" (click)="closeModal()"></div>
    
     <!-- Modal de mise à jour -->

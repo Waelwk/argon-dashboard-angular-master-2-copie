@@ -1,11 +1,22 @@
+// chatbot.component.ts
 import { Component } from '@angular/core';
-import { ChatbotService, ChatRequest, ChatResponse } from 'src/app/service/chatboot/chatbot.service';
+import {
+  ChatbotService,
+  ChatRequest as ChatbotRequest,
+  ChatResponse as ChatbotResponse
+} from 'src/app/service/chatboot/chatbot.service';
+import { Chatbotllm } from 'src/app/service/chatboot/chatbotllm.service';
+
+import {
+ Chatbotllm as ChatbotllmService,
+  ChatRequest as NewChatRequest,
+  ChatResponse as NewChatResponse
+} from 'src/app/service/chatboot/chatbotllm.service';
 
 interface ChatMessage {
   text: string;
-  type: 'user-message' | 'bot-message' | 'explanation-message';
-  response?: string;   // réponse associée à l'explication (si applicable)
-  showResponse?: boolean; // contrôle affichage réponse
+  type: 'user-message' | 'bot-message';
+  sender: 'user' | 'assistant-juridique' | 'chatbot-general';
 }
 
 @Component({
@@ -16,52 +27,76 @@ interface ChatMessage {
 export class ChatbotComponent {
   message = '';
   loading = false;
-
   messages: ChatMessage[] = [];
 
-  constructor(private chatbotService: ChatbotService) {
+  constructor(
+    private chatbotService: ChatbotService,
+    private chatService: Chatbotllm 
+  ) {
     this.messages.push({
-      text: 'Bonjour ! Je suis votre assistant juridique. Posez-moi une question juridique.',
-      type: 'bot-message'
+      text: 'Bonjour ! Je suis votre assistant juridique ou chatbot général. Choisissez à qui poser votre question.',
+      type: 'bot-message',
+      sender: 'assistant-juridique'
     });
   }
 
-  sendQuestion() {
+  sendToAssistantJuridique() {
     if (!this.message.trim()) return;
 
-    const currentQuestion = this.message.trim();
-    this.messages.push({ text: currentQuestion, type: 'user-message' });
-
-    this.loading = true;
+    const question = this.message.trim();
+    this.messages.push({ text: question, type: 'user-message', sender: 'user' });
     this.message = '';
+    this.loading = true;
 
-    const request: ChatRequest = { message: currentQuestion };
+    const request: ChatbotRequest = { message: question };
 
     this.chatbotService.askQuestion(request).subscribe({
-      next: (res) => {
+      next: (res: ChatbotResponse) => {
+        this.messages.push({
+          text: res.response.trim(),
+          type: 'bot-message',
+          sender: 'assistant-juridique'
+        });
         this.loading = false;
-
-        if (res.explanation && res.explanation.trim() !== '') {
-          // Ajouter un message d'explication avec réponse cachée
-          this.messages.push({
-            text: res.explanation.trim(),
-            type: 'explanation-message',
-            response: res.response.trim(),
-            showResponse: false
-          });
-        } else {
-          // Ajouter directement la réponse simple
-          this.messages.push({ text: res.response.trim(), type: 'bot-message' });
-        }
       },
       error: () => {
+        this.messages.push({
+          text: 'Erreur avec le service assistant juridique.',
+          type: 'bot-message',
+          sender: 'assistant-juridique'
+        });
         this.loading = false;
-        this.messages.push({ text: 'Erreur de connexion. Réessayez.', type: 'bot-message' });
       }
     });
   }
 
-  toggleResponse(msg: ChatMessage) {
-    msg.showResponse = !msg.showResponse;
+  sendToChatbotGeneral() {
+    if (!this.message.trim()) return;
+
+    const question = this.message.trim();
+    this.messages.push({ text: question, type: 'user-message', sender: 'user' });
+    this.message = '';
+    this.loading = true;
+
+    const request: NewChatRequest = { question };
+
+    this.chatService.sendQuestion(request).subscribe({
+      next: (res: NewChatResponse) => {
+        this.messages.push({
+          text: res.answer.trim(),
+          type: 'bot-message',
+          sender: 'chatbot-general'
+        });
+        this.loading = false;
+      },
+      error: () => {
+        this.messages.push({
+          text: 'Erreur avec le chatbot général.',
+          type: 'bot-message',
+          sender: 'chatbot-general'
+        });
+        this.loading = false;
+      }
+    });
   }
 }

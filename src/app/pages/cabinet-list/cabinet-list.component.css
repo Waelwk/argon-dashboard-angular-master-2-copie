@@ -1,0 +1,99 @@
+/* Container */
+.cabinet-container {
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 20px;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+/* Title */
+h2 {
+  text-align: center;
+  color: #2c3e50;
+  margin-bottom: 30px;
+  font-size: 30px;
+}
+
+/* Error message */
+.error-message {
+  color: #e74c3c;
+  text-align: center;
+  margin-bottom: 20px;
+  font-weight: 500;
+}
+
+/* Cards layout */
+.cabinets-wrapper {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 20px;
+}
+
+/* Single card */
+.cabinet-card {
+  background: linear-gradient(145deg, #ffffff, #f3f3f3);
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+  padding: 20px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.cabinet-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.08);
+}
+
+/* Card header */
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.card-header h3 {
+  margin: 0;
+  font-size: 20px;
+  color: #2980b9;
+}
+
+.created-date {
+  font-size: 13px;
+  color: #999;
+  font-style: italic;
+}
+
+/* Card content */
+.card-body p {
+  margin: 8px 0;
+  font-size: 15px;
+  color: #34495e;
+}
+
+.card-body i {
+  margin-right: 8px;
+  color: #7f8c8d;
+}
+
+/* No data */
+.no-data {
+  text-align: center;
+  font-size: 16px;
+  color: #7f8c8d;
+  margin-top: 20px;
+}
+
+/* Responsive font scaling */
+@media (max-width: 768px) {
+  h2 {
+    font-size: 24px;
+  }
+
+  .card-header h3 {
+    font-size: 18px;
+  }
+
+  .card-body p {
+    font-size: 14px;
+  }
+}

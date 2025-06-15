@@ -1,0 +1,33 @@
+<div class="pdf-manager">
+  <h2>📄 Gestion des fichiers PDF de lois </h2>
+
+  <!-- Section Upload -->
+<div class="upload-section">
+  <label class="upload-label">
+  <input type="file" (change)="onFilesSelected($event)" multiple accept=".pdf" hidden>
+
+    <span class="upload-button">📤 Sélectionner des fichiers</span>
+  </label>
+  <button class="btn upload-btn" (click)="uploadFiles()" [disabled]="selectedFiles.length === 0">
+    Uploader
+  </button>
+</div>
+
+  <!-- Liste des fichiers PDF -->
+  <div class="pdf-list" *ngIf="pdfList.length > 0; else noFiles">
+    <ul>
+      <li *ngFor="let pdf of pdfList" class="pdf-item">
+        <span class="pdf-name">📎 {{ pdf }}</span>
+        <button class="btn btn-delete" (click)="deletePdf(pdf)">🗑 Supprimer</button>
+      </li>
+    </ul>
+  </div>
+
+  <!-- Aucun fichier -->
+  <ng-template #noFiles>
+    <p>Aucun fichier PDF disponible.</p>
+  </ng-template>
+
+  <!-- Erreur -->
+  <p class="error" *ngIf="errorMessage">{{ errorMessage }}</p>
+</div>

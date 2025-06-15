@@ -2,50 +2,67 @@
 
 <div class="chat-container">
   <div class="chat-header">
-    Assistant Juridique
+    Assistant Juridique et Chatbot Général
   </div>
 
   <div class="chat-messages">
     <div *ngFor="let msg of messages" class="message" [ngClass]="msg.type">
-
-      <!-- Messages simples -->
-      <ng-container *ngIf="msg.type !== 'explanation-message'">
-        {{ msg.text }}
+      
+      <!-- Utilisateur -->
+      <ng-container *ngIf="msg.type === 'user-message'">
+        <div class="message user-message">
+          <strong>Vous :</strong> {{ msg.text }}
+        </div>
       </ng-container>
 
-      <!-- Explication avec bouton voir réponse -->
-<!-- Explication avec style identique aux réponses -->
-<ng-container *ngIf="msg.type === 'explanation-message'">
-  <div class="message bot-message">
-    {{ msg.text }}
-  </div>
+      <!-- Réponse simple du bot -->
+      <ng-container *ngIf="msg.type === 'bot-message'">
+        <div class="message bot-message">
+          <strong>{{ msg.sender === 'assistant-juridique' ? 'Assistant Juridique' : 'Chatbot Général' }} :</strong>
+          {{ msg.text }}
+        </div>
+      </ng-container>
 
-  <div *ngIf="!msg.showResponse" style="margin-top: 8px;">
-    <button (click)="toggleResponse(msg)">Voir réponse</button>
-  </div>
+      <!-- Réponse avec explication (Assistant Juridique uniquement) -->
+      <ng-container *ngIf="msg.type === 'explanation-message'">
+        <div class="message bot-message">
+          <strong>Assistant Juridique :</strong> {{ msg.text }}
+        </div>
 
-  <div *ngIf="msg.showResponse" class="message bot-message">
-    <strong>Réponse :</strong> {{ msg.response }}
-    <br/>
-    <button (click)="toggleResponse(msg)">Voir moins</button>
-  </div>
-</ng-container>
+        <div *ngIf="!msg.showResponse" style="margin-top: 8px;">
+          <button (click)="toggleResponse(msg)">Voir réponse</button>
+        </div>
 
-      
+        <div *ngIf="msg.showResponse" class="message bot-message">
+          <strong>Réponse :</strong> {{ msg.response }}
+          <br />
+          <button (click)="toggleResponse(msg)">Voir moins</button>
+        </div>
+      </ng-container>
+
     </div>
 
+    <!-- Indicateur de chargement -->
     <div *ngIf="loading" class="message typing-indicator">
       Assistant réfléchit...
     </div>
   </div>
 
+  <!-- Zone d'entrée + boutons -->
   <div class="chat-input">
     <input
       type="text"
       [(ngModel)]="message"
-      (keydown.enter)="sendQuestion()"
-      placeholder="Posez une question juridique..."
+      (keydown.enter)="sendToAssistantJuridique()"
+      placeholder="Posez une question juridique ou générale..."
     />
-    <button (click)="sendQuestion()" [disabled]="loading || !message.trim()">Envoyer</button>
+
+    <button (click)="sendToAssistantJuridique()" [disabled]="loading || !message.trim()">
+      Assistant Juridique
+    </button>
+
+    <button (click)="sendToChatbotGeneral()" [disabled]="loading || !message.trim()">
+      Chatbot Général
+    </button>
   </div>
 </div>

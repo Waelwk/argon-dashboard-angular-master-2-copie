@@ -102,6 +102,9 @@ import { StatistiquesMetierComponent } from './pages/admin/statistiques-metier/s
 
 import { MetricsListComponent } from './pages/admin/metrics-list/metrics-list.component';
 import { MetricDetailsComponent } from './pages/admin/metric-details/metric-details.component';
+import { ChatbotPdfManagerComponent } from './pages/admin/chatbot-pdf-manager/chatbot-pdf-manager.component';
+import { CabinetListComponent } from './pages/cabinet-list/cabinet-list.component';
+
 
 registerLocaleData(localeFr); 
 
@@ -218,6 +221,8 @@ registerLocaleData(localeFr);
      MetricsListComponent,
      MetricDetailsComponent,
 
+ChatbotPdfManagerComponent,
+ CabinetListComponent
 
   ],
   providers: [ { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },],
