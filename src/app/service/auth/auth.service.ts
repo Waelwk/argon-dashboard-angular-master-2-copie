@@ -3,12 +3,12 @@ import { BehaviorSubject, catchError, map, Observable, tap, throwError } from 'r
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { jwtDecode } from 'jwt-decode'; // Correction de l'importation
-
+import { HOSTNAME } from 'src/config/hostname-config';
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  private apiUrl = 'http://localhost:8080/api/v1/auth';
+  private apiUrl = `http://${HOSTNAME}:8080/api/v1/auth`;
   private userSubject = new BehaviorSubject<any>(null);
   private token: string | null = null;
 
